@@ -22,61 +22,33 @@ KlassenkameradDAO::~KlassenkameradDAO(){
 
 
 
-boolean KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz daten){
-
-	return  NULL;
+bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz daten){
+    return false;
 }
-
-
-KlassenkameradDatensatz[] KlassenkameradDAO::änderungshistorieLaden(string klassenkameradID){
-
-	return  NULL;
+KlassenkameradDatensatz* KlassenkameradDAO::aenderungshistorieLaden(string klassenkameradID){
+    return NULL;
 }
-
-
-string KlassenkameradDAO::anmeldedatenPrüfen(string e-Mail, string passwort){
-
-	return  NULL;
+string KlassenkameradDAO::anmeldedatenPrüfen(string eMail, string passwort){
+    return NULL;
 }
-
-
-boolean KlassenkameradDAO::einfügen(KlassenkameradDatensatz daten){
-
-	return  NULL;
+bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz daten){
+    return false;
 }
-
-
-boolean KlassenkameradDAO::initialPasswortÄndern(string passwort, string akteurID){
-
-	return  NULL;
+bool KlassenkameradDAO::initialPasswortAendern(string passwort, string akteurID){
+    return false;
 }
-
-
-KlassenkameradDatensatz[] KlassenkameradDAO::klassenkameradenLaden(){
-
-	return  NULL;
+KlassenkameradDatensatz* KlassenkameradDAO::klassenkameradenLaden(){
+    return NULL;
 }
-
-
-boolean KlassenkameradDAO::löschen(Klassenkamerad k){
-
-	return  NULL;
+bool KlassenkameradDAO::loeschen(KlassenkameradDatensatz k){
+    return false;
 }
-
-
-boolean KlassenkameradDAO::organisatorSperren(Klassenkamerad organisator){
-
-	return  NULL;
+bool KlassenkameradDAO::organisatorSperren(KlassenkameradDatensatz organisator){
+    return false;
 }
-
-
-boolean KlassenkameradDAO::removeOrganisator(string ID){
-
-	return  NULL;
+bool KlassenkameradDAO::removeOrganisator(string ID){
+    return false;
 }
-
-
-boolean KlassenkameradDAO::setOrganisator(string ID){
-
-	return  NULL;
+bool KlassenkameradDAO::setOrganisator(string ID){
+    return false;
 }

@@ -9,7 +9,7 @@
 #define EA_86366D34_CBEE_4fe6_874B_2A682AB1D442__INCLUDED_
 
 #include "Verwaltung.h"
-
+#include "KlassenkameradDatensatz.h"
 class ListeView
 {
 
@@ -18,14 +18,14 @@ public:
 	virtual ~ListeView();
 	Verwaltung *m_Verwaltung;
 
-	void aktualisieren(Klassenkamerad k);
-	void änderungshistorieLaden(Klassenkamerad k);
-	void hinzufügen();
+    void aktualisieren(KlassenkameradDatensatz &k);
+    void aenderungshistorieLaden(KlassenkameradDatensatz &k);
+    void hinzufuegen();
 	void listeLaden();
-	void löschen(Klassenkamerad k);
+    void loeschen(KlassenkameradDatensatz &k);
 	void organisatorenVerwalten();
-	void passwortÄndern();
-	void passwortÄnderungBestätigen();
+    void passwortAendern();
+    void passwortAenderungBestaetigen();
 	void speichern();
 
 };

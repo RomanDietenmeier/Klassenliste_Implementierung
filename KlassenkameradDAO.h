@@ -9,6 +9,7 @@
 #define EA_32BE42DF_F426_41ed_A28D_45636761C63D__INCLUDED_
 
 #include "Verwaltung.h"
+#include"KlassenkameradDatensatz.h"
 
 class KlassenkameradDAO
 {
@@ -18,16 +19,16 @@ public:
 	virtual ~KlassenkameradDAO();
 	Verwaltung *m_Verwaltung;
 
-	boolean aktualisieren(KlassenkameradDatensatz daten);
-	KlassenkameradDatensatz[] änderungshistorieLaden(string klassenkameradID);
-	string anmeldedatenPrüfen(string e-Mail, string passwort);
-	boolean einfügen(KlassenkameradDatensatz daten);
-	boolean initialPasswortÄndern(string passwort, string akteurID);
-	KlassenkameradDatensatz[] klassenkameradenLaden();
-	boolean löschen(Klassenkamerad k);
-	boolean organisatorSperren(Klassenkamerad organisator);
-	boolean removeOrganisator(string ID);
-	boolean setOrganisator(string ID);
+    bool aktualisieren(KlassenkameradDatensatz daten);
+    KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
+    string anmeldedatenPrüfen(string eMail, string passwort);
+    bool einfuegen(KlassenkameradDatensatz daten);
+    bool initialPasswortAendern(string passwort, string akteurID);
+    KlassenkameradDatensatz* klassenkameradenLaden();
+    bool loeschen(KlassenkameradDatensatz k);
+    bool organisatorSperren(KlassenkameradDatensatz organisator);
+    bool removeOrganisator(string ID);
+    bool setOrganisator(string ID);
 
 };
 #endif // !defined(EA_32BE42DF_F426_41ed_A28D_45636761C63D__INCLUDED_)
