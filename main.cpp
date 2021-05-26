@@ -7,20 +7,21 @@
 
 int main(int argc, char *argv[])
 {    
+    std::cout<<"Hello World!\n";
     //auf test oder clean aufruf ueberpruefen
     if(argc>1){
-        std::ofstream ofs("out.txt",std::ofstream::out);
         std::string arg1=argv[1];
         if(arg1.compare("clean")==0){
-            ofs<<"alle verwendeten Datenbanktabellen in den „Auslieferungszustand“ zurückversetzen"<<std::endl;
+            std::cout<<"ToDo\talle verwendeten Datenbanktabellen in den „Auslieferungszustand“ zurückversetzen"<<std::endl;
         }else if(arg1.compare("test")==0){
-           ofs<<"Datenbanktabellen mit Testdaten"<<std::endl;
+           std::cout<<"ToDo\tDatenbanktabellen mit Testdaten"<<std::endl;
         }
-        ofs.close();
     }
+    std::cout.flush();
+
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+    w.show();        
     return a.exec();
 }
 
