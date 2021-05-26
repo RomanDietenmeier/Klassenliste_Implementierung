@@ -28,7 +28,7 @@ bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz daten){
 KlassenkameradDatensatz* KlassenkameradDAO::aenderungshistorieLaden(string klassenkameradID){
     return NULL;
 }
-string KlassenkameradDAO::anmeldedatenPrüfen(string eMail, string passwort){
+string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     return NULL;
 }
 bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz daten){

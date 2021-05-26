@@ -21,7 +21,7 @@ public:
 
     bool aktualisieren(KlassenkameradDatensatz daten);
     KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
-    string anmeldedatenPrüfen(string eMail, string passwort);
+    string anmeldedatenPruefen(string eMail, string passwort);
     bool einfuegen(KlassenkameradDatensatz daten);
     bool initialPasswortAendern(string passwort, string akteurID);
     KlassenkameradDatensatz* klassenkameradenLaden();
