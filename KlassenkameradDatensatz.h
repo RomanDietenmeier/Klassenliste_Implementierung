@@ -9,6 +9,25 @@
 #define EA_F5D400D7_D52C_494c_9398_3316C29B30BA__INCLUDED_
 
 #include "Verwaltung.h"
+#include <string>
+using namespace std;
+
+typedef struct {
+    string strasse;
+    string hausnummer;
+    string ort;
+    string plz;
+}adresse;
+
+typedef struct{
+    int tag;
+    int monat;
+    int jahr;
+    int stunde;
+    int minute;
+    int sekunde;
+}zeitpunkt ;
+
 
 class KlassenkameradDatensatz
 {
@@ -17,7 +36,7 @@ public:
 	KlassenkameradDatensatz();
 	virtual ~KlassenkameradDatensatz();
 	adresse adresse;
-	string e-mail;
+    string eMail;
 	string klassenkameradID;
 	string nachname;
 	string telefonnummer;
