@@ -6,10 +6,22 @@
 ///////////////////////////////////////////////////////////
 
 #include "KlassenkameradDAO.h"
+#include <QDebug>
+#include <QSqlQuery>
 
 
 KlassenkameradDAO::KlassenkameradDAO(){
+   QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
+   m_db.setDatabaseName("Robert.db");
 
+   if (!m_db.open())
+   {
+      qDebug() << "Error: connection with database failed";
+   }
+   else
+   {
+      qDebug() << "Database: connection ok";
+   }
 }
 
 
@@ -37,13 +49,23 @@ bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz daten){
 bool KlassenkameradDAO::initialPasswortAendern(string passwort, string akteurID){
     return false;
 }
-KlassenkameradDatensatz* KlassenkameradDAO::klassenkameradenLaden(){
-    return NULL;
+bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd){
+    QSqlQuery query;
+    if(!query.exec("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz ON (Klassenkamerad.ID=Klassenkamerad_Datensatz.Kamerad_ID)")){
+        return false;
+    }
+    while(query.next()){
+        KlassenkameradDatensatz* z_kd=new KlassenkameradDatensatz();
+        z_kd->vorname=query.value(2).toString().toLocal8Bit().constData();
+        z_kd->nachname=query.value(3).toString().toLocal8Bit().constData();
+        kd.push_back(z_kd);
+    }
+    return true;
 }
 bool KlassenkameradDAO::loeschen(KlassenkameradDatensatz k){
     return false;
 }
-bool KlassenkameradDAO::organisatorSperren(KlassenkameradDatensatz organisator){
+bool KlassenkameradDAO::organisatorSperren(string eMail){
     return false;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){

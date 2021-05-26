@@ -4,6 +4,8 @@
 #include<string>
 #include<iostream>
 #include<fstream>
+#include"KlassenkameradDAO.h"
+
 
 int main(int argc, char *argv[])
 {    
@@ -17,11 +19,19 @@ int main(int argc, char *argv[])
            std::cout<<"ToDo\tDatenbanktabellen mit Testdaten"<<std::endl;
         }
     }
-    std::cout.flush();
+    //std::cout.flush();
 
-    QApplication a(argc, argv);
+    KlassenkameradDAO* kDAO=new KlassenkameradDAO();
+    std::vector<KlassenkameradDatensatz*> ds;
+    kDAO->klassenkameradenLaden(ds);
+    for(int i=0;i<ds.size();i++){
+        std::cout<<ds[i]->vorname.c_str()<<" "<<ds[i]->nachname.c_str()<<std::endl;
+    }
+
+
+    /*QApplication a(argc, argv);
     MainWindow w;
     w.show();        
-    return a.exec();
+    return a.exec();*/
 }
 
