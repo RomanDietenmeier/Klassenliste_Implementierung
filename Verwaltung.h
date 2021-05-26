@@ -17,10 +17,10 @@ class Verwaltung
 {
 
 public:
-	KlassenkameradDatensatz *m_KlassenkameradDatensatz;
-	ListeView *m_ListeView;
-	KlassenkameradDAO *m_KlassenkameradDAO;
-	LoginView *m_LoginView;
+    KlassenkameradDatensatz* m_KlassenkameradDatensatz;
+    ListeView* m_ListeView;
+    KlassenkameradDAO* m_KlassenkameradDAO;
+    LoginView* m_LoginView;
 
 	Verwaltung();
     ~Verwaltung();
