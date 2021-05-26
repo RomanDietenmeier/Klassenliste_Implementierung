@@ -8,7 +8,7 @@
 #if !defined(EA_86366D34_CBEE_4fe6_874B_2A682AB1D442__INCLUDED_)
 #define EA_86366D34_CBEE_4fe6_874B_2A682AB1D442__INCLUDED_
 
-#include "Verwaltung.h"
+class Verwaltung;
 #include "KlassenkameradDatensatz.h"
 class ListeView
 {

@@ -8,7 +8,7 @@
 #if !defined(EA_32BE42DF_F426_41ed_A28D_45636761C63D__INCLUDED_)
 #define EA_32BE42DF_F426_41ed_A28D_45636761C63D__INCLUDED_
 
-#include "Verwaltung.h"
+class Verwaltung;
 #include"KlassenkameradDatensatz.h"
 
 class KlassenkameradDAO
