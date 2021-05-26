@@ -22,46 +22,30 @@ ListeView::~ListeView(){
 
 
 
-void ListeView::aktualisieren(Klassenkamerad k){
+void ListeView::aktualisieren(KlassenkameradDatensatz &k){
 
 }
-
-
-void ListeView::änderungshistorieLaden(Klassenkamerad k){
+void ListeView::aenderungshistorieLaden(KlassenkameradDatensatz &k){
 
 }
-
-
-void ListeView::hinzufügen(){
+void ListeView::hinzufuegen(){
 
 }
-
-
 void ListeView::listeLaden(){
 
 }
-
-
-void ListeView::löschen(Klassenkamerad k){
+void ListeView::loeschen(KlassenkameradDatensatz &k){
 
 }
-
-
 void ListeView::organisatorenVerwalten(){
 
 }
-
-
-void ListeView::passwortÄndern(){
+void ListeView::passwortAendern(){
 
 }
-
-
-void ListeView::passwortÄnderungBestätigen(){
+void ListeView::passwortAenderungBestaetigen(){
 
 }
-
-
 void ListeView::speichern(){
 
 }
