@@ -23,20 +23,20 @@ public:
 	LoginView *m_LoginView;
 
 	Verwaltung();
-	void ~Verwaltung();
+    ~Verwaltung();
 	void abmelden();
-	boolean anmelden(string E-mail, string Passwort);
-	boolean klassenkameradBearbeiten(KlassenkameradDatensatz k);
-	klassenkameradDatensatz klassenkameradenAktuelleDatensätze();
-	klassenkameradDatensatz[] klassenkameradHistorie(string klassenkameradID);
-	boolean klassenkameradLöschen(string ID);
-	boolean neuenKlassenkameradAnlegen(KlassenkameradDatensatz k);
-	boolean oranisatorRechteEntfernen(string ID);
-	boolean organisatorRechteVergeben(string ID);
-	boolean passwortÄndern(string Passwort);
+    bool anmelden(string eMail, string Passwort);
+    bool klassenkameradBearbeiten(KlassenkameradDatensatz k);
+    KlassenkameradDatensatz* klassenkameradenAktuelleDatensaetze();
+    KlassenkameradDatensatz* klassenkameradHistorie(string klassenkameradID);
+    bool klassenkameradLoeschen(string ID);
+    bool neuenKlassenkameradAnlegen(KlassenkameradDatensatz k);
+    bool oranisatorRechteEntfernen(string ID);
+    bool organisatorRechteVergeben(string ID);
+    bool passwortAendern(string Passwort);
 
 private:
-	string aktuerID;
+    string akteurID;
 
 };
 #endif // !defined(EA_16A229CD_1BD2_4501_93CB_60391B7C0DEA__INCLUDED_)

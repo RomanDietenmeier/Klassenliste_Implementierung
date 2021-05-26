@@ -15,7 +15,7 @@ Verwaltung::Verwaltung(){
 }
 
 
-void Verwaltung::~Verwaltung(){
+Verwaltung::~Verwaltung(){
 
 }
 
@@ -25,55 +25,55 @@ void Verwaltung::abmelden(){
 }
 
 
-boolean Verwaltung::anmelden(string E-mail, string Passwort){
+bool Verwaltung::anmelden(string eMail, string Passwort){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz k){
+bool Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz k){
 
 	return  NULL;
 }
 
 
-klassenkameradDatensatz Verwaltung::klassenkameradenAktuelleDatensätze(){
+KlassenkameradDatensatz* Verwaltung::klassenkameradenAktuelleDatensaetze(){
 
 	return  NULL;
 }
 
 
-klassenkameradDatensatz[] Verwaltung::klassenkameradHistorie(string klassenkameradID){
+KlassenkameradDatensatz* Verwaltung::klassenkameradHistorie(string klassenkameradID){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::klassenkameradLöschen(string ID){
+bool Verwaltung::klassenkameradLoeschen(string ID){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::neuenKlassenkameradAnlegen(KlassenkameradDatensatz k){
+bool Verwaltung::neuenKlassenkameradAnlegen(KlassenkameradDatensatz k){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::oranisatorRechteEntfernen(string ID){
+bool Verwaltung::oranisatorRechteEntfernen(string ID){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::organisatorRechteVergeben(string ID){
+bool Verwaltung::organisatorRechteVergeben(string ID){
 
 	return  NULL;
 }
 
 
-boolean Verwaltung::passwortÄndern(string Passwort){
+bool Verwaltung::passwortAendern(string Passwort){
 
 	return  NULL;
 }
