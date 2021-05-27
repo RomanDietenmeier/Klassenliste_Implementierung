@@ -22,6 +22,7 @@ public:
 	virtual ~KlassenkameradDAO();
 	Verwaltung *m_Verwaltung;
 
+    bool test();
     bool aktualisieren(KlassenkameradDatensatz daten);
     KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
     string anmeldedatenPruefen(string eMail, string passwort);

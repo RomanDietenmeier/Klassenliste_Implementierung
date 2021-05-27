@@ -9,6 +9,9 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include<iostream>
+#include <QString>
+#include <QFile>
+#include <QSqlError>
 
 
 KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
@@ -18,10 +21,45 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
    if (!m_db.open())
    {
       qDebug() << "Error: connection with database failed";
+      return;
    }
    else
    {
       qDebug() << "Database: connection ok";
+   }
+   QSqlQuery query("SELECT name FROM sqlite_master");
+   if(!query.exec()){
+       qFatal("Can not do query on Database!");
+       return;
+   }
+   int count=0;
+   while(query.next()&&count==0){
+       //qDebug()<<query.value(0).toString();
+       count++;
+   }
+   //qDebug()<<count;
+   if(count==0){
+       QFile scriptFile("./make_Tables.txt");
+       QSqlQuery query;
+       if (scriptFile.open(QIODevice::ReadOnly))
+       {
+           // The SQLite driver executes only a single (the first) query in the QSqlQuery
+           //  if the script contains more queries, it needs to be splitted.
+           QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+
+           foreach (QString queryTxt, scriptQueries)
+           {
+               //qDebug()<<queryTxt.toLocal8Bit().constData();
+               if (queryTxt.trimmed().isEmpty()) {
+                   continue;
+               }
+               if (!query.exec(queryTxt))
+               {
+                   qFatal(query.lastError().text().toLocal8Bit().constData());
+               }
+               query.finish();
+           }
+       }
    }
 }
 
@@ -32,6 +70,31 @@ KlassenkameradDAO::~KlassenkameradDAO(){
 }
 
 
+bool KlassenkameradDAO::test(){
+    //QString all=""
+    QFile scriptFile("./test_Aufruf.txt");
+    QSqlQuery query;
+    if (scriptFile.open(QIODevice::ReadOnly))
+    {
+        // The SQLite driver executes only a single (the first) query in the QSqlQuery
+        //  if the script contains more queries, it needs to be splitted.
+        QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+
+        foreach (QString queryTxt, scriptQueries)
+        {
+            //qDebug()<<queryTxt.toLocal8Bit().constData();
+            if (queryTxt.trimmed().isEmpty()) {
+                continue;
+            }
+            if (!query.exec(queryTxt))
+            {
+                qFatal(query.lastError().text().toLocal8Bit().constData());
+            }
+            query.finish();
+        }
+    }
+    return true;
+}
 
 
 
