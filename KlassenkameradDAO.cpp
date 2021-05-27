@@ -58,6 +58,7 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
         KlassenkameradDatensatz* z_kd=new KlassenkameradDatensatz();
         z_kd->vorname=query.value(2).toString().toLocal8Bit().constData();
         z_kd->nachname=query.value(3).toString().toLocal8Bit().constData();
+        z_kd->klassenkameradID;
         kd.push_back(z_kd);
     }
     return true;
