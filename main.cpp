@@ -10,14 +10,14 @@
 int main(int argc, char *argv[])
 {    
     std::cout<<"Hello World!\n";
-    KlassenkameradDAO* kDAO=new KlassenkameradDAO("lol.db");
+    //KlassenkameradDAO* kDAO=new KlassenkameradDAO("lol.db");
     //auf test oder clean aufruf ueberpruefen
     if(argc>1){
         std::string arg1=argv[1];
         if(arg1.compare("clean")==0){
             std::cout<<"ToDo\talle verwendeten Datenbanktabellen in den „Auslieferungszustand“ zurückversetzen"<<std::endl;
         }else if(arg1.compare("test")==0){
-           kDAO->test();
+           //kDAO->test();
         }
     }
     //std::cout.flush();
