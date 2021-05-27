@@ -21,17 +21,19 @@ int main(int argc, char *argv[])
     }
     //std::cout.flush();
 
+    /*
+     * Test der Datenbank
     KlassenkameradDAO* kDAO=new KlassenkameradDAO("Robert.db");
     std::vector<KlassenkameradDatensatz*> ds;
-    kDAO->klassenkameradenLaden(ds);
+    kDAO->klassenkameradenLaden(ds);    
     for(int i=0;i<ds.size();i++){
         ds[i]->printToConsole();
-    }
+    }*/
 
 
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
     w.show();        
-    return a.exec();*/
+    return a.exec();
 }
 
