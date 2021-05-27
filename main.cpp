@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
     }
     //std::cout.flush();
 
-    KlassenkameradDAO* kDAO=new KlassenkameradDAO();
+    KlassenkameradDAO* kDAO=new KlassenkameradDAO("Robert.db");
     std::vector<KlassenkameradDatensatz*> ds;
     kDAO->klassenkameradenLaden(ds);
     for(int i=0;i<ds.size();i++){
-        std::cout<<ds[i]->vorname.c_str()<<" "<<ds[i]->nachname.c_str()<<std::endl;
+        ds[i]->printToConsole();
     }
 
 

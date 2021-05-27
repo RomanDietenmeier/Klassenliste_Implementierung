@@ -18,7 +18,7 @@ class KlassenkameradDAO
     QSqlDatabase m_db;
 
 public:
-	KlassenkameradDAO();
+    KlassenkameradDAO(std::string pfad);
 	virtual ~KlassenkameradDAO();
 	Verwaltung *m_Verwaltung;
 

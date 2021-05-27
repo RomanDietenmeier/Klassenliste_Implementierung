@@ -11,7 +11,7 @@
 
 
 Verwaltung::Verwaltung(){
-    m_KlassenkameradDAO = new KlassenkameradDAO();
+    m_KlassenkameradDAO = new KlassenkameradDAO("Robert.db");
     m_KlassenkameradDatensatz = new KlassenkameradDatensatz();
 }
 
