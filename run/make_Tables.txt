@@ -1,4 +1,5 @@
 /*MAKE TABLES*/
+PRAGMA foreign_keys = ON;
 CREATE TABLE Klassenkamerad(
 ID INTEGER PRIMARY KEY AUTOINCREMENT
 );
@@ -16,23 +17,29 @@ PLZ Text NOT NULL,
 Zeit TIMESTAMP NOT NULL,
 Tag Date NOT NULL,
 Organisator INTEGER NOT NULL,
-Kamerad_ID INTEGER NOT NULL REFERENCES Klassenkamerad(ID)
+Kamerad_ID INTEGER NOT NULL,
+FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Telefonnummer(
 Telefonnummer TEXT,
-Datensatz_ID INTEGER REFERENCES Klassenkamerad_Datensatz(ID),
+Datensatz_ID INTEGER NOT NULL,
+FOREIGN KEY(Datensatz_ID) REFERENCES Klassenkamerad_Datensatz(ID) ON DELETE CASCADE,
 PRIMARY KEY(Telefonnummer,Datensatz_ID)
 );
 
 CREATE TABLE Organisator(
 Passwort TEXT NOT NULL,
 Initialpasswort BOOL NOT NULL,
-gesperrt BOOL Not NULL,
-Kamerad_ID INTEGER NOT NULL PRIMARY KEY REFERENCES Klassenkamerad(ID)
+gesperrt BOOL NOT NULL,
+Kamerad_ID INTEGER NOT NULL,
+FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE
+PRIMARY KEY(Kamerad_ID)
 );
 
 CREATE TABLE Hauptorganisator(
 Masterpasswort TEXT NOT NULL,
-Kamerad_ID INTEGER NOT NULL PRIMARY KEY REFERENCES Klassenkamerad(ID)
+Kamerad_ID INTEGER NOT NULL,
+FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE
+PRIMARY KEY(Kamerad_ID)
 );

@@ -28,7 +28,7 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
       qDebug() << "Database: connection ok";
    }
    QSqlQuery query("SELECT name FROM sqlite_master");
-   if(!query.exec()){
+   if(!query.exec() ){
        qFatal("Can not do query on Database!");
        return;
    }
@@ -68,7 +68,14 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
 KlassenkameradDAO::~KlassenkameradDAO(){
 
 }
-
+bool KlassenkameradDAO::clean(){
+    QSqlQuery query;
+    if(!query.exec("DELETE FROM Hauptorganisator")||!query.exec("DELETE FROM Organisator")||!query.exec("DELETE FROM Telefonnummer")||!query.exec("DELETE FROM Klassenkamerad_Datensatz")||!query.exec("DELETE FROM Klassenkamerad")){
+        qFatal("Konnte die Datenbank nicht\"cleanen\"!");
+        return false;
+    }
+    return true;
+}
 
 bool KlassenkameradDAO::test(){
     //QString all=""
@@ -131,7 +138,7 @@ bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz &daten,string akteurID
         qFatal("Konnte keinen Datensatz anlegen!");
         return false;
     }
-    qDebug()<<daten.telefonnummer.size();
+    //qDebug()<<daten.telefonnummer.size();
     for(int i=0;i<daten.telefonnummer.size();i++){
         query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=:id),:tele)");
         query.bindValue(":id",id.c_str());
@@ -222,8 +229,16 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
     query.finish();
     return true;
 }
-bool KlassenkameradDAO::loeschen(KlassenkameradDatensatz k){
-    return false;
+bool KlassenkameradDAO::loeschen(string ID){
+    QSqlQuery query;
+    query.prepare("DELETE FROM Klassenkamerad WHERE Klassenkamerad.ID=:id");
+    query.bindValue(":id",ID.c_str());
+    if(!query.exec()){
+        qDebug()<<query.lastError();
+        qFatal("Konnte die Lösch-Query nicht ausführen!");
+        return false;
+    }
+    return true;
 }
 bool KlassenkameradDAO::organisatorSperren(string eMail){
     return false;
