@@ -10,7 +10,21 @@
 
 
 KlassenkameradDatensatz::KlassenkameradDatensatz(){
-
+    adresse.hausnummer="";
+    adresse.ort="";
+    adresse.plz="";
+    adresse.strasse="";
+    eMail="";
+    klassenkameradID="";
+    nachname[0]="";
+    nachname[1]="";
+    vorname="";
+    zeitpunkt.jahr=-1;
+    zeitpunkt.minute=-1;
+    zeitpunkt.monat=-1;
+    zeitpunkt.sekunde=-1;
+    zeitpunkt.stunde=-1;
+    zeitpunkt.tag=-1;
 }
 
 
@@ -22,7 +36,7 @@ KlassenkameradDatensatz::~KlassenkameradDatensatz(){
 void KlassenkameradDatensatz::printToConsole(){
 
     std::cout<<klassenkameradID<<" | "<<vorname<<" | "<<nachname[0]<<" | "<<nachname[1]<<" | "<<eMail<<std::endl;
-    std::cout<<adresse.strasse<<adresse.hausnummer<<" | "<<adresse.plz<<" | "<<adresse.ort<<std::endl;
+    std::cout<<adresse.strasse<<" "<<adresse.hausnummer<<" | "<<adresse.plz<<" | "<<adresse.ort<<std::endl;
     std::cout<<zeitpunkt.tag<<" | "<<zeitpunkt.monat<<" | "<<zeitpunkt.jahr<<std::endl;
     std::cout<<zeitpunkt.stunde<<" | "<<zeitpunkt.minute<<" | "<<zeitpunkt.sekunde<<std::endl;
     for(int i=0;i<telefonnummer.size();i++){

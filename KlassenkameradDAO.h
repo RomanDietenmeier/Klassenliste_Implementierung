@@ -26,7 +26,7 @@ public:
     bool aktualisieren(KlassenkameradDatensatz daten);
     KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
     string anmeldedatenPruefen(string eMail, string passwort);
-    bool einfuegen(KlassenkameradDatensatz daten);
+    bool einfuegen(KlassenkameradDatensatz &daten,string akteurID);
     bool initialPasswortAendern(string passwort, string akteurID);
     bool klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd);
     bool loeschen(KlassenkameradDatensatz k);

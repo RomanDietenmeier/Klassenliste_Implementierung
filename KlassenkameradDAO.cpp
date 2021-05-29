@@ -107,8 +107,62 @@ KlassenkameradDatensatz* KlassenkameradDAO::aenderungshistorieLaden(string klass
 string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     return NULL;
 }
-bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz daten){
-    return false;
+bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz &daten,string akteurID){
+    QSqlQuery query;
+    if(!query.exec("INSERT INTO Klassenkamerad DEFAULT VALUES") || !query.exec("SELECT MAX(ID) FROM Klassenkamerad")|| !query.next()){
+        qFatal("Konnte keinen neuen Kameraden erstellen!");
+        return false;
+    }
+    std::string id=query.value(0).toString().toLocal8Bit().constData();
+    daten.klassenkameradID=id;
+    //qDebug()<<id.c_str();
+    query.prepare("INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,Nachname2,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES(:vorname,:nachname,:nachname2,:email,:strasse,:hnr,:ort,:plz,time('now'),date('now'),:organisator,:id)");
+    query.bindValue(":vorname",daten.vorname.c_str());
+    query.bindValue(":nachname",daten.nachname[0].c_str());
+    query.bindValue(":nachname2",daten.nachname[1].c_str());
+    query.bindValue(":email",daten.eMail.c_str());
+    query.bindValue(":strasse",daten.adresse.strasse.c_str());
+    query.bindValue(":hnr",daten.adresse.hausnummer.c_str());
+    query.bindValue(":ort",daten.adresse.ort.c_str());
+    query.bindValue(":plz",daten.adresse.plz.c_str());
+    query.bindValue(":organisator",akteurID.c_str());
+    query.bindValue(":id",id.c_str());
+    if(!query.exec()){
+        qFatal("Konnte keinen Datensatz anlegen!");
+        return false;
+    }
+    qDebug()<<daten.telefonnummer.size();
+    for(int i=0;i<daten.telefonnummer.size();i++){
+        query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=:id),:tele)");
+        query.bindValue(":id",id.c_str());
+        query.bindValue(":tele",daten.telefonnummer[i].c_str());
+        if(!query.exec()){
+            qFatal("Konnte keine Telefonnummer hinterlegen!");
+            return false;
+        }
+    }
+    query.prepare("SELECT Zeit,Tag FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=:id");
+    query.bindValue(":id",id.c_str());
+    if(!query.exec() ||!query.next()){
+        qFatal("Kann nicht den Zeitpunkt abrufen!");
+        return false;
+    }
+
+    std::string zeit=query.value(0).toString().toLocal8Bit().constData();
+    std::string tag=query.value(1).toString().toLocal8Bit().constData();
+    if(zeit.length()==8&& tag.length()==10){
+        zeitpunkt zp;
+        zp.stunde=std::stoi(zeit.substr(0,2));
+        zp.minute=std::stoi(zeit.substr(3,2));
+        zp.sekunde=std::stoi(zeit.substr(6,2));
+
+        zp.jahr=std::stoi(tag.substr(0,4));
+        zp.monat=std::stoi(tag.substr(5,2));
+        zp.tag=std::stoi(tag.substr(8,2));
+        daten.zeitpunkt=zp;
+    }
+    //daten.printToConsole();
+    return true;
 }
 bool KlassenkameradDAO::initialPasswortAendern(string passwort, string akteurID){
     return false;
@@ -162,9 +216,10 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
             ztele.push_back(queryTele.value(0).toString().toLocal8Bit().constData());
         }
         z_kd->telefonnummer=ztele;
-
+        queryTele.finish();
         kd.push_back(z_kd);
     }
+    query.finish();
     return true;
 }
 bool KlassenkameradDAO::loeschen(KlassenkameradDatensatz k){
