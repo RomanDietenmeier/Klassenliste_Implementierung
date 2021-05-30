@@ -24,7 +24,7 @@ public:
 
     bool test();
     bool clean();
-    bool aktualisieren(KlassenkameradDatensatz daten);
+    bool aktualisieren(KlassenkameradDatensatz &daten,string akteurID);
     KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
     string anmeldedatenPruefen(string eMail, string passwort);
     bool einfuegen(KlassenkameradDatensatz &daten,string akteurID);

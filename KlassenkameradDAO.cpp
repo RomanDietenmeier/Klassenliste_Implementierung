@@ -13,7 +13,10 @@
 #include <QFile>
 #include <QSqlError>
 
-
+/**
+ * @brief KlassenkameradDAO::KlassenkameradDAO öffnet die Datenbank falls vorhanden, oder baut die Struktur in einer neuen Datei auf
+ * @param pfad Pfad zur SQLite Datei. Sollte keine existieren, so ist der Pfad der Ort an dem die Datei angelegt wird.
+ */
 KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
    QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
    m_db.setDatabaseName(pfad.c_str());
@@ -68,6 +71,11 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
 KlassenkameradDAO::~KlassenkameradDAO(){
 
 }
+
+/**
+ * @brief KlassenkameradDAO::clean leert den kompletten Dateninhalt der Datenbank
+ * @return true bei Erfolg, false bei Fehlschlag
+ */
 bool KlassenkameradDAO::clean(){
     QSqlQuery query;
     if(!query.exec("DELETE FROM Hauptorganisator")||!query.exec("DELETE FROM Organisator")||!query.exec("DELETE FROM Telefonnummer")||!query.exec("DELETE FROM Klassenkamerad_Datensatz")||!query.exec("DELETE FROM Klassenkamerad")){
@@ -77,6 +85,10 @@ bool KlassenkameradDAO::clean(){
     return true;
 }
 
+/**
+ * @brief KlassenkameradDAO::test verwirft(falls vorhanden) alte Datenbank und baut die Datenbank mit Testdaten neu auf.
+ * @return true bei Erfolg, false bei Fehlschlag
+ */
 bool KlassenkameradDAO::test(){
     //QString all=""
     QFile scriptFile("./test_Aufruf.txt");
@@ -104,9 +116,67 @@ bool KlassenkameradDAO::test(){
 }
 
 
+/**
+ * @brief KlassenkameradDAO::aktualisieren legt einen neuen Datensatz an für ein bestehendes Klassenmitglied.
+ * @param daten Der Datensatz mit den neuen Dateien. Bei diesem wird der Zeitpunkt mit der Ausführung aktualisiert.
+ * @param akteurID Der Organisator der die Änderung vornimmt.
+ * @return true bei Erfolg, false bei Fehlschlag
+ */
+bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz &daten,string akteurID){
+    QSqlQuery query;
+    query.prepare("INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,Nachname2,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES(:vorname,:nachname,:nachname2,:email,:strasse,:hnr,:ort,:plz,time('now'),date('now'),:organisator,:id)");
+    query.bindValue(":vorname",daten.vorname.c_str());
+    query.bindValue(":nachname",daten.nachname[0].c_str());
+    query.bindValue(":nachname2",daten.nachname[1].c_str());
+    query.bindValue(":email",daten.eMail.c_str());
+    query.bindValue(":strasse",daten.adresse.strasse.c_str());
+    query.bindValue(":hnr",daten.adresse.hausnummer.c_str());
+    query.bindValue(":ort",daten.adresse.ort.c_str());
+    query.bindValue(":plz",daten.adresse.plz.c_str());
+    query.bindValue(":organisator",akteurID.c_str());
+    query.bindValue(":id",daten.klassenkameradID.c_str());
+    if(!query.exec()){
+        qFatal("Konnte keinen Datensatz anlegen!");
+        return false;
+    }
+    query.prepare("SELECT ID FROM Klassenkamerad_Datensatz WHERE ID=(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=:id)");
+    query.bindValue(":id",daten.klassenkameradID.c_str());
+    if(!query.exec()|| !query.next()){
+        qFatal("Konnte Datensatz Id nicht herausfinden!");
+    }
+    QString id=query.value(0).toString();
+    //qDebug()<<id;
+    for(int i=0;i<daten.telefonnummer.size();i++){
+        query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES (:id,:tele)");
+        query.bindValue(":id",id);
+        query.bindValue(":tele",daten.telefonnummer[i].c_str());
+        if(!query.exec()){
+            qFatal("Konnte Telefonnummer nicht hinterlegen!");
+            return false;
+        }
+    }
+    //Zeitpunkt aktualisieren!
+    query.prepare("SELECT Zeit,Tag FROM Klassenkamerad_Datensatz WHERE ID=:id");
+    query.bindValue(":id",id);
+    if(!query.exec() ||!query.next()){
+        qFatal("Kann nicht den Zeitpunkt abrufen!");
+        return false;
+    }
 
-bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz daten){
-    return false;
+    std::string zeit=query.value(0).toString().toLocal8Bit().constData();
+    std::string tag=query.value(1).toString().toLocal8Bit().constData();
+    if(zeit.length()==8&& tag.length()==10){
+        zeitpunkt zp;
+        zp.stunde=std::stoi(zeit.substr(0,2));
+        zp.minute=std::stoi(zeit.substr(3,2));
+        zp.sekunde=std::stoi(zeit.substr(6,2));
+
+        zp.jahr=std::stoi(tag.substr(0,4));
+        zp.monat=std::stoi(tag.substr(5,2));
+        zp.tag=std::stoi(tag.substr(8,2));
+        daten.zeitpunkt=zp;
+    }
+    return true;
 }
 KlassenkameradDatensatz* KlassenkameradDAO::aenderungshistorieLaden(string klassenkameradID){
     return NULL;
@@ -114,6 +184,12 @@ KlassenkameradDatensatz* KlassenkameradDAO::aenderungshistorieLaden(string klass
 string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     return NULL;
 }
+/**
+ * @brief KlassenkameradDAO::einfuegen Fügt einen neuen Klassenkameraden der Datenbank hinzu.
+ * @param daten Die Daten des neuen Kameraden. Der Zeitpunkt wird mit ausführung der Methode aktualisiert.
+ * @param akteurID Der Organisator der den Klassenkameraden einfügt.
+ * @return
+ */
 bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz &daten,string akteurID){
     QSqlQuery query;
     if(!query.exec("INSERT INTO Klassenkamerad DEFAULT VALUES") || !query.exec("SELECT MAX(ID) FROM Klassenkamerad")|| !query.next()){
@@ -229,6 +305,11 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
     query.finish();
     return true;
 }
+/**
+ * @brief KlassenkameradDAO::loeschen löscht alle Einträge in Bezug auf den Kameraden mit der übergebenen ID-
+ * @param ID Die Id des zu löschenden Klassenkameraden.
+ * @return true bei Erfolg, false bei Fehlschlag
+ */
 bool KlassenkameradDAO::loeschen(string ID){
     QSqlQuery query;
     query.prepare("DELETE FROM Klassenkamerad WHERE Klassenkamerad.ID=:id");

@@ -5,12 +5,14 @@
 #include<iostream>
 #include<fstream>
 #include"KlassenkameradDAO.h"
+#include "windows.h"
+
 
 
 int main(int argc, char *argv[])
 {    
     std::cout<<"Hello World!\n";
-    /*KlassenkameradDAO* kDAO=new KlassenkameradDAO("hihihi.db");
+    /*KlassenkameradDAO* kDAO=new KlassenkameradDAO("hohoho.db");
     //auf test oder clean aufruf ueberpruefen
     if(argc>1){
         std::string arg1=argv[1];
@@ -37,13 +39,20 @@ int main(int argc, char *argv[])
     kd.adresse.strasse="gibt es nicht";
     kd.telefonnummer.push_back("7363/4555");
     kDAO->einfuegen(kd,"0");
+    kd.nachname[0]="The";
+    kd.nachname[1]="TankEngine";
+    kd.telefonnummer.push_back("+238000666");
+    Sleep(1000);
+    kDAO->aktualisieren(kd,"0");
     //kDAO->loeschen(kd.klassenkameradID);
+
     std::vector<KlassenkameradDatensatz*> ds;
     kDAO->klassenkameradenLaden(ds);    
     for(int i=0;i<ds.size();i++){
         ds[i]->printToConsole();
         std::cout<<std::endl;
-    }*/
+    }
+    kd.printToConsole();*/
 
 
     QApplication a(argc, argv);
