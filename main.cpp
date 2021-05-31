@@ -6,6 +6,7 @@
 #include<fstream>
 #include"KlassenkameradDAO.h"
 #include "windows.h"
+#include<QMainWindow>
 
 
 
@@ -57,7 +58,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();        
+    w.show();
     return a.exec();
 }
 
