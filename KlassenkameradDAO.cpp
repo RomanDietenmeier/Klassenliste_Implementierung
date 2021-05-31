@@ -251,14 +251,13 @@ bool KlassenkameradDAO::initialPasswortAendern(string passwort, string akteurID)
     return false;
 }
 /**
- * ToDo liest gerade noch alle Datensätze ein
- * @brief KlassenkameradDAO::klassenkameradenLaden
+ * @brief KlassenkameradDAO::klassenkameradenLaden Lädt alle aktuellen Klassenkameraden Datensätze
  * @param kd Vector zu dem die Klassenkameraden hinzugefügt werden sollen
  * @return true bei Erfolg, oder false bei Abbruch
  */
 bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd){
     QSqlQuery query;
-    if(!query.exec("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz ON (Klassenkamerad.ID=Klassenkamerad_Datensatz.Kamerad_ID)")){
+    if(!query.exec("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) WHERE kd.ID=(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)")){
         return false;
     }
     while(query.next()){
