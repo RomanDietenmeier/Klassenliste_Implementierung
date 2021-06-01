@@ -15,10 +15,10 @@ class LoginView
 
 public:
 	LoginView();
-	virtual ~LoginView();
-	Verwaltung *m_Verwaltung;
+    ~LoginView();
+    Verwaltung* m_Verwaltung;
 
-	void einloggen();
+    void einloggen();
 
 };
 #endif // !defined(EA_597CE96B_430B_4a78_9483_6CD36C4808B4__INCLUDED_)

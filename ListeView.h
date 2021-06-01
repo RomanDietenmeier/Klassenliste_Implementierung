@@ -14,10 +14,10 @@ class ListeView
 {
 
 public:
-	ListeView();
-	virtual ~ListeView();
-	Verwaltung *m_Verwaltung;
+    Verwaltung *m_Verwaltung;
 
+    ListeView();
+    ~ListeView();
     void aktualisieren(KlassenkameradDatensatz &k);
     void aenderungshistorieLaden(KlassenkameradDatensatz &k);
     void hinzufuegen();

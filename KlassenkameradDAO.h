@@ -26,7 +26,7 @@ public:
     bool initialPasswortAendern(string passwort, string akteurID);
     KlassenkameradDatensatz* klassenkameradenLaden();
     bool loeschen(KlassenkameradDatensatz k);
-    bool organisatorSperren(KlassenkameradDatensatz organisator);
+    bool organisatorSperren(string eMail);
     bool removeOrganisator(string ID);
     bool setOrganisator(string ID);
 
