@@ -24,8 +24,7 @@ class Verwaltung
 {
 
 public:
-    vector<KlassenkameradDatensatz*> m_KlassenkameradDatensatz;
-    vector<KlassenkameradDatensatz*> m_KlassenkameradAenderungshistorie;
+
     ListeView* m_ListeView;
     KlassenkameradDAO* m_KlassenkameradDAO;
     LoginView* m_LoginView;
@@ -37,10 +36,10 @@ public:
 	void abmelden();
     bool anmelden(string eMail, string Passwort);
     bool klassenkameradBearbeiten(KlassenkameradDatensatz k);
-    KlassenkameradDatensatz* klassenkameradenAktuelleDatensaetze();
-    KlassenkameradDatensatz* klassenkameradHistorie(string klassenkameradID);
+    vector<KlassenkameradDatensatz*> klassenkameradenAktuelleDatensaetze();
+    vector<KlassenkameradDatensatz*> klassenkameradHistorie(string klassenkameradID);
     bool klassenkameradLoeschen(string klassenkameradID);
-    bool neuenKlassenkameradAnlegen(KlassenkameradDatensatz k);
+    bool neuenKlassenkameradAnlegen(KlassenkameradDatensatz* k);
     bool oranisatorRechteEntfernen(string ID);
     bool organisatorRechteVergeben(string ID);
     bool passwortAendern(string Passwort);
@@ -48,6 +47,8 @@ public:
 private:
     string akteurID;
     vector<anmeldung> anmeldeVersuche;
+    vector<KlassenkameradDatensatz*> m_KlassenkameradDatensatz;
+    vector<KlassenkameradDatensatz*> m_KlassenkameradAenderungshistorie;
 
 };
 #endif // !defined(EA_16A229CD_1BD2_4501_93CB_60391B7C0DEA__INCLUDED_)

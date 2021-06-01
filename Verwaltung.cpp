@@ -27,7 +27,7 @@ Verwaltung::~Verwaltung(){
 
 }
 
-
+//Alle Objekte zerstören und neue loginview erzeugen? Implementierung gegen Ende
 void Verwaltung::abmelden(){
 
 }
@@ -66,36 +66,39 @@ bool Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz k){
 }
 
 
-KlassenkameradDatensatz* Verwaltung::klassenkameradenAktuelleDatensaetze(){
-
-	return  NULL;
+vector<KlassenkameradDatensatz*> Verwaltung::klassenkameradenAktuelleDatensaetze(){
+   if(m_KlassenkameradDatensatz.empty())
+       m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
+   return m_KlassenkameradDatensatz;
 }
 
 
-KlassenkameradDatensatz* Verwaltung::klassenkameradHistorie(string klassenkameradID){
-
-	return  NULL;
+vector<KlassenkameradDatensatz*> Verwaltung::klassenkameradHistorie(string klassenkameradID){
+    m_KlassenkameradAenderungshistorie = m_KlassenkameradDAO->aenderungshistorieLaden(klassenkameradID);
+    return m_KlassenkameradAenderungshistorie;
 }
 
 
 bool Verwaltung::klassenkameradLoeschen(string klassenkameradID){
-    m_KlassenkameradDAO->loeschen(klassenkameradID);
-	return  NULL;
+    return m_KlassenkameradDAO->loeschen(klassenkameradID);
 }
 
 
-bool Verwaltung::neuenKlassenkameradAnlegen(KlassenkameradDatensatz k){
-
-	return  NULL;
+bool Verwaltung::neuenKlassenkameradAnlegen(KlassenkameradDatensatz* k){
+    if(m_KlassenkameradDAO->einfuegen(k,akteurID)){
+        m_KlassenkameradDatensatz.push_back(k);
+        return true;
+    }
+    return false;
 }
 
-
+//Gibt es extra Button für den Hauptorganisator?
 bool Verwaltung::oranisatorRechteEntfernen(string ID){
 
 	return  NULL;
 }
 
-
+//Gibt es extra Button für den Hauptorganisator?
 bool Verwaltung::organisatorRechteVergeben(string ID){
 
 	return  NULL;
@@ -103,6 +106,6 @@ bool Verwaltung::organisatorRechteVergeben(string ID){
 
 
 bool Verwaltung::passwortAendern(string Passwort){
+    return m_KlassenkameradDAO->initialPasswortAendern(Passwort,akteurID);
 
-	return  NULL;
 }

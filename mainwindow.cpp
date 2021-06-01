@@ -73,3 +73,9 @@ void MainWindow::on_pushButton_6_clicked()
     kDAO->aktualisieren(kd,"0");
 }
 
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    cout << "Sensual Boy by Klaus" << endl;
+}
+
