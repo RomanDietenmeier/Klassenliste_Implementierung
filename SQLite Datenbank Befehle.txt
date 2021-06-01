@@ -55,3 +55,6 @@ VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=0),'07363
 
 'Alle Daten vom Hauptorganisator ausgeben'
 SELECT * FROM Klassenkamerad JOIN Organisator JOIN Hauptorganisator JOIN Klassenkamerad_Datensatz JOIN Telefonnummer WHERE Klassenkamerad.ID=0;
+
+'Alle Einträge'
+SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz ON (Klassenkamerad.ID=Klassenkamerad_Datensatz.Kamerad_ID)

@@ -9,6 +9,7 @@
 #define EA_F5D400D7_D52C_494c_9398_3316C29B30BA__INCLUDED_
 
 #include <string>
+#include<vector>
 using namespace std;
 
 typedef struct {
@@ -37,10 +38,11 @@ public:
 	adresse adresse;
     string eMail;
 	string klassenkameradID;
-	string nachname;
-	string telefonnummer;
+    string nachname[2];
+    vector<string> telefonnummer;
 	string vorname;
 	zeitpunkt zeitpunkt;
+    void printToConsole();
 
 };
 #endif // !defined(EA_F5D400D7_D52C_494c_9398_3316C29B30BA__INCLUDED_)

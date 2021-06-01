@@ -10,22 +10,27 @@
 
 class Verwaltung;
 #include"KlassenkameradDatensatz.h"
+#include <QSqlDatabase>
+#include<vector>
 
 class KlassenkameradDAO
 {
+    QSqlDatabase m_db;
 
 public:
-	KlassenkameradDAO();
+    KlassenkameradDAO(std::string pfad);
 	virtual ~KlassenkameradDAO();
 	Verwaltung *m_Verwaltung;
 
-    bool aktualisieren(KlassenkameradDatensatz daten);
+    bool test();
+    bool clean();
+    bool aktualisieren(KlassenkameradDatensatz &daten,string akteurID);
     KlassenkameradDatensatz* aenderungshistorieLaden(string klassenkameradID);
     string anmeldedatenPruefen(string eMail, string passwort);
-    bool einfuegen(KlassenkameradDatensatz daten);
+    bool einfuegen(KlassenkameradDatensatz &daten,string akteurID);
     bool initialPasswortAendern(string passwort, string akteurID);
-    KlassenkameradDatensatz* klassenkameradenLaden();
-    bool loeschen(KlassenkameradDatensatz k);
+    bool klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd);
+    bool loeschen(string ID);
     bool organisatorSperren(string eMail);
     bool removeOrganisator(string ID);
     bool setOrganisator(string ID);

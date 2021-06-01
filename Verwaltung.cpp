@@ -11,12 +11,14 @@
 
 
 Verwaltung::Verwaltung(){
-    m_KlassenkameradDAO = new KlassenkameradDAO();
+
+    m_KlassenkameradDAO = new KlassenkameradDAO("Robert.db");
     m_LoginView = new LoginView();
 
     m_LoginView->einloggen();
-    m_KlassenkameradDatensatz = m_KlassenkameradDAO->klassenkameradenLaden();
+    m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
     m_ListeView = new ListeView();
+
 
 }
 
@@ -57,7 +59,7 @@ bool Verwaltung::anmelden(string eMail, string Passwort){
 
 
 bool Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz k){
-    if(m_KlassenkameradDAO->aktualisieren(k)==true)
+    if(m_KlassenkameradDAO->aktualisieren(k,akteurID)==true)
         return true;
     else
         return false;
