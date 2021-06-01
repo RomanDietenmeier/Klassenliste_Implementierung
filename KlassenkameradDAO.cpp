@@ -146,7 +146,7 @@ bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz &daten,string akte
     }
     QString id=query.value(0).toString();
     //qDebug()<<id;
-    for(int i=0;i<daten.telefonnummer.size();i++){
+    for(unsigned long long i=0;i<daten.telefonnummer.size();i++){
         query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES (:id,:tele)");
         query.bindValue(":id",id);
         query.bindValue(":tele",daten.telefonnummer[i].c_str());
@@ -215,7 +215,7 @@ bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz &daten,string akteurID
         return false;
     }
     //qDebug()<<daten.telefonnummer.size();
-    for(int i=0;i<daten.telefonnummer.size();i++){
+    for(unsigned long long i=0;i<daten.telefonnummer.size();i++){
         query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=:id),:tele)");
         query.bindValue(":id",id.c_str());
         query.bindValue(":tele",daten.telefonnummer[i].c_str());
