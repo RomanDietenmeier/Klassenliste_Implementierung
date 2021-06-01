@@ -10,19 +10,20 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     kDAO=new KlassenkameradDAO("hohoho.db");
-    kd.vorname="Thomas";
-    kd.nachname[0]="Der";
-    kd.nachname[1]="Tester";
-    kd.eMail="test@gmx.de";
-    kd.adresse.hausnummer="42";
-    kd.adresse.ort="Testhausen";
-    kd.adresse.plz="4288";
-    kd.adresse.strasse="gibt es nicht";
-    kd.telefonnummer.push_back("7363/4555");
+    kd=new KlassenkameradDatensatz();
+    kd->vorname="Thomas";
+    kd->nachname[0]="Der";
+    kd->nachname[1]="Tester";
+    kd->eMail="test@gmx.de";
+    kd->adresse.hausnummer="42";
+    kd->adresse.ort="Testhausen";
+    kd->adresse.plz="4288";
+    kd->adresse.strasse="gibt es nicht";
+    kd->telefonnummer.push_back("7363/4555");
     kDAO->einfuegen(kd,"0");
-    kd.nachname[0]="The";
-    kd.nachname[1]="TankEngine";
-    kd.telefonnummer.push_back("+238000666");
+    kd->nachname[0]="The";
+    kd->nachname[1]="TankEngine";
+    kd->telefonnummer.push_back("+238000666");
 
 }
 
@@ -69,7 +70,13 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    kd.vorname+="ä";
+    kd->vorname+="ä";
     kDAO->aktualisieren(kd,"0");
+}
+
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    cout << "Sensual Boy by Klaus" << endl;
 }
 
