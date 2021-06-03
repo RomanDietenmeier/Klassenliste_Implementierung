@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include"KlassenkameradDAO.h"
 #include"KlassenkameradDatensatz.h"
+#include <QColumnView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
