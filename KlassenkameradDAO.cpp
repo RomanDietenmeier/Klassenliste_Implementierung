@@ -179,7 +179,56 @@ bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz* daten,string akte
     return true;
 }
 bool KlassenkameradDAO::aenderungshistorieLaden(vector<KlassenkameradDatensatz*> &kd,string klassenkameradID){
-    return false;
+    //SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) WHERE Klassenkamerad.ID=14 AND kd.ID<(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) WHERE Klassenkamerad.ID=:id AND kd.ID<(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)");
+    query.bindValue(":id",klassenkameradID.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    while(query.next()){
+        KlassenkameradDatensatz* z_kd=new KlassenkameradDatensatz();
+        z_kd->klassenkameradID=query.value(0).toString().toLocal8Bit().constData();
+        z_kd->vorname=query.value(2).toString().toLocal8Bit().constData();
+        z_kd->nachname[0]=query.value(3).toString().toLocal8Bit().constData();
+        z_kd->nachname[1]=query.value(4).toString().toLocal8Bit().constData();
+        z_kd->eMail=query.value(5).toString().toLocal8Bit().constData();
+        adresse ad;
+        ad.strasse=query.value(6).toString().toLocal8Bit().constData();
+        ad.hausnummer=query.value(7).toString().toLocal8Bit().constData();
+        ad.ort=query.value(8).toString().toLocal8Bit().constData();
+        ad.plz=query.value(9).toString().toLocal8Bit().constData();
+        z_kd->adresse=ad;
+
+        std::string zeit=query.value(10).toString().toLocal8Bit().constData();
+        std::string tag=query.value(11).toString().toLocal8Bit().constData();
+        if(zeit.length()==8&& tag.length()==10){
+            zeitpunkt zp;
+            zp.stunde=std::stoi(zeit.substr(0,2));
+            zp.minute=std::stoi(zeit.substr(3,2));
+            zp.sekunde=std::stoi(zeit.substr(6,2));
+
+            zp.jahr=std::stoi(tag.substr(0,4));
+            zp.monat=std::stoi(tag.substr(5,2));
+            zp.tag=std::stoi(tag.substr(8,2));
+            z_kd->zeitpunkt=zp;
+        }
+        QSqlQuery queryTele;
+        queryTele.prepare("SELECT * FROM Telefonnummer WHERE Telefonnummer.Datensatz_ID=:id");
+        queryTele.bindValue(":id",query.value(1));
+        if(!queryTele.exec()){
+            return false;
+        }
+        std::vector<std::string> ztele;
+        while(queryTele.next()){
+            ztele.push_back(queryTele.value(0).toString().toLocal8Bit().constData());
+        }
+        z_kd->telefonnummer=ztele;
+        queryTele.finish();
+        kd.push_back(z_kd);
+    }
+    query.finish();
+    return true;
 }
 string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     return NULL;

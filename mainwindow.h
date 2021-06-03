@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     KlassenkameradDAO* kDAO;
     KlassenkameradDatensatz* kd;
+    std::vector<KlassenkameradDatensatz*> Datensatze;
 
 
 public:
@@ -35,6 +36,8 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_7_clicked();
+
+    void on_pushButton_8_hist_clicked();
 
 private:
     Ui::MainWindow *ui;
