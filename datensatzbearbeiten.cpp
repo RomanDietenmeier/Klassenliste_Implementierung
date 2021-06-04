@@ -6,6 +6,7 @@
 #include<iostream>
 
 
+
 DatensatzBearbeiten::DatensatzBearbeiten(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DatensatzBearbeiten)
@@ -56,4 +57,10 @@ void DatensatzBearbeiten::on_pushButton_clicked()
 void DatensatzBearbeiten::on_pushButton_2_clicked()
 {
     this->close();
+}
+
+
+void DatensatzBearbeiten::on_pushButton_3_clicked()
+{
+
 }
