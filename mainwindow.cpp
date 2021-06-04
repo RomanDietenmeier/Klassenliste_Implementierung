@@ -97,7 +97,7 @@ void MainWindow::on_pushButton_3_clicked()
         ui->tableWidget->setItem(i+1,7,new QTableWidgetItem(tr(ds[i]->adresse.hausnummer.c_str())));
         ui->tableWidget->setItem(i+1,8,new QTableWidgetItem(tr(ds[i]->adresse.ort.c_str())));
         ui->tableWidget->setItem(i+1,9,new QTableWidgetItem(tr(ds[i]->adresse.plz.c_str())));
-        ds[i]->printToConsole();
+        //ds[i]->printToConsole();
         std::cout<<std::endl;
     }
 }
