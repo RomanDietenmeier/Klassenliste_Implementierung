@@ -2,6 +2,7 @@
 #define QT_LOGINVIEW_H
 
 #include <QMainWindow>
+#include"KlassenkameradDAO.h"
 
 namespace Ui {
 class qt_loginview;
@@ -9,14 +10,13 @@ class qt_loginview;
 
 class qt_loginview : public QMainWindow
 {
-    Q_OBJECT
-    std::string probe_email = "Max@Mustermann.de";
-    std::string probe_passwort = "123";
+    Q_OBJECT    
     bool emailBoolean = false;
     bool passwortBoolean = false;
+    KlassenkameradDAO* dao;
 
 public:
-    explicit qt_loginview(QWidget *parent = nullptr);
+    explicit qt_loginview(QWidget *parent = nullptr,KlassenkameradDAO* dao=NULL);
     ~qt_loginview();
 
 private slots:

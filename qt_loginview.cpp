@@ -3,11 +3,12 @@
 #include <QDebug>
 #include "mainwindow.h"
 
-qt_loginview::qt_loginview(QWidget *parent) :
+qt_loginview::qt_loginview(QWidget *parent,KlassenkameradDAO* dao) :
     QMainWindow(parent),
     ui(new Ui::qt_loginview)
 {
     ui->setupUi(this);
+    this->dao=dao;
 
 }
 
@@ -45,7 +46,8 @@ void qt_loginview::on_loginbutton_clicked()
     qDebug()<< "Login mit Email: "+loginEmail+ " und Passwort: " +loginPasswort;
 
 
-    if (loginEmail.toStdString() == probe_email && loginPasswort.toStdString() == probe_passwort){
+
+    if (dao->anmeldedatenPruefen(loginEmail.toStdString(),loginPasswort.toStdString()).compare("-1")!=0){
         qDebug()<<"Erfolgreich";
         //MainWindow aufrufen
         MainWindow *mainwindow = new MainWindow();
