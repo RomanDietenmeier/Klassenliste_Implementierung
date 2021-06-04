@@ -62,53 +62,5 @@ void DatensatzBearbeiten::on_pushButton_2_clicked()
 
 void DatensatzBearbeiten::on_pushButton_3_clicked()
 {
-    std::vector<KlassenkameradDatensatz*> ds;
-        kDAO->klassenkameradenLaden(ds);
-        Datensatze=ds;
-        ui->tableWidget->setRowCount(ds.size()+1);
-
-
-
-        auto Items = ui->tableWidget->selectedItems();
-        for(int i = 0; i<Items.size(); i++)
-        {
-            qDebug()<<Items.at(i)->row();
-        }
-
-
-
-
-
-
-
-        for(int i = 0; i < ds.size(); i++)
-        {
-            ui->tableWidget->setItem(1,0,new QTableWidgetItem(tr(ds[i]->klassenkameradID.c_str())));
-            ui->tableWidget->setItem(1,1,new QTableWidgetItem(tr(ds[i]->vorname.c_str())));
-            ui->tableWidget->setItem(1,2,new QTableWidgetItem(tr(ds[i]->nachname[0].c_str())));
-            ui->tableWidget->setItem(1,3,new QTableWidgetItem(tr(ds[i]->nachname[1].c_str())));
-            ui->tableWidget->setItem(1,4,new QTableWidgetItem(tr(ds[i]->eMail.c_str())));
-            ui->tableWidget->setItem(1,5,new QTableWidgetItem(tr((ds[i]->telefonnummer.size()>0)?ds[i]->telefonnummer[0].c_str():"-")));
-            ui->tableWidget->setItem(1,6,new QTableWidgetItem(tr(ds[i]->adresse.strasse.c_str())));
-            ui->tableWidget->setItem(1,7,new QTableWidgetItem(tr(ds[i]->adresse.hausnummer.c_str())));
-            ui->tableWidget->setItem(1,8,new QTableWidgetItem(tr(ds[i]->adresse.ort.c_str())));
-            ui->tableWidget->setItem(1,9,new QTableWidgetItem(tr(ds[i]->adresse.plz.c_str())));
-        }
-
-        /*
-        ui->tableWidget->setItem(1,0,new QTableWidgetItem(tr(ds[1]->klassenkameradID.c_str())));
-        ui->tableWidget->setItem(1,1,new QTableWidgetItem(tr(ds[1]->vorname.c_str())));
-        ui->tableWidget->setItem(1,2,new QTableWidgetItem(tr(ds[1]->nachname[0].c_str())));
-        ui->tableWidget->setItem(1,3,new QTableWidgetItem(tr(ds[1]->nachname[1].c_str())));
-        ui->tableWidget->setItem(1,4,new QTableWidgetItem(tr(ds[1]->eMail.c_str())));
-        ui->tableWidget->setItem(1,5,new QTableWidgetItem(tr((ds[1]->telefonnummer.size()>0)?ds[1]->telefonnummer[0].c_str():"-")));
-        ui->tableWidget->setItem(1,6,new QTableWidgetItem(tr(ds[1]->adresse.strasse.c_str())));
-        ui->tableWidget->setItem(1,7,new QTableWidgetItem(tr(ds[1]->adresse.hausnummer.c_str())));
-        ui->tableWidget->setItem(1,8,new QTableWidgetItem(tr(ds[1]->adresse.ort.c_str())));
-        ui->tableWidget->setItem(1,9,new QTableWidgetItem(tr(ds[1]->adresse.plz.c_str())));
-        */
-
-
-
 
 }

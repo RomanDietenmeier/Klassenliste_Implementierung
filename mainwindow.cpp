@@ -124,6 +124,12 @@ void MainWindow::on_pushButton_6_clicked()
     DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
     bearbeitenWin->show();
 
+    auto Items = ui->tableWidget->selectedItems();
+    for(int i = 0; i<Items.size(); i++)
+    {
+        qDebug()<<Items.at(i)->row();
+    }
+
 
 }
 
