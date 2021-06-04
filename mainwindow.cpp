@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "datensatzbearbeiten.h"
 #include "ui_mainwindow.h"
 #include<QDebug>
 #include<iostream>
@@ -116,6 +117,12 @@ void MainWindow::on_pushButton_6_clicked()
 {
     kd->vorname+="ä";
     kDAO->aktualisieren(kd,"0");
+
+    this->close();
+    DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
+    bearbeitenWin->show();
+
+
 }
 
 

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "datensatzbearbeiten.h"
 
 #include <QApplication>
 #include<string>
