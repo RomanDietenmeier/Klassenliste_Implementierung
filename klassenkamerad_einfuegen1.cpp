@@ -1,42 +1,41 @@
-#include "firststart.h"
-#include "ui_firststart.h"
+#include "klassenkamerad_einfuegen.h"
+#include "ui_klassenkamerad_einfuegen.h"
 #include "KlassenkameradDatensatz.h"
 #include <QListWidgetItem>
 
-firstStart::firstStart(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw) :
+klassenkamerad_einfuegen::klassenkamerad_einfuegen(QWidget *parent, KlassenkameradDAO *dao) :
     QMainWindow(parent),
-    ui(new Ui::firstStart)
+    ui(new Ui::klassenkamerad_einfuegen)
 {
     ui->setupUi(this);
     this->dao= dao;
-    this->mw= mw;
 }
 
-firstStart::~firstStart()
+klassenkamerad_einfuegen::~klassenkamerad_einfuegen()
 {
     delete ui;
 }
 
-void firstStart::on_ho_telefon_textChanged(const QString &arg1)
+void klassenkamerad_einfuegen::on_ho_telefon_textChanged(const QString &arg1)
 {
     ui->ho_plusTelefon->setEnabled(true);
 }
 
 
-void firstStart::on_ho_plusTelefon_clicked()
+void klassenkamerad_einfuegen::on_ho_plusTelefon_clicked()
 {
     ui->ho_telefonliste->addItem(ui->ho_telefon->text());
 
 }
 
 
-void firstStart::on_ho_telefonliste_itemDoubleClicked(QListWidgetItem *item)
+void klassenkamerad_einfuegen::on_ho_telefonliste_itemDoubleClicked(QListWidgetItem *item)
 {
     delete item;
 }
 
 
-void firstStart::on_ho_anlegen_clicked()
+void klassenkamerad_einfuegen::on_ho_anlegen_clicked()
 {
     KlassenkameradDatensatz hauptorganisator;
     hauptorganisator.vorname = ui->ho_vorname->text().toStdString();
@@ -56,9 +55,6 @@ void firstStart::on_ho_anlegen_clicked()
 
     dao->einfuegen(&hauptorganisator, "0");
     hauptorganisator.printToConsole();
-
-    this->close();
-    mw->show();
 
 
 }

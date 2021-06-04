@@ -1,24 +1,22 @@
-#ifndef FIRSTSTART_H
-#define FIRSTSTART_H
+#ifndef KLASSENKAMERAD_EINFUEGEN1_H
+#define KLASSENKAMERAD_EINFUEGEN1_H
 
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include "KlassenkameradDAO.h"
-#include "mainwindow.h"
 
 namespace Ui {
-class firstStart;
+class klassenkamerad_einfuegen;
 }
 
-class firstStart : public QMainWindow
+class klassenkamerad_einfuegen : public QMainWindow
 {
     Q_OBJECT
     KlassenkameradDAO* dao;
-    MainWindow* mw;
 
 public:
-    explicit firstStart(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL);
-    ~firstStart();
+    explicit klassenkamerad_einfuegen(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL);
+    ~klassenkamerad_einfuegen();
 
 private slots:
     void on_ho_telefon_textChanged(const QString &arg1);
@@ -30,7 +28,7 @@ private slots:
     void on_ho_anlegen_clicked();
 
 private:
-    Ui::firstStart *ui;
+    Ui::klassenkamerad_einfuegen *ui;
 };
 
 #endif // FIRSTSTART_H

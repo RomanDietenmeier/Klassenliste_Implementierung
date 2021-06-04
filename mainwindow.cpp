@@ -5,7 +5,7 @@
 #include<iostream>
 #include "qt_loginview.h"
 #include "firststart.h"
-
+#include "klassenkamerad_einfuegen.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -202,14 +202,16 @@ void MainWindow::on_LoginView_clicked()
 
 void MainWindow::on_ho_anlegen_clicked()
 {
-
+    firstStart *firststart = new firstStart(NULL, kDAO, this);
+    this->close();
+    firststart->show();
 }
 
 
 void MainWindow::on_einfuegen_clicked()
 {
-    firstStart *firststart = new firstStart(NULL, kDAO);
+    klassenkamerad_einfuegen *view_einfuegen = new klassenkamerad_einfuegen(NULL, kDAO, this);
     this->close();
-    firststart->show();
+    view_einfuegen->show();
 }
 

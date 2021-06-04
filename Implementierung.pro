@@ -21,6 +21,7 @@ SOURCES += \
     datensatzbearbeiten.cpp \
     finddb.cpp \
     firststart.cpp \
+    klassenkamerad_einfuegen.cpp \
     main.cpp \
     mainwindow.cpp \
     qt_loginview.cpp
@@ -34,6 +35,7 @@ HEADERS += \
     datensatzbearbeiten.h \
     finddb.h \
     firststart.h \
+    klassenkamerad_einfuegen.h \
     mainwindow.h \
     qt_loginview.h
 
@@ -41,6 +43,7 @@ FORMS += \
     datensatzbearbeiten.ui \
     finddb.ui \
     firststart.ui \
+    klassenkamerad_einfuegen.ui \
     mainwindow.ui \
     qt_loginview.ui
 
