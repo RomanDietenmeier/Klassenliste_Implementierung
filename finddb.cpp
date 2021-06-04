@@ -19,9 +19,23 @@ FindDB::~FindDB()
 
 void FindDB::on_pushButton_2_Datei_clicked()
 {
+    if(dao!=NULL){
+        delete dao;
+        dao=NULL;
+    }
 
     QFileDialog dialog;
     QString s=dialog.getOpenFileName();
-    qDebug()<<s;
+    dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
+}
+
+
+void FindDB::on_pushButton_1_DEFAULT_clicked()
+{
+    if(dao!=NULL){
+        delete dao;
+        dao=NULL;
+    }
+    dao=new KlassenkameradDAO("./hohoho.db");
 }
 
