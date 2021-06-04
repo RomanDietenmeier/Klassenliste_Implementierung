@@ -4,6 +4,7 @@
 #include<QDebug>
 #include<iostream>
 #include "qt_loginview.h"
+#include "firststart.h"
 
 
 
@@ -196,5 +197,13 @@ void MainWindow::on_LoginView_clicked()
     qt_loginview *loginview = new qt_loginview();
     this->close();
     loginview->show();
+}
+
+
+void MainWindow::on_ho_anlegen_clicked()
+{
+    firstStart *firststart = new firstStart();
+    this->close();
+    firststart->show();
 }
 

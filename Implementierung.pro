@@ -20,6 +20,7 @@ SOURCES += \
     Verwaltung.cpp \
     datensatzbearbeiten.cpp \
     finddb.cpp \
+    firststart.cpp \
     main.cpp \
     mainwindow.cpp \
     qt_loginview.cpp
@@ -32,12 +33,14 @@ HEADERS += \
     Verwaltung.h \
     datensatzbearbeiten.h \
     finddb.h \
+    firststart.h \
     mainwindow.h \
     qt_loginview.h
 
 FORMS += \
     datensatzbearbeiten.ui \
     finddb.ui \
+    firststart.ui \
     mainwindow.ui \
     qt_loginview.ui
 

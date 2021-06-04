@@ -45,6 +45,8 @@ private slots:
 
     void on_LoginView_clicked();
 
+    void on_ho_anlegen_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
