@@ -8,7 +8,7 @@
 #include"KlassenkameradDAO.h"
 #include "windows.h"
 #include<QMainWindow>
-
+#include"datensatzbearbeiten.h"
 
 
 int main(int argc, char *argv[])
