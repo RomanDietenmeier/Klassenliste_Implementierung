@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setItem(0,7,new QTableWidgetItem(tr("Hausnummer")));
     ui->tableWidget->setItem(0,8,new QTableWidgetItem(tr("Ort")));
     ui->tableWidget->setItem(0,9,new QTableWidgetItem(tr("PLZ")));
-    ui->tableWidget->setColumnWidth(0, 100);
+    ui->tableWidget->setColumnWidth(0, 50);
     ui->tableWidget->setColumnWidth(1, 100);
     ui->tableWidget->setColumnWidth(2, 100);
     ui->tableWidget->setColumnWidth(3, 100);
