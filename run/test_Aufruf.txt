@@ -78,7 +78,7 @@ INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=3),'+49125528962');
 
 INSERT INTO Klassenkamerad(ID) VALUES(4);
-INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Eric','schuh','Erik@schlaeft.de','Aalener Heide','3','Wasseralfingen','73433',time('now'),date('now'),2,4);
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Eric','Schuh','Erik@schlaeft.de','Aalener Heide','3','Wasseralfingen','73433',time('now'),date('now'),2,4);
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=4),'+49125528963');
 
 INSERT INTO Klassenkamerad(ID) VALUES(5);
