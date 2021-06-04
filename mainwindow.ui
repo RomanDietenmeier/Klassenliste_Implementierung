@@ -142,7 +142,7 @@
      <string>2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="pushButton_8_db">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -152,7 +152,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>change</string>
+     <string>find DB</string>
     </property>
    </widget>
   </widget>
