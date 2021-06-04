@@ -18,6 +18,7 @@ SOURCES += \
     ListeView.cpp \
     LoginView.cpp \
     Verwaltung.cpp \
+    datensatzbearbeiten.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -27,9 +28,11 @@ HEADERS += \
     ListeView.h \
     LoginView.h \
     Verwaltung.h \
+    datensatzbearbeiten.h \
     mainwindow.h
 
 FORMS += \
+    datensatzbearbeiten.ui \
     mainwindow.ui
 
 # Default rules for deployment.
