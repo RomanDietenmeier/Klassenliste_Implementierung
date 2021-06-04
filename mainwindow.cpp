@@ -5,6 +5,7 @@
 
 
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -170,5 +171,13 @@ void MainWindow::on_pushButton_8_hist_clicked()
     ui->tableWidget->setItem(ds.size()+1,8,new QTableWidgetItem(tr(Datensatze[i]->adresse.ort.c_str())));
     ui->tableWidget->setItem(ds.size()+1,9,new QTableWidgetItem(tr(Datensatze[i]->adresse.plz.c_str())));
     Datensatze=ds;
+}
+
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    FindDB* w=new FindDB();
+    this->close();
+    w->show();
 }
 

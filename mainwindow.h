@@ -5,6 +5,8 @@
 #include"KlassenkameradDAO.h"
 #include"KlassenkameradDatensatz.h"
 #include <QColumnView>
+#include"datensatzbearbeiten.h"
+#include"finddb.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,6 +40,8 @@ private slots:
     void on_pushButton_7_clicked();
 
     void on_pushButton_8_hist_clicked();
+
+    void on_pushButton_8_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -19,6 +19,7 @@ SOURCES += \
     LoginView.cpp \
     Verwaltung.cpp \
     datensatzbearbeiten.cpp \
+    finddb.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -29,10 +30,12 @@ HEADERS += \
     LoginView.h \
     Verwaltung.h \
     datensatzbearbeiten.h \
+    finddb.h \
     mainwindow.h
 
 FORMS += \
     datensatzbearbeiten.ui \
+    finddb.ui \
     mainwindow.ui
 
 # Default rules for deployment.
