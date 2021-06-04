@@ -241,6 +241,7 @@ string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     qDebug()<<query.value(1);
     qDebug()<<query.value(2);
     qDebug()<<query.value(3);
+    return "0";
 }
 /**
  * @brief KlassenkameradDAO::einfuegen Fügt einen neuen Klassenkameraden der Datenbank hinzu.
