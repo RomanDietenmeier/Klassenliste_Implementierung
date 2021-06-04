@@ -3,7 +3,7 @@
 #include "ui_mainwindow.h"
 #include<QDebug>
 #include<iostream>
-
+#include "qt_loginview.h"
 
 
 
@@ -188,5 +188,13 @@ void MainWindow::on_pushButton_8_db_clicked()
     FindDB* w=new FindDB();
     this->close();
     w->show();
+}
+
+
+void MainWindow::on_LoginView_clicked()
+{
+    qt_loginview *loginview = new qt_loginview();
+    this->close();
+    loginview->show();
 }
 

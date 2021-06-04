@@ -21,7 +21,8 @@ SOURCES += \
     datensatzbearbeiten.cpp \
     finddb.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    qt_loginview.cpp
 
 HEADERS += \
     KlassenkameradDAO.h \
@@ -31,12 +32,14 @@ HEADERS += \
     Verwaltung.h \
     datensatzbearbeiten.h \
     finddb.h \
-    mainwindow.h
+    mainwindow.h \
+    qt_loginview.h
 
 FORMS += \
     datensatzbearbeiten.ui \
     finddb.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    qt_loginview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

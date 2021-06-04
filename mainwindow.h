@@ -41,8 +41,9 @@ private slots:
 
     void on_pushButton_8_hist_clicked();
 
-
     void on_pushButton_8_db_clicked();
+
+    void on_LoginView_clicked();
 
 private:
     Ui::MainWindow *ui;
