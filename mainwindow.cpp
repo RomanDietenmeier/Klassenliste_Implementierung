@@ -202,7 +202,13 @@ void MainWindow::on_LoginView_clicked()
 
 void MainWindow::on_ho_anlegen_clicked()
 {
-    firstStart *firststart = new firstStart();
+
+}
+
+
+void MainWindow::on_einfuegen_clicked()
+{
+    firstStart *firststart = new firstStart(NULL, kDAO);
     this->close();
     firststart->show();
 }

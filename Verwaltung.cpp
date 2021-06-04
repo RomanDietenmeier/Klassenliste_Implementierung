@@ -32,6 +32,7 @@ void Verwaltung::abmelden(){
 
 }
 
+//veruche
 
 bool Verwaltung::anmelden(string eMail, string Passwort){
     akteurID = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);

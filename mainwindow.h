@@ -47,6 +47,8 @@ private slots:
 
     void on_ho_anlegen_clicked();
 
+    void on_einfuegen_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
