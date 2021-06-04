@@ -4,7 +4,8 @@
 #include<QDebug>
 #include<iostream>
 #include "qt_loginview.h"
-
+#include "firststart.h"
+#include "klassenkamerad_einfuegen.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -123,6 +124,12 @@ void MainWindow::on_pushButton_6_clicked()
     DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
     bearbeitenWin->show();
 
+    auto Items = ui->tableWidget->selectedItems();
+    for(int i = 0; i<Items.size(); i++)
+    {
+        qDebug()<<Items.at(i)->row();
+    }
+
 
 }
 
@@ -196,5 +203,21 @@ void MainWindow::on_LoginView_clicked()
     qt_loginview *loginview = new qt_loginview();
     this->close();
     loginview->show();
+}
+
+
+void MainWindow::on_ho_anlegen_clicked()
+{
+    firstStart *firststart = new firstStart(NULL, kDAO, this);
+    this->close();
+    firststart->show();
+}
+
+
+void MainWindow::on_einfuegen_clicked()
+{
+    klassenkamerad_einfuegen *view_einfuegen = new klassenkamerad_einfuegen(NULL, kDAO, this);
+    this->close();
+    view_einfuegen->show();
 }
 
