@@ -234,13 +234,10 @@ string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     QSqlQuery query;
     query.prepare("SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.Initialpasswort,Organisator.gesperrt FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
     query.bindValue(":email",eMail.c_str());
-    if(!query.exec() || !query.next()){
+    if(!query.exec() || !query.next()|| query.value(3).toBool()||(0!=query.value(1).toString().toStdString().compare(passwort) && 0!=query.value(2).toString().toStdString().compare(passwort))){
         return "-1";
     }
-    qDebug()<<query.value(0);
-    qDebug()<<query.value(1);
-    qDebug()<<query.value(2);
-    qDebug()<<query.value(3);
+    return query.value(0).toString().toStdString();
 }
 /**
  * @brief KlassenkameradDAO::einfuegen Fügt einen neuen Klassenkameraden der Datenbank hinzu.
