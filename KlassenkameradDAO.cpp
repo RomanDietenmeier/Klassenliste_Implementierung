@@ -394,7 +394,14 @@ bool KlassenkameradDAO::loeschen(string ID){
     return true;
 }
 bool KlassenkameradDAO::organisatorSperren(string eMail){
-
+    /*QSqlQuery query;
+    query.prepare("UPDATE Organisator SET Passwort=:pw ,Initialpasswort=false WHERE Kamerad_ID=:id");
+    query.bindValue(":pw",passwort.c_str());
+    query.bindValue(":id",akteurID.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    return true;*/
     return false;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){
