@@ -16,7 +16,7 @@
 
 typedef struct {
     string eMail;
-    int veruche;
+    int versuche;
 }anmeldung;
 
 
@@ -34,7 +34,7 @@ public:
     ~Verwaltung();
     void init();
 	void abmelden();
-    bool anmelden(string eMail, string Passwort);
+    int anmelden(string eMail, string Passwort);
     bool klassenkameradBearbeiten(KlassenkameradDatensatz* k);
     vector<KlassenkameradDatensatz*> klassenkameradenAktuelleDatensaetze();
     vector<KlassenkameradDatensatz*> klassenkameradHistorie(string klassenkameradID);
@@ -46,7 +46,7 @@ public:
 
 private:
     string akteurID;
-    vector<anmeldung> anmeldeVersuche;
+    vector<anmeldung*> anmeldeVersuche;
     vector<KlassenkameradDatensatz*> m_KlassenkameradDatensatz;
     vector<KlassenkameradDatensatz*> m_KlassenkameradAenderungshistorie;
 

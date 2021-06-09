@@ -8,7 +8,8 @@ qt_loginview::qt_loginview(QWidget *parent,KlassenkameradDAO* dao) :
     ui(new Ui::qt_loginview)
 {
     ui->setupUi(this);
-    this->dao=dao;
+    v = new Verwaltung();
+    this->dao = v->m_KlassenkameradDAO;
 
 }
 
@@ -45,17 +46,17 @@ void qt_loginview::on_loginbutton_clicked()
 
     qDebug()<< "Login mit Email: "+loginEmail+ " und Passwort: " +loginPasswort;
 
-
-
-    if (dao->anmeldedatenPruefen(loginEmail.toStdString(),loginPasswort.toStdString()).id.compare("-1")!=0){
+    int login = v->anmelden(loginEmail.toStdString(),loginPasswort.toStdString());
+    if (login==0){
         qDebug()<<"Erfolgreich";
         //MainWindow aufrufen
         MainWindow *mainwindow = new MainWindow();
         this->close();
         mainwindow->show();
-
-    }else{
+    }else if(login==-1){
         qDebug()<<"nicht Erfolgreich";
+    }else if(login==-2){
+        qDebug()<<"Benutzer gesperrt";
     }
 
 

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include"KlassenkameradDAO.h"
+#include"Verwaltung.h"
 
 namespace Ui {
 class qt_loginview;
@@ -10,12 +11,13 @@ class qt_loginview;
 
 class qt_loginview : public QMainWindow
 {
-    Q_OBJECT    
+    Q_OBJECT
     bool emailBoolean = false;
     bool passwortBoolean = false;
     KlassenkameradDAO* dao;
 
 public:
+    Verwaltung* v;
     explicit qt_loginview(QWidget *parent = nullptr,KlassenkameradDAO* dao=NULL);
     ~qt_loginview();
 

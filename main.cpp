@@ -58,7 +58,8 @@ int main(int argc, char *argv[])
 
 
     QApplication a(argc, argv);
-    MainWindow w;
+    //MainWindow w;
+    qt_loginview w;
     w.show();
     return a.exec();
 }
