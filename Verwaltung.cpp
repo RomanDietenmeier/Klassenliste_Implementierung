@@ -34,7 +34,6 @@ void Verwaltung::abmelden(){
 }
 
 //veruche
-
 int Verwaltung::anmelden(string eMail, string Passwort){
     login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);
     akteurID = log.id;
@@ -60,7 +59,7 @@ int Verwaltung::anmelden(string eMail, string Passwort){
         return -1;
     }
     //if(log.initial_login==true)
-    //hier neues Passwort anlegen
+
 
     return 0;
 
