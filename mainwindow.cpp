@@ -129,7 +129,9 @@ void MainWindow::on_pushButton_6_clicked()
     //DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
     //bearbeitenWin->show();
 
+
     auto Items = ui->tableWidget->selectedItems();
+    Datensatze[Items.at(0)->row()-1]->printToConsole();
     for(int i = 0; i<Items.size(); i++)
     {
         qDebug()<<Items.at(i)->row();
