@@ -123,14 +123,13 @@ void MainWindow::on_pushButton_6_clicked()
 
     this->close();
 
-    Aendern *aendernWin = new Aendern(NULL,kDAO,this);
+    auto Items = ui->tableWidget->selectedItems();
+    Aendern *aendernWin = new Aendern(NULL,kDAO,this, Datensatze[Items.at(0)->row()-1]);
     aendernWin->show();
 
     //DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
     //bearbeitenWin->show();
 
-
-    auto Items = ui->tableWidget->selectedItems();
     Datensatze[Items.at(0)->row()-1]->printToConsole();
     for(int i = 0; i<Items.size(); i++)
     {

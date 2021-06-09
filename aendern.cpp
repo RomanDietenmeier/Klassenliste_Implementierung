@@ -3,13 +3,28 @@
 #include "KlassenkameradDatensatz.h"
 #include <QListWidgetItem>
 
-Aendern::Aendern(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw) :
+Aendern::Aendern(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw, KlassenkameradDatensatz *kd) :
     QMainWindow(parent),
     ui(new Ui::Aendern)
 {
     ui->setupUi(this);
 	this->dao= dao;
     this->mw= mw;
+    this->kd= kd;
+
+    ui->ho_vorname->setText(kd->vorname.c_str());
+    ui->ho_nachname->setText(kd->nachname[0].c_str());
+    ui->ho_nachname2->setText(kd->nachname[1].c_str());
+    ui->ho_email->setText(kd->eMail.c_str());
+    ui->ho_strasse->setText(kd->adresse.strasse.c_str());
+    ui->ho_hausnr->setText(kd->adresse.hausnummer.c_str());
+    ui->ho_ort->setText(kd->adresse.ort.c_str());
+    ui->ho_plz->setText(kd->adresse.plz.c_str());
+
+    for (unsigned long long i=0;i<kd->telefonnummer.size();i++ ) {
+
+        ui->ho_telefonliste->addItem(kd->telefonnummer[i].c_str());
+    }
 }
 
 Aendern::~Aendern()
@@ -53,8 +68,7 @@ void Aendern::on_ho_anlegen_clicked()
         hauptorganisator.telefonnummer.push_back(ui->ho_telefonliste->item(i)->text().toStdString());
     }
 
-
-    dao->einfuegen(&hauptorganisator, "0");
+    dao->aktualisieren(&hauptorganisator, "0");
     hauptorganisator.printToConsole();
 
     this->close();
