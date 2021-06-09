@@ -27,8 +27,6 @@ void NewPasswort::on_np_speichernButton_clicked()
     //wo wird pw gespeichert
 
 
-
-
     this->close();
 
 
