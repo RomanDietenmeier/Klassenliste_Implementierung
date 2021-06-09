@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
-#include "KlassenkameradDAO.h"
 #include "mainwindow.h"
+
+
 
 namespace Ui {
 class firstStart;

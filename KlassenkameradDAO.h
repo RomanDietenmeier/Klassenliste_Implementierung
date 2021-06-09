@@ -12,6 +12,7 @@ class Verwaltung;
 #include"KlassenkameradDatensatz.h"
 #include <QSqlDatabase>
 #include<vector>
+#include <QMainWindow>
 
 typedef struct{
     string id;
@@ -34,6 +35,7 @@ public:
     bool aenderungshistorieLaden(vector<KlassenkameradDatensatz*> &kd,string klassenkameradID);
     login_ret anmeldedatenPruefen(string eMail, string passwort);
     bool einfuegen(KlassenkameradDatensatz* daten,string akteurID);
+    bool einfuegen_HauptO(KlassenkameradDatensatz* daten,string passwort,string master_passwort);
     bool passwortAendern(string passwort, string akteurID);
     bool klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd);
     bool loeschen(string ID);

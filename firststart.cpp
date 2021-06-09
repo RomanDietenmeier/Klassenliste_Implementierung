@@ -2,6 +2,7 @@
 #include "ui_firststart.h"
 #include "KlassenkameradDatensatz.h"
 #include <QListWidgetItem>
+#include<QDebug>
 
 firstStart::firstStart(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw) :
     QMainWindow(parent),
@@ -56,11 +57,17 @@ void firstStart::on_ho_anlegen_clicked()
     }
 
 
-    dao->einfuegen(&hauptorganisator, "0");
+    //dao->einfuegen(&hauptorganisator, "0");
+    if(dao->einfuegen_HauptO(&hauptorganisator,ui->ho_passwort->text().toStdString(),ui->ho_masterpasswort->text().toStdString())){
+        qDebug()<<"HO erfolg";
+    }else{
+        qDebug()<<"HO misslungen";
+    }
     hauptorganisator.printToConsole();
 
     this->close();
     mw->show();
+    //mw->on
 
 
 }

@@ -2,10 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include"KlassenkameradDAO.h"
 #include"KlassenkameradDatensatz.h"
+#include"KlassenkameradDAO.h"
 #include <QColumnView>
-#include"datensatzbearbeiten.h"
 #include"finddb.h"
 
 QT_BEGIN_NAMESPACE

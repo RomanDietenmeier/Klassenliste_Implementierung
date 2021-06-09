@@ -5,7 +5,7 @@
 #include<string>
 #include<iostream>
 #include<fstream>
-#include"KlassenkameradDAO.h"
+//#include"KlassenkameradDAO.h"
 #include "windows.h"
 #include<QMainWindow>
 #include"datensatzbearbeiten.h"
