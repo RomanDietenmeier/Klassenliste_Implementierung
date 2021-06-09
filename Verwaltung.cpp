@@ -37,7 +37,7 @@ void Verwaltung::abmelden(){
 int Verwaltung::anmelden(string eMail, string Passwort){
     login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);
     akteurID = log.id;
-    if(akteurID.compare("-1")){
+    if(akteurID.compare("-1")==0){
         for(anmeldung* a: anmeldeVersuche){
             if(a->eMail.compare(eMail)==0){
                 if(a->versuche<3)
