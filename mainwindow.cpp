@@ -123,7 +123,7 @@ void MainWindow::on_pushButton_6_clicked()
 
     this->close();
 
-    Aendern *aendernWin = new Aendern();
+    Aendern *aendernWin = new Aendern(NULL,kDAO,this);
     aendernWin->show();
 
     //DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
