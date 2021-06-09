@@ -37,9 +37,6 @@ DatensatzBearbeiten::DatensatzBearbeiten(QWidget *parent) :
     ui->tableWidget->setColumnWidth(9, 100);
 
 
-
-
-
 }
 
 DatensatzBearbeiten::~DatensatzBearbeiten()
