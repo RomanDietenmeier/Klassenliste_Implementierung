@@ -13,6 +13,12 @@ class Verwaltung;
 #include <QSqlDatabase>
 #include<vector>
 
+typedef struct{
+    string id;
+    bool initial_login;
+} login_ret;
+
+
 class KlassenkameradDAO
 {
     QSqlDatabase m_db;
@@ -26,7 +32,7 @@ public:
     bool clean();
     bool aktualisieren(KlassenkameradDatensatz* daten,string akteurID);
     bool aenderungshistorieLaden(vector<KlassenkameradDatensatz*> &kd,string klassenkameradID);
-    string anmeldedatenPruefen(string eMail, string passwort);
+    login_ret anmeldedatenPruefen(string eMail, string passwort);
     bool einfuegen(KlassenkameradDatensatz* daten,string akteurID);
     bool passwortAendern(string passwort, string akteurID);
     bool klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd);
