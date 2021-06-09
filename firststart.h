@@ -29,6 +29,10 @@ private slots:
 
     void on_ho_anlegen_clicked();
 
+    void on_lineEdit_textEdited(const QString &arg1);
+
+    void on_ho_passwort_textChanged(const QString &arg1);
+
 private:
     Ui::firstStart *ui;
 };
