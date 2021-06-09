@@ -36,6 +36,9 @@ void Verwaltung::abmelden(){
 //veruche
 int Verwaltung::anmelden(string eMail, string Passwort){
     login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);
+    qDebug()<< "initialpasswort: "<< log.initial_login;
+    qDebug()<< "akteur: "<< log.id.c_str();
+
     akteurID = log.id;
     if(akteurID.compare("-1")==0){
         for(anmeldung* a: anmeldeVersuche){
