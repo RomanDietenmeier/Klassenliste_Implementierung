@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include "KlassenkameradDAO.h"
 #include "mainwindow.h"
+#include "KlassenkameradDatensatz.h"
 
 namespace Ui {
 class Aendern;
@@ -15,9 +16,10 @@ class Aendern : public QMainWindow
     Q_OBJECT
 	KlassenkameradDAO* dao;
     MainWindow* mw;
+    KlassenkameradDatensatz* kd;
 
 public:
-    explicit Aendern(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL);
+    explicit Aendern(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL, KlassenkameradDatensatz* kd=NULL);
     ~Aendern();
 
 private slots:
