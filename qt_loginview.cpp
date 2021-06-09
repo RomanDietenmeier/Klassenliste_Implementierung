@@ -9,7 +9,8 @@ qt_loginview::qt_loginview(QWidget *parent,KlassenkameradDAO* dao) :
 {
     ui->setupUi(this);
     v = new Verwaltung();
-    this->dao = v->m_KlassenkameradDAO;
+    this->dao = dao;
+    v->m_KlassenkameradDAO = dao;
 
 }
 
