@@ -35,7 +35,7 @@ void Verwaltung::abmelden(){
 //veruche
 
 bool Verwaltung::anmelden(string eMail, string Passwort){
-    akteurID = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);
+    akteurID = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort).id;
     if(akteurID.compare("-1")){
         for(anmeldung a: anmeldeVersuche){
             if(a.eMail.compare(eMail)==0){

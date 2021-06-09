@@ -116,6 +116,7 @@ bool KlassenkameradDAO::test(){
 }
 
 
+
 /**
  * @brief KlassenkameradDAO::aktualisieren legt einen neuen Datensatz an für ein bestehendes Klassenmitglied.
  * @param daten Der Datensatz mit den neuen Dateien. Bei diesem wird der Zeitpunkt mit der Ausführung aktualisiert.
@@ -230,14 +231,17 @@ bool KlassenkameradDAO::aenderungshistorieLaden(vector<KlassenkameradDatensatz*>
     query.finish();
     return true;
 }
-string KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
+login_ret KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     QSqlQuery query;
-    query.prepare("SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.gesperrt FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
+    query.prepare("SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.gesperrt,Organisator.Initialpasswort FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
     query.bindValue(":email",eMail.c_str());
-    if(!query.exec() || !query.next()|| query.value(2).toBool()||(0!=query.value(1).toString().toStdString().compare(passwort) )){
-        return "-1";
+    if(!query.exec() || !query.next()|| query.value(2).toBool()||(0!=query.value(1).toString().toStdString().compare(passwort)||query.value(3).isNull() )){
+        return {"-1",false};
     }
-    return query.value(0).toString().toStdString();
+    login_ret ret;
+    ret.id=query.value(0).toString().toStdString();
+    ret.initial_login=query.value(3).toBool();
+    return ret;
 }
 /**
  * @brief KlassenkameradDAO::einfuegen Fügt einen neuen Klassenkameraden der Datenbank hinzu.
@@ -377,6 +381,7 @@ bool KlassenkameradDAO::loeschen(string ID){
     return true;
 }
 bool KlassenkameradDAO::organisatorSperren(string eMail){
+
     return false;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){

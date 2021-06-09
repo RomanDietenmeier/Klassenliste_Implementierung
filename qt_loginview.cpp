@@ -47,7 +47,7 @@ void qt_loginview::on_loginbutton_clicked()
 
 
 
-    if (dao->anmeldedatenPruefen(loginEmail.toStdString(),loginPasswort.toStdString()).compare("-1")!=0){
+    if (dao->anmeldedatenPruefen(loginEmail.toStdString(),loginPasswort.toStdString()).id.compare("-1")!=0){
         qDebug()<<"Erfolgreich";
         //MainWindow aufrufen
         MainWindow *mainwindow = new MainWindow();
