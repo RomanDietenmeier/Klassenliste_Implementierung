@@ -394,6 +394,17 @@ bool KlassenkameradDAO::loeschen(string ID){
     return true;
 }
 bool KlassenkameradDAO::organisatorSperren(string eMail){
+    QSqlQuery query;
+    query.prepare("SELECT Klassenkamerad.ID FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
+    query.bindValue(":email",eMail.c_str());
+    if(!query.exec()||query.next()){
+        return false;
+    }
+    QSqlQuery query2;
+    query2.prepare("UPDATE Organisator SET gesperrt=true WHERE Organisator.Kamerad_ID=:id");
+    query2.bindValue(":id",query.value(0).toString());
+    if(!query2.exec()) return false;
+    //UPDATE Organisator SET gesperrt=true WHERE Organisator.Kamerad_ID=0
     /*QSqlQuery query;
     query.prepare("UPDATE Organisator SET Passwort=:pw ,Initialpasswort=false WHERE Kamerad_ID=:id");
     query.bindValue(":pw",passwort.c_str());
@@ -402,7 +413,7 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
         return false;
     }
     return true;*/
-    return false;
+    return true;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){
     return false;
