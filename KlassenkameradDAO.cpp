@@ -134,7 +134,7 @@ bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz* daten,string akte
     query.bindValue(":hnr",daten->adresse.hausnummer.c_str());
     query.bindValue(":ort",daten->adresse.ort.c_str());
     query.bindValue(":plz",daten->adresse.plz.c_str());
-    query.bindValue(":organisator",akteurID.c_str());
+    query.bindValue(":organisator",akteurID.c_str());    
     query.bindValue(":id",daten->klassenkameradID.c_str());
     if(!query.exec()){
         qFatal("Konnte keinen Datensatz anlegen!");
