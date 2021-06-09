@@ -47,6 +47,8 @@ void firstStart::on_ho_anlegen_clicked()
     hauptorganisator.adresse.hausnummer = ui->ho_hausnr->text().toStdString();
     hauptorganisator.adresse.ort = ui->ho_ort->text().toStdString();
     hauptorganisator.adresse.plz = ui->ho_plz->text().toStdString();
+//    PASSWORT ABSPEICHERN HIER HIN = ui->ho_passwort->text().toStdString();
+//    MASTERPASSWORT ABSPEICHERN HIER HIN = ui->ho_masterpasswort->text().toStdString();
 
 
     for (int i=0;i<ui->ho_telefonliste->count() ;i++ ) {
@@ -62,4 +64,7 @@ void firstStart::on_ho_anlegen_clicked()
 
 
 }
+
+
+
 

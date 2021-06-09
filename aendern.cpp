@@ -62,6 +62,8 @@ void Aendern::on_ho_anlegen_clicked()
     hauptorganisator.adresse.hausnummer = ui->ho_hausnr->text().toStdString();
     hauptorganisator.adresse.ort = ui->ho_ort->text().toStdString();
     hauptorganisator.adresse.plz = ui->ho_plz->text().toStdString();
+    hauptorganisator.klassenkameradID=kd->klassenkameradID;
+
 
 
     for (int i=0;i<ui->ho_telefonliste->count() ;i++ ) {
