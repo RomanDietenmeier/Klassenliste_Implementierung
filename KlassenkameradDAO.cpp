@@ -306,9 +306,22 @@ bool KlassenkameradDAO::einfuegen(KlassenkameradDatensatz* daten,string akteurID
     //daten.printToConsole();
     return true;
 }
+/**
+ * @brief KlassenkameradDAO::passwortAendern ändert das Passwort eines Organisators.
+ * @param passwort das neue Passwort.
+ * @param akteurID der Organisator, dessen Passwort geändert wird.
+ * @return
+ */
 bool KlassenkameradDAO::passwortAendern(string passwort, string akteurID){
-
-    return false;
+    //UPDATE Organisator SET Passwort='AA' ,Initialpasswort=false WHERE Kamerad_ID=0
+    QSqlQuery query;
+    query.prepare("UPDATE Organisator SET Passwort=:pw ,Initialpasswort=false WHERE Kamerad_ID=:id");
+    query.bindValue(":pw",passwort.c_str());
+    query.bindValue(":id",akteurID.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    return true;
 }
 /**
  * @brief KlassenkameradDAO::klassenkameradenLaden Lädt alle aktuellen Klassenkameraden Datensätze
