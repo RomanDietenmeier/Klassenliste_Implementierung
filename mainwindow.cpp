@@ -236,3 +236,11 @@ void MainWindow::on_neuesPasswortButton_clicked()
     newPasswort->show();
 }
 
+
+void MainWindow::on_loeschenButton_clicked()
+{
+    auto Items = ui->tableWidget->selectedItems();
+    kDAO->loeschen(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
+    on_pushButton_3_clicked();
+}
+

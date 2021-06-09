@@ -23,13 +23,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void on_pushButton_3_clicked();
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
 
@@ -50,6 +49,8 @@ private slots:
     void on_einfuegen_clicked();
 
     void on_neuesPasswortButton_clicked();
+
+    void on_loeschenButton_clicked();
 
 private:
     Ui::MainWindow *ui;
