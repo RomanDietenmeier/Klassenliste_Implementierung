@@ -67,7 +67,7 @@ void firstStart::on_ho_anlegen_clicked()
 
     this->close();
     mw->show();
-    //mw->on
+    mw->on_pushButton_3_clicked();
 
 
 }
