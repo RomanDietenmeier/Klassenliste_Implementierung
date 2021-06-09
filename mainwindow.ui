@@ -115,6 +115,12 @@
       <height>971</height>
      </rect>
     </property>
+    <property name="cornerButtonEnabled">
+     <bool>false</bool>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
    </widget>
    <widget class="QPushButton" name="pushButton_8_hist">
     <property name="geometry">
@@ -205,6 +211,19 @@
     </property>
     <property name="text">
      <string>PW aendern</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loeschenButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Löschen</string>
     </property>
    </widget>
   </widget>
