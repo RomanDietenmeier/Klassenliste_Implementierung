@@ -105,7 +105,6 @@ bool Verwaltung::organisatorRechteVergeben(string ID){
 	return  NULL;
 }
 
-
 bool Verwaltung::passwortAendern(string Passwort){
     return m_KlassenkameradDAO->passwortAendern(Passwort,akteurID);
 
