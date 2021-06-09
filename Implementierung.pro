@@ -18,6 +18,7 @@ SOURCES += \
     ListeView.cpp \
     LoginView.cpp \
     Verwaltung.cpp \
+    aendern.cpp \
     datensatzbearbeiten.cpp \
     finddb.cpp \
     firststart.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     ListeView.h \
     LoginView.h \
     Verwaltung.h \
+    aendern.h \
     datensatzbearbeiten.h \
     finddb.h \
     firststart.h \
@@ -40,6 +42,7 @@ HEADERS += \
     qt_loginview.h
 
 FORMS += \
+    aendern.ui \
     datensatzbearbeiten.ui \
     finddb.ui \
     firststart.ui \

@@ -6,6 +6,7 @@
 #include "qt_loginview.h"
 #include "firststart.h"
 #include "klassenkamerad_einfuegen.h"
+#include "aendern.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -121,8 +122,12 @@ void MainWindow::on_pushButton_6_clicked()
     kDAO->aktualisieren(kd,"0");
 
     this->close();
-    DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
-    bearbeitenWin->show();
+
+    Aendern *aendernWin = new Aendern();
+    aendernWin->show();
+
+    //DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
+    //bearbeitenWin->show();
 
     auto Items = ui->tableWidget->selectedItems();
     for(int i = 0; i<Items.size(); i++)

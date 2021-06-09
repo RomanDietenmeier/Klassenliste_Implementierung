@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>klassenkamerad_einfuegen</class>
- <widget class="QMainWindow" name="klassenkamerad_einfuegen">
+ <class>Aendern</class>
+ <widget class="QMainWindow" name="Aendern">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Klassenkamerad anlegen:</string>
+     <string>Klassenkamerad ändern</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -276,7 +276,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Anlegen</string>
+     <string>Ändern</string>
     </property>
    </widget>
   </widget>
