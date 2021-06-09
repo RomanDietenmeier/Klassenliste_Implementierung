@@ -239,8 +239,16 @@ void MainWindow::on_neuesPasswortButton_clicked()
 
 void MainWindow::on_loeschenButton_clicked()
 {
+
+
     auto Items = ui->tableWidget->selectedItems();
-    kDAO->loeschen(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
-    on_pushButton_3_clicked();
+    if(Items.at(0)->row() != 0)
+    {
+        kDAO->loeschen(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
+        on_pushButton_3_clicked();
+    }else{
+        qDebug() << "nicht löschbar";
+    }
+
 }
 
