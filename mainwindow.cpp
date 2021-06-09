@@ -7,6 +7,7 @@
 #include "firststart.h"
 #include "klassenkamerad_einfuegen.h"
 #include "aendern.h"
+#include "newpasswort.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -225,5 +226,13 @@ void MainWindow::on_einfuegen_clicked()
     klassenkamerad_einfuegen *view_einfuegen = new klassenkamerad_einfuegen(NULL, kDAO, this);
     this->close();
     view_einfuegen->show();
+}
+
+
+void MainWindow::on_neuesPasswortButton_clicked()
+{
+    NewPasswort *newPasswort = new NewPasswort(NULL, kDAO, this);
+    this->close();
+    newPasswort->show();
 }
 

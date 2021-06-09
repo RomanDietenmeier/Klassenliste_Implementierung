@@ -25,6 +25,7 @@ SOURCES += \
     klassenkamerad_einfuegen.cpp \
     main.cpp \
     mainwindow.cpp \
+    newpasswort.cpp \
     qt_loginview.cpp
 
 HEADERS += \
@@ -39,6 +40,7 @@ HEADERS += \
     firststart.h \
     klassenkamerad_einfuegen.h \
     mainwindow.h \
+    newpasswort.h \
     qt_loginview.h
 
 FORMS += \
@@ -48,6 +50,7 @@ FORMS += \
     firststart.ui \
     klassenkamerad_einfuegen.ui \
     mainwindow.ui \
+    newpasswort.ui \
     qt_loginview.ui
 
 # Default rules for deployment.

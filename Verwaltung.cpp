@@ -7,7 +7,7 @@
 
 #include "Verwaltung.h"
 #include <QDebug>
-
+#include "newpasswort.h"
 
 
 
@@ -59,8 +59,12 @@ int Verwaltung::anmelden(string eMail, string Passwort){
         anmeldeVersuche.push_back(versuch);
         return -1;
     }
-    //if(log.initial_login==true)
-    //hier neues Passwort anlegen
+    if(log.initial_login==true){
+        NewPasswort *newPW = new NewPasswort(NULL, m_KlassenkameradDAO, NULL);
+        newPW->show();
+
+    }
+
 
     return 0;
 

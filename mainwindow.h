@@ -49,6 +49,8 @@ private slots:
 
     void on_einfuegen_clicked();
 
+    void on_neuesPasswortButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
