@@ -418,9 +418,15 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
 bool KlassenkameradDAO::removeOrganisator(string ID){
     return false;
 }
-bool KlassenkameradDAO::setOrganisator(string ID){
-
-    return false;
+bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
+    QSqlQuery query;
+    query.prepare("INSERT INTO Organisator (Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES (:pw,true,false,:id)");
+    query.bindValue(":id",ID.c_str());
+    query.bindValue(":pw",initialPasswort.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    return true;
 }
 
 bool KlassenkameradDAO::einfuegen_HauptO(KlassenkameradDatensatz* daten,string passwort,string master_passwort){

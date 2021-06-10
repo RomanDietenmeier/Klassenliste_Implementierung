@@ -41,7 +41,7 @@ public:
     bool loeschen(string ID);
     bool organisatorSperren(string eMail);
     bool removeOrganisator(string ID);
-    bool setOrganisator(string ID);
+    bool setOrganisator(string ID,string initialPasswort);
 
 };
 #endif // !defined(EA_32BE42DF_F426_41ed_A28D_45636761C63D__INCLUDED_)

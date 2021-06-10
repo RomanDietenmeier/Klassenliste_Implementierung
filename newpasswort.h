@@ -14,9 +14,10 @@ class NewPasswort : public QMainWindow
     Q_OBJECT
     KlassenkameradDAO* dao;
     MainWindow* mw;
+    std::string id;
 
 public:
-    explicit NewPasswort(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL);
+    explicit NewPasswort(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL,std::string id=NULL);
     ~NewPasswort();
 
 private slots:

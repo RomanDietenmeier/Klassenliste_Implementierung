@@ -63,7 +63,7 @@ int Verwaltung::anmelden(string eMail, string Passwort){
     }
 
     if(log.initial_login==true){
-        NewPasswort *newPW = new NewPasswort(NULL, m_KlassenkameradDAO, NULL);
+        NewPasswort *newPW = new NewPasswort(NULL, m_KlassenkameradDAO, NULL,log.id);
         newPW->show();
 
     }
