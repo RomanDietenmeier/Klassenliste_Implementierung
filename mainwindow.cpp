@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
 
+    v = new Verwaltung();
     ui->setupUi(this);
     kDAO=new KlassenkameradDAO("hohoho.db");
     ui->tableWidget->setColumnCount(10);
@@ -213,7 +214,7 @@ void MainWindow::on_pushButton_8_db_clicked()
 
 void MainWindow::on_LoginView_clicked()
 {
-    qt_loginview *loginview = new qt_loginview();
+    qt_loginview *loginview = new qt_loginview(NULL,v);
     this->close();
     loginview->show();
 }
@@ -241,5 +242,21 @@ void MainWindow::on_neuesPasswortButton_clicked()
     NewPasswort *newPasswort = new NewPasswort(NULL, v, this);
     this->close();
     newPasswort->show();
+}
+
+
+void MainWindow::on_loeschenButton_clicked()
+{
+
+
+    auto Items = ui->tableWidget->selectedItems();
+    if(Items.at(0)->row() != 0)
+    {
+        kDAO->loeschen(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
+        on_pushButton_3_clicked();
+    }else{
+        qDebug() << "nicht löschbar";
+    }
+
 }
 

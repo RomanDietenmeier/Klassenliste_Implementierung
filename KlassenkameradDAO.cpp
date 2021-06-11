@@ -418,6 +418,54 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
 bool KlassenkameradDAO::removeOrganisator(string ID){
     return false;
 }
-bool KlassenkameradDAO::setOrganisator(string ID){
-    return false;
+bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
+    QSqlQuery query;
+    query.prepare("INSERT INTO Organisator (Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES (:pw,true,false,:id)");
+    query.bindValue(":id",ID.c_str());
+    query.bindValue(":pw",initialPasswort.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    return true;
+}
+
+bool KlassenkameradDAO::einfuegen_HauptO(KlassenkameradDatensatz* daten,string passwort,string master_passwort){
+    QSqlQuery query;
+    if(!query.exec("INSERT INTO Klassenkamerad(ID) VALUES(0)"))return false;
+    query.prepare("INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES(:pw,False,False,0)");
+    query.bindValue(":pw",passwort.c_str());
+    if(!query.exec())return false;
+    query.prepare("INSERT INTO Hauptorganisator(Masterpasswort,Kamerad_ID) VALUES(:pw,0)");
+    query.bindValue(":pw",master_passwort.c_str());
+    if(!query.exec())return false;
+
+    query.prepare("INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,Nachname2,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES(:vorname,:nachname,:nachname2,:email,:strasse,:hnr,:ort,:plz,time('now'),date('now'),:organisator,0)");
+    query.bindValue(":vorname",daten->vorname.c_str());
+    query.bindValue(":nachname",daten->nachname[0].c_str());
+    query.bindValue(":nachname2",daten->nachname[1].c_str());
+    query.bindValue(":email",daten->eMail.c_str());
+    query.bindValue(":strasse",daten->adresse.strasse.c_str());
+    query.bindValue(":hnr",daten->adresse.hausnummer.c_str());
+    query.bindValue(":ort",daten->adresse.ort.c_str());
+    query.bindValue(":plz",daten->adresse.plz.c_str());
+    query.bindValue(":organisator","0");
+    if(!query.exec()){
+        qFatal("Konnte keinen Datensatz anlegen!");
+        return false;
+    }
+    //qDebug()<<daten.telefonnummer.size();
+    for(unsigned long long i=0;i<daten->telefonnummer.size();i++){
+        query.prepare("INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=0),:tele)");
+        query.bindValue(":tele",daten->telefonnummer[i].c_str());
+        if(!query.exec()){
+            qFatal("Konnte keine Telefonnummer hinterlegen!");
+            return false;
+        }
+    }
+    query.prepare("SELECT Zeit,Tag FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=0");
+    if(!query.exec() ||!query.next()){
+        qFatal("Kann nicht den Zeitpunkt abrufen!");
+        return false;
+    }
+
 }

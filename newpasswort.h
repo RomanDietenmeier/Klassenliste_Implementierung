@@ -12,8 +12,9 @@ class NewPasswort;
 class NewPasswort : public QMainWindow
 {
     Q_OBJECT
-    Verwaltung* v;
-    MainWindow* mw;
+    Verwaltung *v;
+    MainWindow *mw;
+    std::string id;
 
 public:
     explicit NewPasswort(QWidget *parent = nullptr, Verwaltung* v=NULL, MainWindow *mw=NULL);

@@ -5,7 +5,7 @@
 #include<string>
 #include<iostream>
 #include<fstream>
-#include"KlassenkameradDAO.h"
+//#include"KlassenkameradDAO.h"
 #include "windows.h"
 #include<QMainWindow>
 #include"datensatzbearbeiten.h"
@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     MainWindow w;
+
     //qt_loginview w;
     //FindDB w;
     w.show();

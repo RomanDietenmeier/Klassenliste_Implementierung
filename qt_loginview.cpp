@@ -11,11 +11,12 @@
 
 
 
-qt_loginview::qt_loginview(QWidget *parent) :
+qt_loginview::qt_loginview(QWidget *parent, Verwaltung *v) :
     QMainWindow(parent),
     ui(new Ui::qt_loginview)
 {
     ui->setupUi(this);
+    this->v = v;
 
 }
 
@@ -55,6 +56,8 @@ void qt_loginview::on_loginbutton_clicked()
 
     qDebug()<< "Login mit Email: "+loginEmail+ " und Passwort: " +loginPasswort;
 
+
+
     int login = v->anmelden(loginEmail.toStdString(),loginPasswort.toStdString());
     if (login==0){
         qDebug()<<"Erfolgreich";
@@ -69,7 +72,9 @@ void qt_loginview::on_loginbutton_clicked()
     }else if(login==-3){
         NewPasswort *newPW = new NewPasswort(NULL,v, NULL);
         newPW->show();
+        this->close();
     }
+
 
 
 

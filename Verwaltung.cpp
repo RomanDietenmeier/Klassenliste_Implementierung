@@ -13,9 +13,8 @@
 
 Verwaltung::Verwaltung(){
 
-m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
+    m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
     m_ListeView = new ListeView();
-
 
 }
 

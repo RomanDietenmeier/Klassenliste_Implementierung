@@ -4,13 +4,16 @@
 #include <QListWidgetItem>
 #include <QDebug>
 
+
 NewPasswort::NewPasswort(QWidget *parent, Verwaltung *v, MainWindow *mw) :
+
     QMainWindow(parent),
     ui(new Ui::NewPasswort)
 {
     ui->setupUi(this);
     this->v = v;
     this->mw= mw;
+    this->id=id;
 }
 
 NewPasswort::~NewPasswort()
@@ -35,7 +38,5 @@ void NewPasswort::on_np_speichernButton_clicked()
         this->close();
     }
 }
-
-
 
 
