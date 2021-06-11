@@ -13,13 +13,8 @@
 
 Verwaltung::Verwaltung(){
 
-    m_KlassenkameradDAO = new KlassenkameradDAO("hohoho.db");
-    m_LoginView = new LoginView();
-
-    m_LoginView->einloggen();
     m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
     m_ListeView = new ListeView();
-
 
 }
 
@@ -34,8 +29,9 @@ void Verwaltung::abmelden(){
 }
 
 //veruche
-int Verwaltung::anmelden(string eMail, string Passwort){
-    login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,Passwort);
+int Verwaltung::anmelden(string eMail, string passwort){
+    this->passwort = passwort;
+    login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,passwort);
     qDebug()<< "initialpasswort: "<< log.initial_login;
     qDebug()<< "akteur: "<< log.id.c_str();
 
@@ -51,8 +47,6 @@ int Verwaltung::anmelden(string eMail, string Passwort){
                     return -2;
                 }
                 return -1;
-            }else if(a->versuche>3){
-                return -3;
             }
         }
         anmeldung* versuch = new anmeldung();
@@ -63,13 +57,8 @@ int Verwaltung::anmelden(string eMail, string Passwort){
     }
 
     if(log.initial_login==true){
-        NewPasswort *newPW = new NewPasswort(NULL, m_KlassenkameradDAO, NULL,log.id);
-        newPW->show();
-
+        return -3;
     }
-
-
-
     return 0;
 
 }
@@ -122,6 +111,8 @@ bool Verwaltung::organisatorRechteVergeben(string ID){
 }
 
 
-bool Verwaltung::passwortAendern(string Passwort){
-    return m_KlassenkameradDAO->passwortAendern(Passwort,akteurID);
+bool Verwaltung::passwortAendern(string newPasswort){
+    if(newPasswort.compare(this->passwort)==0)
+        return m_KlassenkameradDAO->passwortAendern(newPasswort,akteurID);
+    return false;
 }
