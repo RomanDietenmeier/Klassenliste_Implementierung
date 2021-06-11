@@ -14,14 +14,16 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Verwaltung* v;
     KlassenkameradDAO* kDAO;
     KlassenkameradDatensatz* kd;
     std::vector<KlassenkameradDatensatz*> Datensatze;
-
+    void printDatensatze();
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+     void init();
 public slots:
     void on_pushButton_3_clicked();
 private slots:
@@ -45,6 +47,12 @@ private slots:
     void on_neuesPasswortButton_clicked();
 
     void on_loeschenButton_clicked();
+
+    void on_pushButton_Organisatoren_clicked();
+
+    void on_PushButtonRemoveOrganisator_clicked();
+
+    void on_tableWidget_cellClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;
