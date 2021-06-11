@@ -70,7 +70,7 @@ void qt_loginview::on_loginbutton_clicked()
     }else if(login==-2){
         qDebug()<<"Benutzer gesperrt";
     }else if(login==-3){
-        NewPasswort *newPW = new NewPasswort(NULL,v, NULL);
+        NewPasswort *newPW = new NewPasswort(NULL,v, NULL,loginPasswort.toStdString(),loginEmail.toStdString());
         newPW->show();
         this->close();
     }

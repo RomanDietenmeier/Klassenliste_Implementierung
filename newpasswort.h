@@ -17,7 +17,7 @@ class NewPasswort : public QMainWindow
     std::string id;
 
 public:
-    explicit NewPasswort(QWidget *parent = nullptr, Verwaltung* v=NULL, MainWindow *mw=NULL);
+    explicit NewPasswort(QWidget *parent = nullptr, Verwaltung* v=NULL, MainWindow *mw=NULL,string pw=NULL, string mail=NULL);
     ~NewPasswort();
 
 private slots:

@@ -13,6 +13,7 @@ class Verwaltung;
 #include <QSqlDatabase>
 #include<vector>
 #include <QMainWindow>
+#include <stdexcept>
 
 typedef struct{
     string id;

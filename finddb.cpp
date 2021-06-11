@@ -2,6 +2,7 @@
 #include "ui_finddb.h"
 #include<QFileDialog>
 #include<QDebug>
+#include <stdexcept>
 
 FindDB::FindDB(QWidget *parent, Verwaltung *v) :
     QMainWindow(parent),
@@ -27,7 +28,13 @@ void FindDB::on_pushButton_2_Datei_clicked()
 
     QFileDialog dialog;
     QString s=dialog.getOpenFileName();
-    dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
+    try {
+        dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
+    }  catch (const std::invalid_argument& e ) {
+        qDebug()<<e.what();
+        return;
+    }
+
     qt_loginview* loginview;
     loginview=new qt_loginview(NULL,v);
     this->close();

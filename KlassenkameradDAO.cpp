@@ -32,7 +32,8 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
    }
    QSqlQuery query("SELECT name FROM sqlite_master");
    if(!query.exec() ){
-       qFatal("Can not do query on Database!");
+       throw std::invalid_argument( "Can not do query on Database!" );
+       //qFatal("Can not do query on Database!");
        return;
    }
    int count=0;

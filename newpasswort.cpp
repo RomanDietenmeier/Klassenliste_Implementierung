@@ -5,7 +5,7 @@
 #include <QDebug>
 
 
-NewPasswort::NewPasswort(QWidget *parent, Verwaltung *v, MainWindow *mw) :
+NewPasswort::NewPasswort(QWidget *parent, Verwaltung *v, MainWindow *mw,string pw, string mail) :
 
     QMainWindow(parent),
     ui(new Ui::NewPasswort)
@@ -14,6 +14,8 @@ NewPasswort::NewPasswort(QWidget *parent, Verwaltung *v, MainWindow *mw) :
     this->v = v;
     this->mw= mw;
     this->id=id;
+    ui->np_initialpasswort->setText(pw.c_str());
+    ui->np_email->setText(mail.c_str());
 }
 
 NewPasswort::~NewPasswort()
