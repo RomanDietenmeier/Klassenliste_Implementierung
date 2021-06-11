@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
 
+
     ui->setupUi(this);
     kDAO=new KlassenkameradDAO("hohoho.db");
     ui->tableWidget->setColumnCount(10);
@@ -39,6 +40,24 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setColumnWidth(7, 100);
     ui->tableWidget->setColumnWidth(8, 100);
     ui->tableWidget->setColumnWidth(9, 100);
+
+    //ui->tableWidget->selectRow(0);
+    //ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+
+    /*
+    //ui->tableWidget->setDisabled(true);
+    auto Items = ui->tableWidget->selectedItems();
+    if(Items.at(0)->row() == 0)
+    {
+        ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+    }
+
+    Datensatze[Items.at(0)->row()-1]->printToConsole();
+    for(int i = 0; i<Items.size(); i++)
+    {
+        qDebug()<<Items.at(i)->row();
+    }
+    */
 
 
 
@@ -67,18 +86,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    qDebug()<<"click";
-}
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    qDebug()<<"Hallo mein Name ist Eric Johansen";
 }
 
 
@@ -122,14 +129,17 @@ void MainWindow::on_pushButton_6_clicked()
     kd->vorname+="ä";
     kDAO->aktualisieren(kd,"0");
 
-    this->close();
-
     auto Items = ui->tableWidget->selectedItems();
-    Aendern *aendernWin = new Aendern(NULL,kDAO,this, Datensatze[Items.at(0)->row()-1]);
-    aendernWin->show();
 
-    //DatensatzBearbeiten *bearbeitenWin = new DatensatzBearbeiten();
-    //bearbeitenWin->show();
+    if(Items.at(0)->row() != 0)
+    {
+        Aendern *aendernWin = new Aendern(NULL,kDAO,this, Datensatze[Items.at(0)->row()-1]);
+        this->close();
+        aendernWin->show();
+    }else{
+        qDebug() << "nicht änderbar!";
+    }
+
 
     Datensatze[Items.at(0)->row()-1]->printToConsole();
     for(int i = 0; i<Items.size(); i++)
@@ -138,13 +148,9 @@ void MainWindow::on_pushButton_6_clicked()
     }
 
 
+
 }
 
-
-void MainWindow::on_pushButton_7_clicked()
-{
-    cout << "Sensual Boy by Klaus" << endl;
-}
 
 
 void MainWindow::on_pushButton_8_hist_clicked()
