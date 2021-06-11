@@ -69,26 +69,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_pushButton_clicked()
-{
-    qDebug()<<"click";
-}
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    qDebug()<<"Hallo mein Name ist Eric Johansen";
-}
-
-
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
 {
     std::vector<KlassenkameradDatensatz*> ds;
     kDAO->klassenkameradenLaden(ds);
     Datensatze=ds;
     ui->tableWidget->setRowCount(ds.size()+1);
-    for(int i=0;i<ds.size();i++){
+    for(unsigned long long i=0;i<ds.size();i++){
         ui->tableWidget->setItem(i+1,0,new QTableWidgetItem(tr(ds[i]->klassenkameradID.c_str())));
         ui->tableWidget->setItem(i+1,1,new QTableWidgetItem(tr(ds[i]->vorname.c_str())));
         ui->tableWidget->setItem(i+1,2,new QTableWidgetItem(tr(ds[i]->nachname[0].c_str())));
@@ -102,22 +89,25 @@ void MainWindow::on_pushButton_3_clicked()
         //ds[i]->printToConsole();
         std::cout<<std::endl;
     }
+
 }
 
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_pushButton_4_clicked() //cleanen der Einträge
 {
     kDAO->clean();
+    on_pushButton_3_clicked();
 }
 
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_pushButton_5_clicked() //Testeinträge einfügen
 {
     kDAO->test();
+    on_pushButton_3_clicked();
 }
 
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_pushButton_6_clicked() //Ändern Button
 {
     kd->vorname+="ä";
     kDAO->aktualisieren(kd,"0");
@@ -140,21 +130,14 @@ void MainWindow::on_pushButton_6_clicked()
 
 }
 
-
-void MainWindow::on_pushButton_7_clicked()
-{
-    cout << "Sensual Boy by Klaus" << endl;
-}
-
-
-void MainWindow::on_pushButton_8_hist_clicked()
+void MainWindow::on_pushButton_8_hist_clicked() //Historie anzeigen
 {
     std::vector<KlassenkameradDatensatz*> ds;
     std::string row;
     try {
         row=(ui->lineEdit_ID_hist->text().isEmpty())?ui->lineEdit_ID_hist->placeholderText().toLocal8Bit().constData():ui->lineEdit_ID_hist->text().toLocal8Bit().constData();
         qDebug()<<row.c_str()<<" "<<Datensatze.size();
-        if(std::stoi(row)<2||std::stoi(row)>Datensatze.size()+1){
+        if(std::stoi(row)<2||(unsigned long long)std::stoi(row)>Datensatze.size()+1){
             return;
         }
     }  catch (std::invalid_argument e) {
@@ -165,7 +148,7 @@ void MainWindow::on_pushButton_8_hist_clicked()
     qDebug()<<id.c_str();
     kDAO->aenderungshistorieLaden(ds,id);
     ui->tableWidget->setRowCount(ds.size()+2);
-    for(int i=0;i<ds.size();i++){
+    for(unsigned long long i=0;i<ds.size();i++){
         ui->tableWidget->setItem(i+1,0,new QTableWidgetItem(tr(ds[i]->klassenkameradID.c_str())));
         ui->tableWidget->setItem(i+1,1,new QTableWidgetItem(tr(ds[i]->vorname.c_str())));
         ui->tableWidget->setItem(i+1,2,new QTableWidgetItem(tr(ds[i]->nachname[0].c_str())));
