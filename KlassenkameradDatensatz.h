@@ -46,6 +46,7 @@ public:
 	zeitpunkt zeitpunkt;
     void printToConsole();
     Typ typ;
+    static vector<KlassenkameradDatensatz*> getOrganisatoren(vector<KlassenkameradDatensatz*> vector);
 
 };
 #endif // !defined(EA_F5D400D7_D52C_494c_9398_3316C29B30BA__INCLUDED_)

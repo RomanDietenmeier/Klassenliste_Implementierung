@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
     KlassenkameradDAO* kDAO;
     KlassenkameradDatensatz* kd;
     std::vector<KlassenkameradDatensatz*> Datensatze;
-
+    void printDatensatze();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -53,6 +53,8 @@ private slots:
     void on_neuesPasswortButton_clicked();
 
     void on_loeschenButton_clicked();
+
+    void on_pushButton_Organisatoren_clicked();
 
 private:
     Ui::MainWindow *ui;

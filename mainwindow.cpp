@@ -90,25 +90,22 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    std::vector<KlassenkameradDatensatz*> ds;
-    kDAO->klassenkameradenLaden(ds);
-    Datensatze=ds;
-    ui->tableWidget->setRowCount(ds.size()+1);
-    for(int i=0;i<ds.size();i++){
-        ui->tableWidget->setItem(i+1,0,new QTableWidgetItem(tr(ds[i]->klassenkameradID.c_str())));
-        ui->tableWidget->setItem(i+1,1,new QTableWidgetItem(tr(ds[i]->vorname.c_str())));
-        ui->tableWidget->setItem(i+1,2,new QTableWidgetItem(tr(ds[i]->nachname[0].c_str())));
-        ui->tableWidget->setItem(i+1,3,new QTableWidgetItem(tr(ds[i]->nachname[1].c_str())));
-        ui->tableWidget->setItem(i+1,4,new QTableWidgetItem(tr(ds[i]->eMail.c_str())));
-        ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr((ds[i]->telefonnummer.size()>0)?ds[i]->telefonnummer[0].c_str():"-")));
-        ui->tableWidget->setItem(i+1,6,new QTableWidgetItem(tr(ds[i]->adresse.strasse.c_str())));
-        ui->tableWidget->setItem(i+1,7,new QTableWidgetItem(tr(ds[i]->adresse.hausnummer.c_str())));
-        ui->tableWidget->setItem(i+1,8,new QTableWidgetItem(tr(ds[i]->adresse.ort.c_str())));
-        ui->tableWidget->setItem(i+1,9,new QTableWidgetItem(tr(ds[i]->adresse.plz.c_str())));
+void MainWindow::printDatensatze(){
+    ui->tableWidget->setRowCount(1);
+    ui->tableWidget->setRowCount(Datensatze.size()+1);
+    for(unsigned long long i=0;i<Datensatze.size();i++){
+        ui->tableWidget->setItem(i+1,0,new QTableWidgetItem(tr(Datensatze[i]->klassenkameradID.c_str())));
+        ui->tableWidget->setItem(i+1,1,new QTableWidgetItem(tr(Datensatze[i]->vorname.c_str())));
+        ui->tableWidget->setItem(i+1,2,new QTableWidgetItem(tr(Datensatze[i]->nachname[0].c_str())));
+        ui->tableWidget->setItem(i+1,3,new QTableWidgetItem(tr(Datensatze[i]->nachname[1].c_str())));
+        ui->tableWidget->setItem(i+1,4,new QTableWidgetItem(tr(Datensatze[i]->eMail.c_str())));
+        ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr((Datensatze[i]->telefonnummer.size()>0)?Datensatze[i]->telefonnummer[0].c_str():"-")));
+        ui->tableWidget->setItem(i+1,6,new QTableWidgetItem(tr(Datensatze[i]->adresse.strasse.c_str())));
+        ui->tableWidget->setItem(i+1,7,new QTableWidgetItem(tr(Datensatze[i]->adresse.hausnummer.c_str())));
+        ui->tableWidget->setItem(i+1,8,new QTableWidgetItem(tr(Datensatze[i]->adresse.ort.c_str())));
+        ui->tableWidget->setItem(i+1,9,new QTableWidgetItem(tr(Datensatze[i]->adresse.plz.c_str())));
         std::string typ="Kamerad";
-        switch(ds[i]->typ){
+        switch(Datensatze[i]->typ){
             default:
                 break;
         case Oragnisator:
@@ -121,8 +118,17 @@ void MainWindow::on_pushButton_3_clicked()
 
         ui->tableWidget->setItem(i+1,10,new QTableWidgetItem(tr(typ.c_str())));
         //ds[i]->printToConsole();
-        std::cout<<std::endl;
+        //std::cout<<std::endl;
     }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    std::vector<KlassenkameradDatensatz*> ds;
+    kDAO->klassenkameradenLaden(ds);
+    Datensatze=ds;
+
+    printDatensatze();
 }
 
 
@@ -272,5 +278,14 @@ void MainWindow::on_loeschenButton_clicked()
         qDebug() << "nicht löschbar";
     }
 
+}
+
+
+void MainWindow::on_pushButton_Organisatoren_clicked()
+{
+    qDebug()<<Datensatze.size();
+    Datensatze=KlassenkameradDatensatz::getOrganisatoren(Datensatze);
+    qDebug()<<Datensatze.size();
+    printDatensatze();
 }
 
