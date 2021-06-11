@@ -12,7 +12,7 @@
 #include<vector>
 using namespace std;
 
-typedef enum{Kammerad,Oragnisator,Hauptorganisator} Typ;
+typedef enum{Kamerad,Oragnisator,Hauptorganisator} Typ;
 
 typedef struct {
     string strasse;
