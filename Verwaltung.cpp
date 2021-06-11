@@ -112,7 +112,7 @@ bool Verwaltung::organisatorRechteVergeben(string ID){
 
 
 bool Verwaltung::passwortAendern(string newPasswort){
-    if(newPasswort.compare(this->passwort)==0)
+    if(newPasswort.compare(this->passwort)!=0)
         return m_KlassenkameradDAO->passwortAendern(newPasswort,akteurID);
     return false;
 }

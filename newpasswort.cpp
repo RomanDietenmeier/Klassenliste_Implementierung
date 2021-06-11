@@ -29,7 +29,7 @@ void NewPasswort::on_np_neuespasswort_textChanged(const QString &arg1)
 void NewPasswort::on_np_speichernButton_clicked()
 {
     //wo wird pw gespeichert
-    if(v->passwortAendern(ui->np_neuespasswort->text().toStdString())){
+    if(!v->passwortAendern(ui->np_neuespasswort->text().toStdString())){
         qDebug()<<"Fehler bei Passwortänderung";
     }else {
         MainWindow *mainwindow = new MainWindow();
