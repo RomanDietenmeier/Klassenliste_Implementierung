@@ -2,13 +2,14 @@
 #include "ui_newpasswort.h"
 #include "KlassenkameradDatensatz.h"
 #include <QListWidgetItem>
+#include <QDebug>
 
-NewPasswort::NewPasswort(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw) :
+NewPasswort::NewPasswort(QWidget *parent, Verwaltung *v, MainWindow *mw) :
     QMainWindow(parent),
     ui(new Ui::NewPasswort)
 {
     ui->setupUi(this);
-    this->dao= dao;
+    this->v = v;
     this->mw= mw;
 }
 
@@ -25,11 +26,16 @@ void NewPasswort::on_np_neuespasswort_textChanged(const QString &arg1)
 void NewPasswort::on_np_speichernButton_clicked()
 {
     //wo wird pw gespeichert
-
-
-    this->close();
-
-
+    if(v->passwortAendern(ui->np_neuespasswort->text().toStdString())){
+        qDebug()<<"Fehler bei Passwortänderung";
+    }else {
+        MainWindow *mainwindow = new MainWindow();
+        this->close();
+        mainwindow->show();
+        this->close();
+    }
 }
+
+
 
 

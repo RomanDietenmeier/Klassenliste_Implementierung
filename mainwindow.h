@@ -15,6 +15,7 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Verwaltung* v;
     KlassenkameradDAO* kDAO;
     KlassenkameradDatensatz* kd;
     std::vector<KlassenkameradDatensatz*> Datensatze;
@@ -25,6 +26,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void init();
+
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();

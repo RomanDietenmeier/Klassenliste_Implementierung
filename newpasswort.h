@@ -12,11 +12,11 @@ class NewPasswort;
 class NewPasswort : public QMainWindow
 {
     Q_OBJECT
-    KlassenkameradDAO* dao;
+    Verwaltung* v;
     MainWindow* mw;
 
 public:
-    explicit NewPasswort(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL);
+    explicit NewPasswort(QWidget *parent = nullptr, Verwaltung* v=NULL, MainWindow *mw=NULL);
     ~NewPasswort();
 
 private slots:

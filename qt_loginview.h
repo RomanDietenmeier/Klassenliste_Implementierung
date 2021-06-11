@@ -18,7 +18,7 @@ class qt_loginview : public QMainWindow
 
 public:
     Verwaltung* v;
-    explicit qt_loginview(QWidget *parent = nullptr,KlassenkameradDAO* dao=NULL);
+    explicit qt_loginview(QWidget *parent = nullptr);
     ~qt_loginview();
 
 private slots:

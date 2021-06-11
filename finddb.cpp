@@ -28,7 +28,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
     QString s=dialog.getOpenFileName();
     dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
     qt_loginview* loginview;
-    loginview=new qt_loginview(NULL,dao);
+    loginview=new qt_loginview(NULL);
     this->close();
     loginview->show();
 }
@@ -42,7 +42,7 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
     }
     dao=new KlassenkameradDAO("./hohoho.db");
     qt_loginview* loginview;
-    loginview=new qt_loginview(NULL,dao);
+    loginview=new qt_loginview(NULL);
     this->close();
     loginview->show();
 }

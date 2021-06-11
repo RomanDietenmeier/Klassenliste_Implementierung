@@ -2,17 +2,25 @@
 #include "ui_qt_loginview.h"
 #include <QDebug>
 #include "mainwindow.h"
+#include "newpasswort.h"
+#include "ui_newpasswort.h"
+/*boolean wait_for_init(){
 
-qt_loginview::qt_loginview(QWidget *parent,KlassenkameradDAO* dao) :
+
+}*/
+
+
+
+qt_loginview::qt_loginview(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::qt_loginview)
 {
     ui->setupUi(this);
-    v = new Verwaltung();
-    this->dao = dao;
-    v->m_KlassenkameradDAO = dao;
 
 }
+
+
+
 
 qt_loginview::~qt_loginview()
 {
@@ -58,7 +66,11 @@ void qt_loginview::on_loginbutton_clicked()
         qDebug()<<"nicht Erfolgreich";
     }else if(login==-2){
         qDebug()<<"Benutzer gesperrt";
+    }else if(login==-3){
+        NewPasswort *newPW = new NewPasswort(NULL,v, NULL);
+        newPW->show();
     }
+
 
 
 }
