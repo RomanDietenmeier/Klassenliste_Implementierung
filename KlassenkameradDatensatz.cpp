@@ -8,6 +8,7 @@
 #include "KlassenkameradDatensatz.h"
 #include<iostream>
 
+using namespace std;
 
 KlassenkameradDatensatz::KlassenkameradDatensatz(){
     adresse.hausnummer="";
@@ -31,6 +32,16 @@ KlassenkameradDatensatz::KlassenkameradDatensatz(){
 
 KlassenkameradDatensatz::~KlassenkameradDatensatz(){
 
+}
+
+vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getOrganisatoren(vector<KlassenkameradDatensatz*> vector){
+    std::vector<KlassenkameradDatensatz*> ret;
+    for(unsigned long long i=0;i<vector.size();i++){
+        if(vector[i]->typ==Oragnisator || vector[i]->typ==Hauptorganisator){
+            ret.push_back(vector[i]);
+        }
+    }
+    return ret;
 }
 
 void KlassenkameradDatensatz::printToConsole(){

@@ -58,7 +58,7 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
                }
                if (!query.exec(queryTxt))
                {
-                   qFatal(query.lastError().text().toLocal8Bit().constData());
+                   qFatal("ERROR");
                }
                query.finish();
            }
@@ -330,7 +330,7 @@ bool KlassenkameradDAO::passwortAendern(string passwort, string akteurID){
  */
 bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd){
     QSqlQuery query;
-    if(!query.exec("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) WHERE kd.ID=(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)")){
+    if(!query.exec("SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) LEFT JOIN Organisator ON (Klassenkamerad.ID=Organisator.Kamerad_ID) LEFT JOIN Hauptorganisator ON(Klassenkamerad.ID=Hauptorganisator.Kamerad_ID )WHERE kd.ID=(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)")){
         return false;
     }
     while(query.next()){
@@ -359,6 +359,16 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
             zp.monat=std::stoi(tag.substr(5,2));
             zp.tag=std::stoi(tag.substr(8,2));
             z_kd->zeitpunkt=zp;
+        }
+
+        if(query.value(19).isNull()){
+            if(query.value(17).isNull()){
+                z_kd->typ=Kamerad;
+            }else{
+                z_kd->typ=Oragnisator;
+            }
+        }else{
+            z_kd->typ=Hauptorganisator;
         }
         QSqlQuery queryTele;
         queryTele.prepare("SELECT * FROM Telefonnummer WHERE Telefonnummer.Datensatz_ID=:id");
@@ -416,8 +426,16 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
     return true;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){
-    return false;
-}
+    QSqlQuery query;
+    query.prepare("DELETE FROM Organisator WHERE Organisator.Kamerad_ID=:id");
+    query.bindValue(":id",ID.c_str());
+    if(!query.exec()){
+        qDebug()<<query.lastError();
+        qFatal("Konnte die Lösch-Query nicht ausführen!");
+        return false;
+    }
+    return true;
+    }
 bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
     QSqlQuery query;
     query.prepare("INSERT INTO Organisator (Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES (:pw,true,false,:id)");
@@ -467,5 +485,5 @@ bool KlassenkameradDAO::einfuegen_HauptO(KlassenkameradDatensatz* daten,string p
         qFatal("Kann nicht den Zeitpunkt abrufen!");
         return false;
     }
-
+    return true;
 }

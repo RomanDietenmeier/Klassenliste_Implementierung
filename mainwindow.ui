@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
+    <width>1354</width>
     <height>1024</height>
    </rect>
   </property>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>350</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -69,9 +69,9 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>-30</y>
-      <width>1161</width>
+      <x>110</x>
+      <y>10</y>
+      <width>1231</width>
       <height>971</height>
      </rect>
     </property>
@@ -180,7 +180,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>320</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -189,17 +189,43 @@
      <string>Löschen</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_Organisatoren">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Organisatoren</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PushButtonRemoveOrganisator">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Orga</string>
+    </property>
+   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>520</y>
+      <y>530</y>
       <width>71</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>temp buttons:</string>
+     <string>temp buttons</string>
     </property>
    </widget>
   </widget>
@@ -208,7 +234,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
+     <width>1354</width>
      <height>20</height>
     </rect>
    </property>

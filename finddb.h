@@ -13,9 +13,10 @@ class FindDB : public QMainWindow
 {
     Q_OBJECT
     KlassenkameradDAO* dao=NULL;
+    Verwaltung *v;
 
 public:
-    explicit FindDB(QWidget *parent = nullptr);
+    explicit FindDB(QWidget *parent = nullptr, Verwaltung *v=NULL);
     ~FindDB();
 
 private slots:
