@@ -46,6 +46,8 @@ public:
 	zeitpunkt zeitpunkt;
     void printToConsole();
     Typ typ;
+    bool gespert=false;
+    static vector<KlassenkameradDatensatz*> getGesperrte(vector<KlassenkameradDatensatz*> vector);
     static vector<KlassenkameradDatensatz*> getOrganisatoren(vector<KlassenkameradDatensatz*> vector);
 
 };

@@ -319,3 +319,10 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    Datensatze=KlassenkameradDatensatz::getGesperrte(Datensatze);
+    printDatensatze();
+}
+

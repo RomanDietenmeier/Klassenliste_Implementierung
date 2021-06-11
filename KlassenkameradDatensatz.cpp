@@ -34,6 +34,16 @@ KlassenkameradDatensatz::~KlassenkameradDatensatz(){
 
 }
 
+vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getGesperrte(vector<KlassenkameradDatensatz*> vector){
+    std::vector<KlassenkameradDatensatz*> ret;
+    for(unsigned long long i=0;i<vector.size();i++){
+        if(vector[i]->gespert==true){
+            ret.push_back(vector[i]);
+        }
+    }
+    return ret;
+}
+
 vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getOrganisatoren(vector<KlassenkameradDatensatz*> vector){
     std::vector<KlassenkameradDatensatz*> ret;
     for(unsigned long long i=0;i<vector.size();i++){

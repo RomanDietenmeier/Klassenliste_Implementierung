@@ -371,6 +371,10 @@ bool KlassenkameradDAO::klassenkameradenLaden(std::vector<KlassenkameradDatensat
         }else{
             z_kd->typ=Hauptorganisator;
         }
+        if(!query.value(16).isNull()){
+            z_kd->gespert=query.value(16).toBool();
+        }
+
         QSqlQuery queryTele;
         queryTele.prepare("SELECT * FROM Telefonnummer WHERE Telefonnummer.Datensatz_ID=:id");
         queryTele.bindValue(":id",query.value(1));
@@ -408,7 +412,7 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
     QSqlQuery query;
     query.prepare("SELECT Klassenkamerad.ID FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
     query.bindValue(":email",eMail.c_str());
-    if(!query.exec()||query.next()){
+    if(!query.exec()||!query.next()){
         return false;
     }
     QSqlQuery query2;
