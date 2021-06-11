@@ -426,8 +426,16 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
     return true;
 }
 bool KlassenkameradDAO::removeOrganisator(string ID){
-    return false;
-}
+    QSqlQuery query;
+    query.prepare("DELETE FROM Organisator WHERE Organisator.Kamerad_ID=:id");
+    query.bindValue(":id",ID.c_str());
+    if(!query.exec()){
+        qDebug()<<query.lastError();
+        qFatal("Konnte die Lösch-Query nicht ausführen!");
+        return false;
+    }
+    return true;
+    }
 bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
     QSqlQuery query;
     query.prepare("INSERT INTO Organisator (Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES (:pw,true,false,:id)");

@@ -56,6 +56,8 @@ private slots:
 
     void on_pushButton_Organisatoren_clicked();
 
+    void on_PushButtonRemoveOrganisator_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
