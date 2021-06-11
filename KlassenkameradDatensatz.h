@@ -12,6 +12,8 @@
 #include<vector>
 using namespace std;
 
+typedef enum{Kamerad,Oragnisator,Hauptorganisator} Typ;
+
 typedef struct {
     string strasse;
     string hausnummer;
@@ -43,6 +45,7 @@ public:
 	string vorname;
 	zeitpunkt zeitpunkt;
     void printToConsole();
+    Typ typ;
 
 };
 #endif // !defined(EA_F5D400D7_D52C_494c_9398_3316C29B30BA__INCLUDED_)
