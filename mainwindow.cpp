@@ -226,7 +226,7 @@ void MainWindow::on_pushButton_8_hist_clicked()
 
 void MainWindow::on_pushButton_8_db_clicked()
 {
-    FindDB* w=new FindDB();
+    FindDB* w=new FindDB(NULL, v);
     this->close();
     w->show();
 }
