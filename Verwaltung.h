@@ -31,6 +31,8 @@ public:
 
 
 	Verwaltung();
+    //für Testzwecke
+    Verwaltung(string akteurID);
     ~Verwaltung();
     void init();
 	void abmelden();
@@ -43,6 +45,7 @@ public:
     bool oranisatorRechteEntfernen(string ID);
     bool organisatorRechteVergeben(string ID);
     bool passwortAendern(string Passwort);
+    string getAkteuerID();
 
 private:
     string akteurID;

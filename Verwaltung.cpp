@@ -10,6 +10,11 @@
 #include "newpasswort.h"
 
 
+Verwaltung::Verwaltung(string akteurID){
+    Verwaltung();
+    this->akteurID=akteurID;
+
+}
 
 Verwaltung::Verwaltung(){
 
@@ -26,6 +31,10 @@ Verwaltung::~Verwaltung(){
 //Alle Objekte zerstören und neue loginview erzeugen? Implementierung gegen Ende
 void Verwaltung::abmelden(){
 
+}
+
+string Verwaltung::getAkteuerID(){
+    return akteurID;
 }
 
 //veruche

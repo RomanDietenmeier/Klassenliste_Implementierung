@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
 
-    v = new Verwaltung();
+
     ui->setupUi(this);
     kDAO=new KlassenkameradDAO("hohoho.db");
     ui->tableWidget->setColumnCount(11);
@@ -62,6 +62,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     //DB ausgeben
     on_pushButton_3_clicked();
+
+    string akteurID="0";
+    for(unsigned long long i=0;i<Datensatze.size();i++){
+        if(Datensatze[i]->typ==Hauptorganisator)
+            akteurID=Datensatze[i]->klassenkameradID;
+    }
+    v = new Verwaltung(akteurID);
 }
 
 MainWindow::~MainWindow()
@@ -138,15 +145,15 @@ void MainWindow::on_pushButton_5_clicked() //Testeinträge einfügen
 
 void MainWindow::on_pushButton_6_clicked() //Ändern Button
 {
-    kd->vorname+="ä";
-    kDAO->aktualisieren(kd,"0");
+    //kd->vorname+="ä";
+    //kDAO->aktualisieren(kd,"0");
 
 
 
 
 
     auto Items = ui->tableWidget->selectedItems();
-    if(Items.at(0)->row() != 0)
+    if(Items.at(0)->row() != 0 && (Datensatze[Items.at(0)->row()-1]->typ==Kamerad || Datensatze[Items.at(0)->row()-1]->klassenkameradID.compare(v->getAkteuerID())==0))
     {
         Aendern *aendernWin = new Aendern(NULL,kDAO,this, Datensatze[Items.at(0)->row()-1]);
         this->close();
@@ -176,6 +183,7 @@ void MainWindow::on_pushButton_8_hist_clicked() //Historie anzeigen
             return;
         }
     }  catch (std::invalid_argument e) {
+        qDebug()<<e.what();
         return;
     }
 
@@ -274,9 +282,9 @@ void MainWindow::on_loeschenButton_clicked()
 
 void MainWindow::on_pushButton_Organisatoren_clicked()
 {
-    qDebug()<<Datensatze.size();
+    //qDebug()<<Datensatze.size();
     Datensatze=KlassenkameradDatensatz::getOrganisatoren(Datensatze);
-    qDebug()<<Datensatze.size();
+    //qDebug()<<Datensatze.size();
     printDatensatze();
 }
 
@@ -284,12 +292,15 @@ void MainWindow::on_pushButton_Organisatoren_clicked()
 void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 {
     auto Items = ui->tableWidget->selectedItems();
-        if(Items.at(0)->row() != 0)
+        if(Items.at(0)->row() != 0 && Datensatze[Items.at(0)->row()-1]->typ==Oragnisator)
         {
-            kDAO->removeOrganisator(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
-            on_pushButton_3_clicked();
+            if(kDAO->removeOrganisator(Datensatze[Items.at(0)->row()-1]->klassenkameradID)){
+                Datensatze.erase(Datensatze.begin()+Items.at(0)->row()-1);
+                printDatensatze();
+            }
+
         }else{
-            qDebug() << "nicht löschbar";
+            qDebug() << "Organisator Status kann nicht entzogen werden!";
         }
 }
 
@@ -298,6 +309,13 @@ void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
-    ui->pushButton_6->setEnabled(true);
+    if(row==0)
+    {
+        ui->pushButton_6->setEnabled(false);
+    }else
+    {
+        ui->pushButton_6->setEnabled(true);
+    }
+
 }
 
