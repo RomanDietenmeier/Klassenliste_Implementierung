@@ -62,7 +62,7 @@ void qt_loginview::on_loginbutton_clicked()
     if (login==0){
         qDebug()<<"Erfolgreich";
         //MainWindow aufrufen
-        MainWindow *mainwindow = new MainWindow();
+        MainWindow *mainwindow = new MainWindow(nullptr,v);
         this->close();
         mainwindow->show();
     }else if(login==-1){

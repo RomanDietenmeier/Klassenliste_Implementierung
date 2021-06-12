@@ -50,7 +50,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
     }
     if(clean){
         dao->clean();
-        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow);
+        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
         HOanlegen->show();
     }
 
@@ -78,7 +78,7 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
     }
     if(clean){
         dao->clean();
-        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow);
+        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
         HOanlegen->show();
     }
 
