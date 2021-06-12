@@ -8,6 +8,7 @@
 #include "klassenkamerad_einfuegen.h"
 #include "aendern.h"
 #include "newpasswort.h"
+#include "organisator_erstellen.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -324,5 +325,18 @@ void MainWindow::on_pushButton_clicked()
 {
     Datensatze=KlassenkameradDatensatz::getGesperrte(Datensatze);
     printDatensatze();
+}
+
+
+void MainWindow::on_OrganisatorErteilenButton_clicked()
+{
+
+    auto Items = ui->tableWidget->selectedItems();
+    if (Items.size()!=0 && Items.at(0)->row()>0 && Datensatze[Items.at(0)->row()-1]->typ == Kamerad){
+        Organisator_erstellen *organisator_erstellen = new Organisator_erstellen(NULL, kDAO, this, Datensatze[Items.at(0)->row()-1]);
+        this->close();
+        organisator_erstellen->show();
+    }
+
 }
 
