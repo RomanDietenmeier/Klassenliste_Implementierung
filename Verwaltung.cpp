@@ -44,6 +44,7 @@ int Verwaltung::anmelden(string eMail, string passwort){
     login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,passwort);
     qDebug()<< "initialpasswort: "<< log.initial_login;
     qDebug()<< "akteur: "<< log.id.c_str();
+    //this->akteurID=log.id;
 
     akteurID = log.id;
     if(akteurID.compare("-1")==0){
