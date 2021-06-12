@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
             if(Datensatze[i]->typ==Hauptorganisator)
                 akteurID=Datensatze[i]->klassenkameradID;
         }
-        v = new Verwaltung(akteurID);
+        this->v = new Verwaltung(akteurID);
     }
 
 }
@@ -85,11 +85,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::init(){
 
-    v = new Verwaltung();
-
-}
 
 
 
@@ -190,7 +186,7 @@ void MainWindow::on_pushButton_6_clicked() //Ändern Button
     //kd->vorname+="ä";
     //kDAO->aktualisieren(kd,"0");
 
-
+    qDebug()<<v->getAkteuerID().c_str();
 
 
 
@@ -298,8 +294,7 @@ void MainWindow::on_einfuegen_clicked()
 
 
 void MainWindow::on_neuesPasswortButton_clicked()
-{
-    this->init();
+{    
     NewPasswort *newPasswort = new NewPasswort(NULL, v, this);
     this->close();
     newPasswort->show();

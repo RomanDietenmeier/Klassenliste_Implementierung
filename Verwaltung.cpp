@@ -17,6 +17,7 @@ Verwaltung::Verwaltung(string akteurID){
 }
 
 Verwaltung::Verwaltung(){
+    akteurID="";
 
     m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
     m_ListeView = new ListeView();

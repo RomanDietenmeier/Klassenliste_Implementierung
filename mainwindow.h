@@ -22,7 +22,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr,Verwaltung* v=NULL);
     ~MainWindow();
-     void init();
      void printDatensatze();
 public slots:
     void on_pushButton_3_clicked();
