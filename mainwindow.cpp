@@ -9,6 +9,7 @@
 #include "aendern.h"
 #include "newpasswort.h"
 #include "organisator_erstellen.h"
+#include"orga_entsperren.h"
 
 
 MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
@@ -376,5 +377,16 @@ void MainWindow::on_OrganisatorErteilenButton_clicked()
         organisator_erstellen->show();
     }
 
+}
+
+
+void MainWindow::on_pushButton_entsperren_clicked()
+{
+    auto Items = ui->tableWidget->selectedItems();
+    if (Items.size()!=0 && Items.at(0)->row()>0&& Datensatze[Items.at(0)->row()-1]->gespert){
+        Orga_entsperren* entsperrer=new Orga_entsperren(nullptr,v->m_KlassenkameradDAO,this,Datensatze[Items.at(0)->row()-1]);
+        this->close();
+        entsperrer->show();
+    }
 }
 

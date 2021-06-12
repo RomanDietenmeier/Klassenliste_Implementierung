@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
+      <y>550</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>610</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -140,7 +140,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>550</y>
+      <y>580</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -166,7 +166,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>610</y>
+      <y>390</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -179,7 +179,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>380</y>
+      <y>360</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -254,6 +254,19 @@
     </property>
     <property name="text">
      <string>Orga. erteilen</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_entsperren">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>entsperren</string>
     </property>
    </widget>
   </widget>

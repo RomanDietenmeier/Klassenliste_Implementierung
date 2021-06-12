@@ -26,6 +26,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     newpasswort.cpp \
+    orga_entsperren.cpp \
     organisator_erstellen.cpp \
     qt_loginview.cpp
 
@@ -42,6 +43,7 @@ HEADERS += \
     klassenkamerad_einfuegen.h \
     mainwindow.h \
     newpasswort.h \
+    orga_entsperren.h \
     organisator_erstellen.h \
     qt_loginview.h
 
@@ -53,6 +55,7 @@ FORMS += \
     klassenkamerad_einfuegen.ui \
     mainwindow.ui \
     newpasswort.ui \
+    orga_entsperren.ui \
     organisator_erstellen.ui \
     qt_loginview.ui
 

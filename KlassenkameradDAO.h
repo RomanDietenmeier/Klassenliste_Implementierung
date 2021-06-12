@@ -42,6 +42,7 @@ public:
     bool klassenkameradenLaden(std::vector<KlassenkameradDatensatz*> &kd);
     bool loeschen(string ID);
     bool organisatorSperren(string eMail);
+    bool organisatorEntSperren(string ID,string initialPasswort);
     bool removeOrganisator(string ID);
     bool setOrganisator(string ID,string initialPasswort);
 

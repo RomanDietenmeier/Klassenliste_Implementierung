@@ -414,6 +414,17 @@ bool KlassenkameradDAO::loeschen(string ID){
     }
     return true;
 }
+
+bool KlassenkameradDAO::organisatorEntSperren(string ID,string initialPasswort){
+    QSqlQuery query;
+    query.prepare("UPDATE Organisator SET gesperrt=false, Passwort=:pw, Initialpasswort=false WHERE Organisator.Kamerad_ID=:id");
+    query.bindValue(":id",ID.c_str());
+    query.bindValue(":pw",initialPasswort.c_str());
+    if(!query.exec()){
+        return false;
+    }
+    return true;
+}
 bool KlassenkameradDAO::organisatorSperren(string eMail){
     QSqlQuery query;
     query.prepare("SELECT Klassenkamerad.ID FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");

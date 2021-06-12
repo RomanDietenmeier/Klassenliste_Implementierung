@@ -26,6 +26,7 @@ public:
 public slots:
     void on_pushButton_3_clicked();
     void sortierenID();
+    void on_pushButton_clicked();
 
 private slots:
 
@@ -55,11 +56,13 @@ private slots:
 
     void on_tableWidget_cellClicked(int row, int column);
 
-    void on_pushButton_clicked();
+
 
     void on_OrganisatorErteilenButton_clicked();
 
 
+
+    void on_pushButton_entsperren_clicked();
 
 private:
     Ui::MainWindow *ui;
