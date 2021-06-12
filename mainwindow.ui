@@ -78,11 +78,20 @@
       <height>971</height>
      </rect>
     </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
     <property name="cornerButtonEnabled">
      <bool>false</bool>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>true</bool>
     </attribute>
    </widget>
    <widget class="QPushButton" name="pushButton_8_hist">

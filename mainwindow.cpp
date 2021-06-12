@@ -106,7 +106,8 @@ void MainWindow::printDatensatze(){
         std::string s="";
         for(unsigned long long j=0;j<Datensatze[i]->telefonnummer.size();j++){
             s+=Datensatze[i]->telefonnummer[j].c_str();
-            s+="\n";
+            if(j+1!=Datensatze[i]->telefonnummer.size())
+                s+="\n";
         }
         ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr(s.c_str())));
         ui->tableWidget->setItem(i+1,6,new QTableWidgetItem(tr(Datensatze[i]->adresse.strasse.c_str())));
@@ -128,6 +129,8 @@ void MainWindow::printDatensatze(){
         ui->tableWidget->setItem(i+1,10,new QTableWidgetItem(tr(typ.c_str())));
         //ds[i]->printToConsole();
         //std::cout<<std::endl;
+        ui->tableWidget->resizeRowsToContents();
+        ui->tableWidget->resizeColumnsToContents();
     }
 }
 
