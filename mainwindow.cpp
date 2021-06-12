@@ -102,7 +102,13 @@ void MainWindow::printDatensatze(){
         ui->tableWidget->setItem(i+1,2,new QTableWidgetItem(tr(Datensatze[i]->nachname[0].c_str())));
         ui->tableWidget->setItem(i+1,3,new QTableWidgetItem(tr(Datensatze[i]->nachname[1].c_str())));
         ui->tableWidget->setItem(i+1,4,new QTableWidgetItem(tr(Datensatze[i]->eMail.c_str())));
-        ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr((Datensatze[i]->telefonnummer.size()>0)?Datensatze[i]->telefonnummer[0].c_str():"-")));
+        //ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr((Datensatze[i]->telefonnummer.size()>0)?Datensatze[i]->telefonnummer[0].c_str():"-")));
+        std::string s="";
+        for(unsigned long long j=0;j<Datensatze[i]->telefonnummer.size();j++){
+            s+=Datensatze[i]->telefonnummer[j].c_str();
+            s+="\n";
+        }
+        ui->tableWidget->setItem(i+1,5,new QTableWidgetItem(tr(s.c_str())));
         ui->tableWidget->setItem(i+1,6,new QTableWidgetItem(tr(Datensatze[i]->adresse.strasse.c_str())));
         ui->tableWidget->setItem(i+1,7,new QTableWidgetItem(tr(Datensatze[i]->adresse.hausnummer.c_str())));
         ui->tableWidget->setItem(i+1,8,new QTableWidgetItem(tr(Datensatze[i]->adresse.ort.c_str())));
