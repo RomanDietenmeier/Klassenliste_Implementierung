@@ -76,7 +76,7 @@ void Aendern::on_ho_anlegen_clicked()
     this->close();
     mw->show();
     mw->sortierenID();
-    mw->on_pushButton_3_clicked();
+    //mw->on_pushButton_3_clicked();
 
 
 }
