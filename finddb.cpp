@@ -4,12 +4,17 @@
 #include<QDebug>
 #include <stdexcept>
 
-FindDB::FindDB(QWidget *parent, Verwaltung *v) :
+FindDB::FindDB(QWidget *parent, std::string argv) :
     QMainWindow(parent),
     ui(new Ui::FindDB)
 {
     ui->setupUi(this);
-    this->v = v;
+    qDebug()<<"argv: "<<argv.c_str();
+    if(argv.compare("clean")){
+        qDebug()<<"clean";
+    }else if(argv.compare("test")){
+        qDebug()<<"test";
+    }
 }
 
 FindDB::~FindDB()

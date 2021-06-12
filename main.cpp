@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "datensatzbearbeiten.h"
-
+#include"finddb.h"#
 #include <QApplication>
 #include<string>
 #include<iostream>
@@ -56,13 +56,14 @@ int main(int argc, char *argv[])
     }
     kd.printToConsole();*/
 
-
     QApplication a(argc, argv);
-    MainWindow w;
-
-    //qt_loginview w;
-    //FindDB w;
-    w.show();
+    if(argc>1){
+        FindDB* dieFindDBGUI=new FindDB(nullptr,argv[1]);
+        dieFindDBGUI->show();
+    }else{
+        MainWindow* w=new MainWindow();
+        w->show();
+    }
     return a.exec();
 }
 

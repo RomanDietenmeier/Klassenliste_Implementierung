@@ -16,7 +16,7 @@ class FindDB : public QMainWindow
     Verwaltung *v;
 
 public:
-    explicit FindDB(QWidget *parent = nullptr, Verwaltung *v=NULL);
+    explicit FindDB(QWidget *parent = nullptr, std::string argv="");
     ~FindDB();
 
 private slots:

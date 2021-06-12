@@ -226,7 +226,7 @@ void MainWindow::on_pushButton_8_hist_clicked() //Historie anzeigen
 
 void MainWindow::on_pushButton_8_db_clicked()
 {
-    FindDB* w=new FindDB(NULL, v);
+    FindDB* w=new FindDB();
     this->close();
     w->show();
 }
