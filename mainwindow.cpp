@@ -151,9 +151,7 @@ void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
     kDAO->klassenkameradenLaden(ds);
     Datensatze=ds;
 
-
-    printDatensatze();
-
+    sortierenID();
 
 }
 
