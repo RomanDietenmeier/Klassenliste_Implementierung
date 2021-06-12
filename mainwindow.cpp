@@ -117,6 +117,29 @@ void MainWindow::printDatensatze(){
     }
 }
 
+void bubbleSort(vector<KlassenkameradDatensatz*> &a)
+{
+    for(unsigned long long i = 0; i<a.size(); i++){
+        int swaps = 0;
+        for(unsigned long long j =0; j<a.size()-1;j++){
+            if(a[j]->klassenkameradID > a[j+1]->klassenkameradID){
+                KlassenkameradDatensatz* temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+                swaps = 1;
+            }
+        }
+        if(!swaps){
+            break;
+        }
+    }
+}
+
+void MainWindow::sortierenID(){
+    bubbleSort(Datensatze);
+    printDatensatze();
+}
+
 void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
 
 {
@@ -126,6 +149,7 @@ void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
 
 
     printDatensatze();
+
 
 }
 

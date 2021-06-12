@@ -26,6 +26,8 @@ public:
      void printDatensatze();
 public slots:
     void on_pushButton_3_clicked();
+    void sortierenID();
+
 private slots:
 
     void on_pushButton_4_clicked();
@@ -57,6 +59,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_OrganisatorErteilenButton_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;
