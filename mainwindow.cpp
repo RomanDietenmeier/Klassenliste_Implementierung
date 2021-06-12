@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setColumnWidth(9, 100);
 
 
-    //Test Datensatz
+    /*//Test Datensatz
     kd=new KlassenkameradDatensatz();
     kd->vorname="Thomas";
     kd->nachname[0]="Der";
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
     kDAO->einfuegen(kd,"0");
     kd->nachname[0]="The";
     kd->nachname[1]="TankEngine";
-    kd->telefonnummer.push_back("+238000666");
+    kd->telefonnummer.push_back("+238000666");*/
 
 
     //DB ausgeben
