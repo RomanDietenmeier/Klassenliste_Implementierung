@@ -20,9 +20,10 @@ class MainWindow : public QMainWindow
     std::vector<KlassenkameradDatensatz*> Datensatze;
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    //MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr,Verwaltung* v=NULL);
     ~MainWindow();
-     void init();
+     //void init();
      void printDatensatze();
 public slots:
     void on_pushButton_3_clicked();

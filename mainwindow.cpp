@@ -11,9 +11,7 @@
 #include "organisator_erstellen.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+/*void init()
 {
 
 
@@ -55,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     kd->adresse.plz="4288";
     kd->adresse.strasse="gibt es nicht";
     kd->telefonnummer.push_back("7363/4555");
-    kDAO->einfuegen(kd,"0");
+    //kDAO->einfuegen(kd,"0");
     kd->nachname[0]="The";
     kd->nachname[1]="TankEngine";
     kd->telefonnummer.push_back("+238000666");
@@ -70,6 +68,57 @@ MainWindow::MainWindow(QWidget *parent)
             akteurID=Datensatze[i]->klassenkameradID;
     }
     v = new Verwaltung(akteurID);
+}*/
+
+MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
+    : QMainWindow(parent)
+  , ui(new Ui::MainWindow)
+{
+
+    if(v==NULL){
+        kDAO=new KlassenkameradDAO("hohoho.db");
+        std::vector<KlassenkameradDatensatz*> ds;
+        kDAO->klassenkameradenLaden(ds);
+        Datensatze=ds;
+        string akteurID="0";
+        for(unsigned long long i=0;i<Datensatze.size();i++){
+            if(Datensatze[i]->typ==Hauptorganisator)
+                akteurID=Datensatze[i]->klassenkameradID;
+        }
+        v = new Verwaltung(akteurID);
+    }else{
+        this->kDAO=v->m_KlassenkameradDAO;
+        this->v=v;
+    }
+
+
+    ui->setupUi(this);
+    ui->tableWidget->setColumnCount(11);
+    ui->tableWidget->insertRow(0);
+    ui->tableWidget->setItem(0,0,new QTableWidgetItem(tr("ID")));
+    ui->tableWidget->setItem(0,1,new QTableWidgetItem(tr("Vorname")));
+    ui->tableWidget->setItem(0,2,new QTableWidgetItem(tr("Nachname")));
+    ui->tableWidget->setItem(0,3,new QTableWidgetItem(tr("2. Nachname")));
+    ui->tableWidget->setItem(0,4,new QTableWidgetItem(tr("E-Mail")));
+    ui->tableWidget->setItem(0,5,new QTableWidgetItem(tr("Telefon")));
+    ui->tableWidget->setItem(0,6,new QTableWidgetItem(tr("Straße")));
+    ui->tableWidget->setItem(0,7,new QTableWidgetItem(tr("Hausnummer")));
+    ui->tableWidget->setItem(0,8,new QTableWidgetItem(tr("Ort")));
+    ui->tableWidget->setItem(0,9,new QTableWidgetItem(tr("PLZ")));
+    ui->tableWidget->setItem(0,10,new QTableWidgetItem(tr("TYP")));
+    ui->tableWidget->setColumnWidth(0, 50);
+    ui->tableWidget->setColumnWidth(1, 100);
+    ui->tableWidget->setColumnWidth(2, 100);
+    ui->tableWidget->setColumnWidth(3, 100);
+    ui->tableWidget->setColumnWidth(4, 200);
+    ui->tableWidget->setColumnWidth(5, 100);
+    ui->tableWidget->setColumnWidth(6, 150);
+    ui->tableWidget->setColumnWidth(7, 100);
+    ui->tableWidget->setColumnWidth(8, 100);
+    ui->tableWidget->setColumnWidth(9, 100);
+
+    qDebug()<<"akteruID "<<v->getAkteuerID().c_str();
+    on_pushButton_3_clicked();
 }
 
 MainWindow::~MainWindow()
@@ -77,11 +126,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::init(){
+/*void MainWindow::init(){
 
     v = new Verwaltung();
 
-}
+}*/
 
 
 
@@ -258,7 +307,7 @@ void MainWindow::on_einfuegen_clicked()
 
 void MainWindow::on_neuesPasswortButton_clicked()
 {
-    this->init();
+    //this->init();
     NewPasswort *newPasswort = new NewPasswort(NULL, v, this);
     this->close();
     newPasswort->show();

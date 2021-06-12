@@ -48,8 +48,8 @@ public:
     string getAkteuerID();
 
 private:
-    string akteurID;
-    string passwort;
+    string akteurID="";
+    string passwort="";
     vector<anmeldung*> anmeldeVersuche;
     vector<KlassenkameradDatensatz*> m_KlassenkameradDatensatz;
     vector<KlassenkameradDatensatz*> m_KlassenkameradAenderungshistorie;
