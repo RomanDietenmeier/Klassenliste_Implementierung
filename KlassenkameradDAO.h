@@ -29,6 +29,7 @@ public:
     KlassenkameradDAO(std::string pfad);
 	virtual ~KlassenkameradDAO();
 	Verwaltung *m_Verwaltung;
+    bool initial=false;
 
     bool test();
     bool clean();

@@ -129,6 +129,7 @@ void MainWindow::printDatensatze(){
         ui->tableWidget->setItem(i+1,10,new QTableWidgetItem(tr(typ.c_str())));
         //ds[i]->printToConsole();
         //std::cout<<std::endl;
+        //ui->tableWidget->setCol
         ui->tableWidget->resizeRowsToContents();
         ui->tableWidget->resizeColumnsToContents();
     }
@@ -155,9 +156,6 @@ vector<KlassenkameradDatensatz*> bubbleSort(vector<KlassenkameradDatensatz*> a)
 
 void MainWindow::sortierenID(){
     Datensatze=bubbleSort(Datensatze);
-    for(unsigned long long i = 0; i<Datensatze.size(); i++){
-        qDebug()<<Datensatze[i]->klassenkameradID.c_str();
-    }
     printDatensatze();
 }
 

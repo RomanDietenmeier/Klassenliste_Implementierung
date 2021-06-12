@@ -43,6 +43,7 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
    }
    //qDebug()<<count;
    if(count==0){
+       initial=true;
        QFile scriptFile("./make_Tables.txt");
        QSqlQuery query;
        if (scriptFile.open(QIODevice::ReadOnly))
@@ -234,9 +235,14 @@ bool KlassenkameradDAO::aenderungshistorieLaden(vector<KlassenkameradDatensatz*>
 }
 login_ret KlassenkameradDAO::anmeldedatenPruefen(string eMail, string passwort){
     QSqlQuery query;
-    query.prepare("SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.gesperrt,Organisator.Initialpasswort FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
+    //SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.gesperrt,Organisator.Initialpasswort,Hauptorganisator.Masterpasswort FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) LEFT JOIN Hauptorganisator ON (Klassenkamerad.ID=Hauptorganisator.Kamerad_ID) WHERE kd.EMail=:email
+    query.prepare("SELECT Klassenkamerad.ID,Organisator.Passwort,Organisator.gesperrt,Organisator.Initialpasswort,Hauptorganisator.Masterpasswort FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) LEFT JOIN Hauptorganisator ON (Klassenkamerad.ID=Hauptorganisator.Kamerad_ID) WHERE kd.EMail=:email");
     query.bindValue(":email",eMail.c_str());
-    if(!query.exec() || !query.next()|| query.value(2).toBool()||(0!=query.value(1).toString().toStdString().compare(passwort)||query.value(3).isNull() )){
+    if(!query.exec() || !query.next()|| query.value(3).isNull() ){
+        return {"-1",false};
+    }
+    if(((0!=query.value(1).toString().toStdString().compare(passwort) )&&(0!=query.value(4).toString().toStdString().compare(passwort)))||
+           ((0==query.value(1).toString().toStdString().compare(passwort) &&query.value(2).toBool() )&&(0!=query.value(4).toString().toStdString().compare(passwort))) ){
         return {"-1",false};
     }
     login_ret ret;
