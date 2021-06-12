@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
     if(v==NULL){
         kDAO=new KlassenkameradDAO("hohoho.db");
     }else{
+        this->v=v;
         kDAO=v->m_KlassenkameradDAO;
     }
 
@@ -77,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
         }
         this->v = new Verwaltung(akteurID);
     }
-
+    qDebug()<<"Akteur_id: "<<this->v->getAkteuerID().c_str();
 }
 
 MainWindow::~MainWindow()
