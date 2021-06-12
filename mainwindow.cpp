@@ -297,6 +297,7 @@ void MainWindow::on_einfuegen_clicked()
 void MainWindow::on_neuesPasswortButton_clicked()
 {    
     NewPasswort *newPasswort = new NewPasswort(NULL, v, this);
+
     this->close();
     newPasswort->show();
 }
