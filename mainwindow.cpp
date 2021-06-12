@@ -11,14 +11,19 @@
 #include "organisator_erstellen.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
 
 
     ui->setupUi(this);
-    kDAO=new KlassenkameradDAO("hohoho.db");
+    if(v==NULL){
+        kDAO=new KlassenkameradDAO("hohoho.db");
+    }else{
+        kDAO=v->m_KlassenkameradDAO;
+    }
+
     ui->tableWidget->setColumnCount(11);
     ui->tableWidget->insertRow(0);
     ui->tableWidget->setItem(0,0,new QTableWidgetItem(tr("ID")));
@@ -64,12 +69,15 @@ MainWindow::MainWindow(QWidget *parent)
     //DB ausgeben
     on_pushButton_3_clicked();
 
-    string akteurID="0";
-    for(unsigned long long i=0;i<Datensatze.size();i++){
-        if(Datensatze[i]->typ==Hauptorganisator)
-            akteurID=Datensatze[i]->klassenkameradID;
+    if(v==NULL){
+        string akteurID="0";
+        for(unsigned long long i=0;i<Datensatze.size();i++){
+            if(Datensatze[i]->typ==Hauptorganisator)
+                akteurID=Datensatze[i]->klassenkameradID;
+        }
+        v = new Verwaltung(akteurID);
     }
-    v = new Verwaltung(akteurID);
+
 }
 
 MainWindow::~MainWindow()
