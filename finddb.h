@@ -14,6 +14,8 @@ class FindDB : public QMainWindow
     Q_OBJECT
     KlassenkameradDAO* dao=NULL;
     Verwaltung *v;
+    bool test=false;
+    bool clean=false;
 
 public:
     explicit FindDB(QWidget *parent = nullptr, std::string argv="");
