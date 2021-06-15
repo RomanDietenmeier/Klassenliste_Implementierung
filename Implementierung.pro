@@ -15,11 +15,8 @@ CONFIG += console
 SOURCES += \
     KlassenkameradDAO.cpp \
     KlassenkameradDatensatz.cpp \
-    ListeView.cpp \
-    LoginView.cpp \
     Verwaltung.cpp \
     aendern.cpp \
-    datensatzbearbeiten.cpp \
     finddb.cpp \
     firststart.cpp \
     klassenkamerad_einfuegen.cpp \
@@ -33,11 +30,8 @@ SOURCES += \
 HEADERS += \
     KlassenkameradDAO.h \
     KlassenkameradDatensatz.h \
-    ListeView.h \
-    LoginView.h \
     Verwaltung.h \
     aendern.h \
-    datensatzbearbeiten.h \
     finddb.h \
     firststart.h \
     klassenkamerad_einfuegen.h \
@@ -49,7 +43,6 @@ HEADERS += \
 
 FORMS += \
     aendern.ui \
-    datensatzbearbeiten.ui \
     finddb.ui \
     firststart.ui \
     klassenkamerad_einfuegen.ui \

@@ -9,9 +9,7 @@
 #define EA_16A229CD_1BD2_4501_93CB_60391B7C0DEA__INCLUDED_
 
 #include "KlassenkameradDatensatz.h"
-#include "ListeView.h"
 #include "KlassenkameradDAO.h"
-#include "LoginView.h"
 #include <vector>
 
 typedef struct {
@@ -25,9 +23,7 @@ class Verwaltung
 
 public:
 
-    ListeView* m_ListeView;
     KlassenkameradDAO* m_KlassenkameradDAO;
-    LoginView* m_LoginView;
 
 
 	Verwaltung();

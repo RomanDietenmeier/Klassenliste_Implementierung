@@ -1,6 +1,5 @@
 #include "mainwindow.h"
-#include "datensatzbearbeiten.h"
-#include"finddb.h"#
+#include"finddb.h"
 #include <QApplication>
 #include<string>
 #include<iostream>
@@ -8,7 +7,6 @@
 //#include"KlassenkameradDAO.h"
 #include "windows.h"
 #include<QMainWindow>
-#include"datensatzbearbeiten.h"
 
 
 int main(int argc, char *argv[])
@@ -56,13 +54,15 @@ int main(int argc, char *argv[])
     }
     kd.printToConsole();*/
 
+    std::string argv1=(argc>1)?argv[1]:"";
+
     QApplication a(argc, argv);
-    if(argc>1){
-        FindDB* dieFindDBGUI=new FindDB(nullptr,argv[1]);
-        dieFindDBGUI->show();
-    }else{
+    if(argv1.compare("run")==0){
         MainWindow* w=new MainWindow();
         w->show();
+    }else{
+        FindDB* dieFindDBGUI=new FindDB(nullptr,(argc>1)?argv[1]:"");
+        dieFindDBGUI->show();
     }
     return a.exec();
 }
