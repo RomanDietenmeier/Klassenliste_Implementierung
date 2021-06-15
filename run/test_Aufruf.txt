@@ -60,14 +60,14 @@ INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) F
 
 /*Organisator Max Mustermann anlegen*/
 INSERT INTO Klassenkamerad(ID) VALUES(1);
-INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('MN',True,False,1);
+INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('MM',True,False,1);
 INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Max','Mustermann','MaxMustermann@gmx.de','OrganisatorStrasse','13','Germania','1',time('now'),date('now'),0,1);
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=1),'8880001');
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=1),'8880002');
 
 /*Organisator Klara Musterfrau anlegen*/
 INSERT INTO Klassenkamerad(ID) VALUES(2);
-INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('MN',True,False,2);
+INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('KM',True,False,2);
 INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Klara','Musterfrau','KlaraMusterfrau@gmx.de','OrganisatorinnenStrasse','4','Berg','8866',time('now'),date('now'),0,2);
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=2),'+431552200');
 INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=2),'+4988855621');

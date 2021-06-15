@@ -80,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
         this->v = new Verwaltung(akteurID);
     }
     qDebug()<<"Akteur_id: "<<this->v->getAkteuerID().c_str();
+
 }
 
 MainWindow::~MainWindow()
@@ -168,7 +169,7 @@ void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
 
 }
 
-
+/*
 void MainWindow::on_pushButton_4_clicked() //cleanen der Einträge
 {
     kDAO->clean();
@@ -181,7 +182,7 @@ void MainWindow::on_pushButton_5_clicked() //Testeinträge einfügen
     kDAO->test();
     on_pushButton_3_clicked();
 }
-
+*/
 
 void MainWindow::on_pushButton_6_clicked() //Ändern Button
 {
@@ -278,14 +279,14 @@ void MainWindow::on_LoginView_clicked()
     loginview->show();
 }
 
-
+/*
 void MainWindow::on_ho_anlegen_clicked()
 {
     firstStart *firststart = new firstStart(NULL, kDAO, this);
     this->close();
     firststart->show();
 }
-
+*/
 
 void MainWindow::on_einfuegen_clicked()
 {

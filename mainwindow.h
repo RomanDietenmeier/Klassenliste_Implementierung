@@ -30,9 +30,9 @@ public slots:
 
 private slots:
 
-    void on_pushButton_4_clicked();
+   // void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+    //void on_pushButton_5_clicked();
 
     void on_pushButton_6_clicked();
 
@@ -42,7 +42,7 @@ private slots:
 
     void on_LoginView_clicked();
 
-    void on_ho_anlegen_clicked();
+    //void on_ho_anlegen_clicked();
 
     void on_einfuegen_clicked();
 
