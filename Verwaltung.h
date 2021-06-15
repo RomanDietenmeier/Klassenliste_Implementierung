@@ -22,7 +22,7 @@ class Verwaltung
 {
 
 public:
-
+    string akteurID;
     KlassenkameradDAO* m_KlassenkameradDAO;
     KlassenkameradDatensatz* akteur;
 
@@ -87,7 +87,7 @@ public:
     string getAkteuerID();
 
 private:
-    string akteurID;
+
     string passwort;
     vector<anmeldung*> anmeldeVersuche;
     vector<KlassenkameradDatensatz*> m_KlassenkameradDatensatz;

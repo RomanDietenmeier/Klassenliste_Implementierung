@@ -618,5 +618,6 @@ bool KlassenkameradDAO::einfuegen_HauptO(KlassenkameradDatensatz* daten,string p
         qFatal("Kann nicht den Zeitpunkt abrufen!");
         return false;
     }
+    daten->klassenkameradID="0";
     return true;
 }

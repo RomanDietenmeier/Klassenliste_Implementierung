@@ -15,10 +15,10 @@ class firstStart : public QMainWindow
 {
     Q_OBJECT
     KlassenkameradDAO* dao;
-    MainWindow* mw;
+    Verwaltung* v;
 
 public:
-    explicit firstStart(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL);
+    explicit firstStart(QWidget *parent = nullptr, Verwaltung* p_v=NULL);
     ~firstStart();
 
 private slots:

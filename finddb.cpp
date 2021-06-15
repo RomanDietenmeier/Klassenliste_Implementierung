@@ -58,7 +58,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
         dao->initial=false;
         dao->clean();
         this->close();
-        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
+        firstStart* HOanlegen=new firstStart(nullptr,v);
         HOanlegen->show();
         delete this;
     }
@@ -95,7 +95,7 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
         dao->initial=false;
         dao->clean();
         this->close();
-        firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
+        firstStart* HOanlegen=new firstStart(nullptr,v);
         HOanlegen->show();
         delete this;
     }

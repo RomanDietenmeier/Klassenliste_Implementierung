@@ -4,13 +4,13 @@
 #include <QListWidgetItem>
 #include<QDebug>
 
-firstStart::firstStart(QWidget *parent, KlassenkameradDAO *dao, MainWindow *mw) :
+firstStart::firstStart(QWidget *parent, Verwaltung* p_v) :
     QMainWindow(parent),
     ui(new Ui::firstStart)
 {
     ui->setupUi(this);
-    this->dao= dao;
-    this->mw= mw;
+    this->dao= p_v->m_KlassenkameradDAO;
+    this->v=p_v;
 }
 
 firstStart::~firstStart()
@@ -79,10 +79,13 @@ void firstStart::on_ho_anlegen_clicked()
         qDebug()<<"HO misslungen";
     }
     hauptorganisator.printToConsole();
+    v->akteurID=hauptorganisator.klassenkameradID;
 
     this->close();
+    MainWindow* mw=new MainWindow(nullptr,v);
     mw->show();
     mw->on_pushButton_3_clicked();
+    delete this;
 
 
 }
