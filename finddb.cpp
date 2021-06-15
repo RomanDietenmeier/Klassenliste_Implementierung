@@ -81,7 +81,7 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
         dao->test();
     }
     bool showLogin=true;
-    if(clean|| dao->initial){
+    if(clean|| (dao->initial&& !test)){
         showLogin=false;
         dao->initial=false;
         dao->clean();
