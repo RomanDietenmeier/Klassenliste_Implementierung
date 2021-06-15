@@ -68,6 +68,10 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
 
 
     //DB ausgeben
+    /**
+     * @brief on_pushButton_3_clicked
+     * Gibt die Datenbank aus
+     */
     on_pushButton_3_clicked();
 
     if(v==NULL){
@@ -276,6 +280,7 @@ void MainWindow::on_pushButton_8_db_clicked()
     this->close();
     w->show();
 }
+
 
 void MainWindow::on_LoginView_clicked()
 {
