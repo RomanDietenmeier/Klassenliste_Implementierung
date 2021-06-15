@@ -26,7 +26,11 @@ FindDB::~FindDB()
 }
 
 
-
+/**
+ * @brief FindDB::on_pushButton_2_Datei_clicked
+ * Versucht Datenbank Datei einzulesen und geht dann weiter zum Loginfenster oder je nach Parameter
+ * löscht sie die Datenbank oder füllt sie mit Testeinträgen
+ */
 void FindDB::on_pushButton_2_Datei_clicked()
 {
     if(dao!=NULL){
@@ -67,7 +71,10 @@ void FindDB::on_pushButton_2_Datei_clicked()
 
 }
 
-
+/**
+ * @brief FindDB::on_pushButton_1_DEFAULT_clicked
+ * Gleich wie die andere Funktion, zusätzlich legt sie eine Datei an wenn keine existiert
+ */
 void FindDB::on_pushButton_1_DEFAULT_clicked()
 {
     if(dao!=NULL){
