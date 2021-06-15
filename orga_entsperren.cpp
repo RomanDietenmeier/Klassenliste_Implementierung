@@ -27,7 +27,7 @@ Orga_entsperren::Orga_entsperren(QWidget *parent, KlassenkameradDAO* dao, MainWi
 }
 
 /**
- * @brief Orga_entsperren::~Orga_entsperren
+ * @brief Orga_entsperren::~Orga_entsperren schliessen
  */
 Orga_entsperren::~Orga_entsperren()
 {

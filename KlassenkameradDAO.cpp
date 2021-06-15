@@ -254,6 +254,12 @@ bool KlassenkameradDAO::aktualisieren(KlassenkameradDatensatz* daten,string akte
     }
     return true;
 }
+/**
+ * @brief KlassenkameradDAO::aenderungshistorieLaden Zeigt die Änderungshistorie eines Eintrags
+ * @param kd Vektor mit den Datensätzen
+ * @param klassenkameradID Die Id des Klassenkameradens, von dem die Historie angeschaut wird.
+ * @return true bei Erfolg, ansonsten false
+ */
 bool KlassenkameradDAO::aenderungshistorieLaden(vector<KlassenkameradDatensatz*> &kd,string klassenkameradID){
     //SELECT * FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz as kd ON (Klassenkamerad.ID=kd.Kamerad_ID) WHERE Klassenkamerad.ID=14 AND kd.ID<(SELECT MAX(ID)FROM Klassenkamerad_Datensatz WHERE Klassenkamerad_Datensatz.Kamerad_ID=kd.Kamerad_ID)
     QSqlQuery query;
