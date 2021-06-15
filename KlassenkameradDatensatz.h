@@ -44,10 +44,23 @@ public:
     vector<string> telefonnummer;
 	string vorname;
 	zeitpunkt zeitpunkt;
+    /**
+     * @brief KlassenkameradDatensatz::printToConsole Gitb die Daten in der Konsole aus
+     */
     void printToConsole();
     Typ typ;
     bool gespert=false;
+    /**
+     * @brief KlassenkameradDatensatz::getGesperrte Gibt neuen Vektor zurück mit nur gesperrten Datensätze
+     * @param vector Übergibt Vektor mit Datensätzen
+     * @return true bei Erfolg, ansonsten False
+     */
     static vector<KlassenkameradDatensatz*> getGesperrte(vector<KlassenkameradDatensatz*> vector);
+    /**
+     * @brief KlassenkameradDatensatz::getOrganisatoren Gibt neuen Vektor zurück mit nur Organisatoren Datensätze
+     * @param vector Übergibt Vektor mit Datensätzen
+     * @return true bei Erfolg, ansonsten False
+     */
     static vector<KlassenkameradDatensatz*> getOrganisatoren(vector<KlassenkameradDatensatz*> vector);
 
 };
