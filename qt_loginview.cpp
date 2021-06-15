@@ -10,7 +10,12 @@
 }*/
 
 
-
+/**
+ * @brief qt_loginview::qt_loginview
+ * öffnet loginview
+ * @param parent
+ * @param v
+ */
 qt_loginview::qt_loginview(QWidget *parent, Verwaltung *v) :
     QMainWindow(parent),
     ui(new Ui::qt_loginview)
@@ -22,14 +27,21 @@ qt_loginview::qt_loginview(QWidget *parent, Verwaltung *v) :
 
 
 
-
+/**
+ * @brief qt_loginview::~qt_loginview
+ * schließt ui
+ */
 qt_loginview::~qt_loginview()
 {
     delete ui;
 }
 
 
-
+/**
+ * @brief qt_loginview::on_emailEingabe_textChanged
+ * ermöglicht nach eingabe in Email_Textfeld den Loginbutton
+ * @param arg1
+ */
 void qt_loginview::on_emailEingabe_textChanged(const QString &arg1)
 {
     //Hier ist die Email die eingegeben wird
@@ -39,7 +51,11 @@ void qt_loginview::on_emailEingabe_textChanged(const QString &arg1)
     }
 }
 
-
+/**
+ * @brief qt_loginview::on_passwortEingabe_textChanged
+ * ermöglicht nach eingabe in PW-Textfeld den Loginbutton
+ * @param arg1
+ */
 void qt_loginview::on_passwortEingabe_textChanged(const QString &arg1)
 {
     passwortBoolean = true;
@@ -48,6 +64,10 @@ void qt_loginview::on_passwortEingabe_textChanged(const QString &arg1)
     }
 }
 
+/**
+ * @brief qt_loginview::on_loginbutton_clicked
+ * überprüft eingegebene Logindaten und meldet sich entsprechend erfolgreich oder nicht erfolgreich oder, bei zu vielen Falschversuchen wird der Benutzer gespert.
+ */
 void qt_loginview::on_loginbutton_clicked()
 {
     //Hier in Loginbutton
