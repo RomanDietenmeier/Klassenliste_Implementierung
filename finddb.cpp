@@ -53,13 +53,14 @@ void FindDB::on_pushButton_2_Datei_clicked()
         dao->test();
     }
     bool showLogin=true;
-    if(clean|| dao->initial){
+    if(clean|| (dao->initial&& !test)){
         showLogin=false;
         dao->initial=false;
         dao->clean();
-
+        this->close();
         firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
         HOanlegen->show();
+        delete this;
     }
 
     if(showLogin){
@@ -67,6 +68,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
         loginview=new qt_loginview(NULL,v);
         this->close();
         loginview->show();
+        delete this;
     }
 
 }
@@ -92,8 +94,10 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
         showLogin=false;
         dao->initial=false;
         dao->clean();
+        this->close();
         firstStart* HOanlegen=new firstStart(nullptr,dao,new MainWindow(nullptr,v));
         HOanlegen->show();
+        delete this;
     }
 
     if(showLogin){
@@ -101,6 +105,7 @@ void FindDB::on_pushButton_1_DEFAULT_clicked()
         loginview=new qt_loginview(NULL,v);
         this->close();
         loginview->show();
+        delete this;
     }
 }
 

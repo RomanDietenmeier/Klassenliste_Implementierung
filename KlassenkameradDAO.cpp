@@ -79,6 +79,11 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
        }
 
    }
+   if(query.exec("SELECT COUNT(*) FROM Klassenkamerad") && query.next()){
+       if(query.value(0).toInt()==0){
+           initial=true;
+       }
+   }
 }
 
 

@@ -310,6 +310,7 @@ void MainWindow::on_loeschenButton_clicked()
 void MainWindow::on_pushButton_Organisatoren_clicked()
 {
     //qDebug()<<Datensatze.size();
+    on_pushButton_3_clicked();
     Datensatze=KlassenkameradDatensatz::getOrganisatoren(Datensatze);
     //qDebug()<<Datensatze.size();
     printDatensatze();
@@ -349,6 +350,7 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
 void MainWindow::on_pushButton_clicked()
 {
+    on_pushButton_3_clicked();
     Datensatze=KlassenkameradDatensatz::getGesperrte(Datensatze);
     printDatensatze();
 }

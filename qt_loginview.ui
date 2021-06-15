@@ -50,6 +50,9 @@
      </rect>
     </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>RolandDietrich@gmx.de</string>
     </property>
    </widget>
@@ -63,6 +66,9 @@
      </rect>
     </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>RD</string>
     </property>
    </widget>
