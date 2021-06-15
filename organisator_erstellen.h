@@ -19,11 +19,25 @@ class Organisator_erstellen : public QMainWindow
     KlassenkameradDatensatz* ds;
 
 public:
+    /**
+     * @brief Organisator_erstellen::Organisator_erstellen
+     * @param parent
+     * @param dao
+     * @param mw
+     * @param ds
+     */
     explicit Organisator_erstellen(QWidget *parent = nullptr, KlassenkameradDAO* dao=NULL, MainWindow *mw=NULL, KlassenkameradDatensatz *ds=NULL);
+    /**
+     * @brief Organisator_erstellen::~Organisator_erstellen
+     */
     ~Organisator_erstellen();
 
 
 private slots:
+    /**
+     * @brief Organisator_erstellen::on_organisator_verteilen_clicked
+     * verteilt organisator typ
+     */
     void on_organisator_verteilen_clicked();
 
 

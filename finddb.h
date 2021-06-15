@@ -22,9 +22,16 @@ public:
     ~FindDB();
 
 private slots:
-
+    /**
+     * @brief FindDB::on_pushButton_2_Datei_clicked
+     * Versucht Datenbank Datei einzulesen und geht dann weiter zum Loginfenster oder je nach Parameter
+     * löscht sie die Datenbank oder füllt sie mit Testeinträgen
+     */
     void on_pushButton_2_Datei_clicked();
-
+    /**
+     * @brief FindDB::on_pushButton_1_DEFAULT_clicked
+     * Gleich wie die andere Funktion, zusätzlich legt sie eine Datei an wenn keine existiert
+     */
     void on_pushButton_1_DEFAULT_clicked();
 
 private:

@@ -20,7 +20,7 @@ Verwaltung::Verwaltung(string akteurID){
 }
 
 /**
- * @brief Verwaltung::Verwaltung lädt Klassenkameraden
+ * @brief Verwaltung::Verwaltung ruft Klassenkameraden laden auf
  */
 Verwaltung::Verwaltung(){
     akteurID="";

@@ -8,7 +8,13 @@
 #include "windows.h"
 #include<QMainWindow>
 
-
+/**
+ * @brief main
+ * printet einmal Hello World, öffnet danach das Find Database Fenster auf
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[])
 {    
     std::cout<<"Hello World!\n";
