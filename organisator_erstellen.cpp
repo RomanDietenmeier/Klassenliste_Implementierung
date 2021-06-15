@@ -37,6 +37,7 @@ Organisator_erstellen::~Organisator_erstellen()
 
 /**
  * @brief Organisator_erstellen::on_organisator_verteilen_clicked
+ * verteilt organisator typ
  */
 void Organisator_erstellen::on_organisator_verteilen_clicked()
 {
