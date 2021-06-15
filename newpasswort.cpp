@@ -53,10 +53,18 @@ void NewPasswort::on_np_speichernButton_clicked()
     if(!v->passwortAendern(ui->np_neuespasswort->text().toStdString())){
         qDebug()<<"Fehler bei Passwortänderung";
     }else {
-        MainWindow *mainwindow = new MainWindow();
         this->close();
-        mainwindow->show();
-        this->close();
+        if(mw!=NULL){
+            mw->show();
+        }else{
+            MainWindow* mainwindow=new MainWindow(nullptr,this->v);
+            mainwindow->show();
+        }
+        //MainWindow *mainwindow = new MainWindow();
+        //this->close();
+
+
+        delete this;
     }
 }
 

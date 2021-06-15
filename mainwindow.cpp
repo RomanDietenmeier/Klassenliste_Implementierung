@@ -16,12 +16,12 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
     , ui(new Ui::MainWindow)
 {
 
-
+    this->v=v;
     ui->setupUi(this);
     if(v==NULL){
         kDAO=new KlassenkameradDAO("hohoho.db");
     }else{
-        this->v=v;
+        qDebug()<<"in ID "<<v->getAkteuerID().c_str();
         kDAO=v->m_KlassenkameradDAO;
     }
 
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
      */
     on_pushButton_3_clicked();
 
-    if(v==NULL){
+    if(this->v==NULL){
         string akteurID="0";
         KlassenkameradDatensatz* z=NULL;
         for(unsigned long long i=0;i<Datensatze.size();i++){
@@ -101,11 +101,22 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
         this->v->akteur=z;
     }
     qDebug()<<"Akteur_id: "<<this->v->getAkteuerID().c_str();
+    if(this->v->akteur->typ!=Hauptorganisator){
+        ui->OrganisatorErteilenButton->setEnabled(false);
+        ui->PushButtonRemoveOrganisator->setEnabled(false);
+    }
 
 }
 
 MainWindow::~MainWindow()
 {
+/*
+    Verwaltung* v;
+    KlassenkameradDatensatz* kd;
+    std::vector<KlassenkameradDatensatz*> Datensatze;*/
+    delete v;
+    for(unsigned long long i=0;i<Datensatze.size();i++)
+        delete Datensatze[i];
     delete ui;
 }
 
@@ -299,6 +310,7 @@ void MainWindow::on_pushButton_8_db_clicked()
     FindDB* w=new FindDB();
     this->close();
     w->show();
+    delete this;
 }
 
 
