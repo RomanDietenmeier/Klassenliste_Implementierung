@@ -90,7 +90,10 @@ MainWindow::~MainWindow()
 
 
 
-
+/**
+ * @brief MainWindow::printDatensatze
+ * Gibt die Datensätze aus
+ */
 void MainWindow::printDatensatze(){
     ui->tableWidget->setRowCount(1);
     ui->tableWidget->setRowCount(Datensatze.size()+1);
@@ -152,11 +155,19 @@ vector<KlassenkameradDatensatz*> bubbleSort(vector<KlassenkameradDatensatz*> a)
     return a;
 }
 
+/**
+ * @brief MainWindow::sortierenID
+ * Sortiert zuvor angelegte Datensätze nach der ID
+ */
 void MainWindow::sortierenID(){
     Datensatze=bubbleSort(Datensatze);
     printDatensatze();
 }
 
+/**
+ * @brief MainWindow::on_pushButton_3_clicked
+ * aktualisiert die Einträge in der Datenbank
+ */
 void MainWindow::on_pushButton_3_clicked() //aktualisieren der Einträge
 
 {
@@ -183,6 +194,11 @@ void MainWindow::on_pushButton_5_clicked() //Testeinträge einfügen
 }
 */
 
+/**
+ * @brief MainWindow::on_pushButton_6_clicked
+ * Ändert einen zuvor ausgewählten Eintrag. Es MUSS ein Klassenkamerad ausgewählt werden um einen Eintrag zu ändern.
+ * Wenn der ausgewählte Eintrag nicht änderbar ist, bekommt man die Mitteilung "nicht änderbar"
+ */
 void MainWindow::on_pushButton_6_clicked() //Ändern Button
 {
     //kd->vorname+="ä";
@@ -211,7 +227,10 @@ void MainWindow::on_pushButton_6_clicked() //Ändern Button
 
 }
 
-
+/**
+ * @brief MainWindow::on_pushButton_8_hist_clicked
+ * Zeigt die Änderungshistorie eines zuvor ausgewählten Klassenkameraden an.
+ */
 void MainWindow::on_pushButton_8_hist_clicked() //Historie anzeigen
 {
     std::vector<KlassenkameradDatensatz*> ds;
@@ -262,14 +281,16 @@ void MainWindow::on_pushButton_8_hist_clicked() //Historie anzeigen
 
 
 
-
+/**
+ * @brief MainWindow::on_pushButton_8_db_clicked
+ * Ausloggen aus der derzeitigen Datenbank
+ */
 void MainWindow::on_pushButton_8_db_clicked()
 {
     FindDB* w=new FindDB();
     this->close();
     w->show();
 }
-
 
 void MainWindow::on_LoginView_clicked()
 {
@@ -287,6 +308,10 @@ void MainWindow::on_ho_anlegen_clicked()
 }
 */
 
+/**
+ * @brief MainWindow::on_einfuegen_clicked
+ * Erstellt einen neuen Klassenkameraden und öffnet dazu ein neues Fenster wo alle Einträge angegeben werden
+ */
 void MainWindow::on_einfuegen_clicked()
 {
     klassenkamerad_einfuegen *view_einfuegen = new klassenkamerad_einfuegen(NULL, kDAO, this);
@@ -295,6 +320,10 @@ void MainWindow::on_einfuegen_clicked()
 }
 
 
+/**
+ * @brief MainWindow::on_neuesPasswortButton_clicked
+ * Vergibt ein neues Passwort
+ */
 void MainWindow::on_neuesPasswortButton_clicked()
 {    
     NewPasswort *newPasswort = new NewPasswort(NULL, v, this);
@@ -303,7 +332,11 @@ void MainWindow::on_neuesPasswortButton_clicked()
     newPasswort->show();
 }
 
-
+/**
+ * @brief MainWindow::on_loeschenButton_clicked
+ * Löscht einen bereits existierenden Eintrag.
+ * Eintrag nur löschbar, wenn zuvor ein gültiger Eintrag ausgewählt wurde.
+ */
 void MainWindow::on_loeschenButton_clicked()
 {
 
@@ -321,7 +354,10 @@ void MainWindow::on_loeschenButton_clicked()
 
 }
 
-
+/**
+ * @brief MainWindow::on_pushButton_Organisatoren_clicked
+ * Zeigt alle Klassenkameraden an, die derzeit einen Organisatorenstatus besitzen
+ */
 void MainWindow::on_pushButton_Organisatoren_clicked()
 {
     //qDebug()<<Datensatze.size();
@@ -330,7 +366,11 @@ void MainWindow::on_pushButton_Organisatoren_clicked()
     printDatensatze();
 }
 
-
+/**
+ * @brief MainWindow::on_PushButtonRemoveOrganisator_clicked
+ * Entnimmt einem Klassenkameraden die Organisatorrechte.
+ * Nur möglich, wenn Klassenkamerad zuvor Organisatorrechte besitzt.
+ */
 void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 {
     auto Items = ui->tableWidget->selectedItems();
@@ -348,7 +388,12 @@ void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 
 
 
-
+/**
+ * @brief MainWindow::on_tableWidget_cellClicked
+ * Aktiviert den Button_6 wenn die ausgewählte Reihe nicht die Reihe 0 ist.
+ * @param row
+ * @param column
+ */
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     if(row==0)
@@ -361,14 +406,21 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
 
 }
 
-
+/**
+ * @brief MainWindow::on_pushButton_clicked
+ * Gesperrte Organisatoren anzeigen
+ */
 void MainWindow::on_pushButton_clicked()
 {
     Datensatze=KlassenkameradDatensatz::getGesperrte(Datensatze);
     printDatensatze();
 }
 
-
+/**
+ * @brief MainWindow::on_OrganisatorErteilenButton_clicked
+ * Zuvor ausgewählter Klassenkamerad bekommt Organisatorrechte.
+ * Nur möglich, wenn der Klassenkamerad nicht bereits Organisator ist.
+ */
 void MainWindow::on_OrganisatorErteilenButton_clicked()
 {
 
@@ -381,7 +433,11 @@ void MainWindow::on_OrganisatorErteilenButton_clicked()
 
 }
 
-
+/**
+ * @brief MainWindow::on_pushButton_entsperren_clicked
+ * Organisatoren entsperren.
+ * Nur möglich, wenn Organisator bereits gesperrt ist.
+ */
 void MainWindow::on_pushButton_entsperren_clicked()
 {
     auto Items = ui->tableWidget->selectedItems();
