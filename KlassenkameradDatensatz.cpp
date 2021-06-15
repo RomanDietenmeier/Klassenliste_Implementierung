@@ -33,7 +33,11 @@ KlassenkameradDatensatz::KlassenkameradDatensatz(){
 KlassenkameradDatensatz::~KlassenkameradDatensatz(){
 
 }
-
+/**
+ * @brief KlassenkameradDatensatz::getGesperrte Gibt neuen Vektor zurück mit nur gesperrten Datensätze
+ * @param vector Übergibt Vektor mit Datensätzen
+ * @return true bei Erfolg, ansonsten False
+ */
 vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getGesperrte(vector<KlassenkameradDatensatz*> vector){
     std::vector<KlassenkameradDatensatz*> ret;
     for(unsigned long long i=0;i<vector.size();i++){
@@ -43,7 +47,11 @@ vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getGesperrte(vector<Kl
     }
     return ret;
 }
-
+/**
+ * @brief KlassenkameradDatensatz::getOrganisatoren Gibt neuen Vektor zurück mit nur Organisatoren Datensätze
+ * @param vector Übergibt Vektor mit Datensätzen
+ * @return true bei Erfolg, ansonsten False
+ */
 vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getOrganisatoren(vector<KlassenkameradDatensatz*> vector){
     std::vector<KlassenkameradDatensatz*> ret;
     for(unsigned long long i=0;i<vector.size();i++){
@@ -53,7 +61,9 @@ vector<KlassenkameradDatensatz*> KlassenkameradDatensatz::getOrganisatoren(vecto
     }
     return ret;
 }
-
+/**
+ * @brief KlassenkameradDatensatz::printToConsole Gitb die Daten in der Konsole aus
+ */
 void KlassenkameradDatensatz::printToConsole(){
 
     std::cout<<klassenkameradID<<" | "<<vorname<<" | "<<nachname[0]<<" | "<<nachname[1]<<" | "<<eMail<<std::endl;

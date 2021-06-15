@@ -487,7 +487,12 @@ bool KlassenkameradDAO::loeschen(string ID){
     }
     return true;
 }
-
+/**
+ * @brief KlassenkameradDAO::organisatorEntSperren Entsperrt einen Organisator
+ * @param ID Die Id des gesperrten Organisator
+ * @param initialPasswort das neue Initialpasswort des Organisators
+ * @return true bei Erfolg, false bei Fehlschlag
+ */
 bool KlassenkameradDAO::organisatorEntSperren(string ID,string initialPasswort){
     QSqlQuery query;
     query.prepare("UPDATE Organisator SET gesperrt=false, Passwort=:pw, Initialpasswort=false WHERE Organisator.Kamerad_ID=:id");
@@ -498,6 +503,11 @@ bool KlassenkameradDAO::organisatorEntSperren(string ID,string initialPasswort){
     }
     return true;
 }
+/**
+ * @brief KlassenkameradDAO::organisatorSperren Sperrt einen organisator
+ * @param eMail Die E-Mail des zu sperrenden Organisators
+ * @return true bei Erfolg, ansonsten false
+ */
 bool KlassenkameradDAO::organisatorSperren(string eMail){
     QSqlQuery query;
     query.prepare("SELECT Klassenkamerad.ID FROM Klassenkamerad LEFT JOIN Klassenkamerad_Datensatz AS KD ON(Klassenkamerad.ID=kd.Kamerad_ID)LEFT JOIN Organisator ON(Klassenkamerad.ID=Organisator.Kamerad_ID) WHERE kd.EMail=:email");
@@ -520,6 +530,11 @@ bool KlassenkameradDAO::organisatorSperren(string eMail){
     return true;*/
     return true;
 }
+/**
+ * @brief KlassenkameradDAO::removeOrganisator Entfernt einen Organisator (Rechte entzogen)
+ * @param ID Die Id des Organisators
+ * @return true bei Erfolg, ansonsten False
+ */
 bool KlassenkameradDAO::removeOrganisator(string ID){
     QSqlQuery query;
     query.prepare("DELETE FROM Organisator WHERE Organisator.Kamerad_ID=:id");
@@ -531,6 +546,12 @@ bool KlassenkameradDAO::removeOrganisator(string ID){
     }
     return true;
     }
+/**
+ * @brief KlassenkameradDAO::setOrganisator
+ * @param ID
+ * @param initialPasswort
+ * @return true bei Erfolg, ansonsten False
+ */
 bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
     QSqlQuery query;
     query.prepare("INSERT INTO Organisator (Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES (:pw,true,false,:id)");
@@ -541,7 +562,13 @@ bool KlassenkameradDAO::setOrganisator(string ID,string initialPasswort){
     }
     return true;
 }
-
+/**
+ * @brief KlassenkameradDAO::einfuegen_HauptO Fügt einen Hauptorganisator hinzu (beim ersten Start)
+ * @param daten Der verwendete Datensatz
+ * @param passwort Das Passwort des HOs
+ * @param master_passwort Das Masterpasswort des HOs
+ * @return true bei Erfolg, ansonsten False
+ */
 bool KlassenkameradDAO::einfuegen_HauptO(KlassenkameradDatensatz* daten,string passwort,string master_passwort){
     QSqlQuery query;
     if(!query.exec("INSERT INTO Klassenkamerad(ID) VALUES(0)"))return false;
