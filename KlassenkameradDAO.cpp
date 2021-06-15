@@ -44,27 +44,40 @@ KlassenkameradDAO::KlassenkameradDAO(std::string pfad){
    //qDebug()<<count;
    if(count==0){
        initial=true;
-       QFile scriptFile("./make_Tables.txt");
+       //QFile scriptFile("./make_Tables.txt");
        QSqlQuery query;
+       /*
        if (scriptFile.open(QIODevice::ReadOnly))
        {
-           // The SQLite driver executes only a single (the first) query in the QSqlQuery
-           //  if the script contains more queries, it needs to be splitted.
-           QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
 
-           foreach (QString queryTxt, scriptQueries)
-           {
-               //qDebug()<<queryTxt.toLocal8Bit().constData();
-               if (queryTxt.trimmed().isEmpty()) {
-                   continue;
-               }
-               if (!query.exec(queryTxt))
-               {
-                   qFatal("ERROR");
-               }
-               query.finish();
-           }
        }
+*/
+       QString string="\
+       PRAGMA foreign_keys = ON;\
+       CREATE TABLE Klassenkamerad(ID INTEGER PRIMARY KEY AUTOINCREMENT);\
+       CREATE TABLE Klassenkamerad_Datensatz(ID INTEGER PRIMARY KEY AUTOINCREMENT,Vorname TEXT NOT NULL,Nachname TEXT NOT NULL,Nachname2 TEXT,EMail TEXT NOT NULL,Strasse Text NOT NULL,Hausnummer Text NOT NULL,Ort Text NOT NULL,PLZ Text NOT NULL,Zeit TIMESTAMP NOT NULL,Tag Date NOT NULL,Organisator INTEGER NOT NULL,Kamerad_ID INTEGER NOT NULL,FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE);\
+       CREATE TABLE Telefonnummer(Telefonnummer TEXT,Datensatz_ID INTEGER NOT NULL,FOREIGN KEY(Datensatz_ID) REFERENCES Klassenkamerad_Datensatz(ID) ON DELETE CASCADE,PRIMARY KEY(Telefonnummer,Datensatz_ID));\
+       CREATE TABLE Organisator(Passwort TEXT NOT NULL,Initialpasswort BOOL NOT NULL,gesperrt BOOL NOT NULL,Kamerad_ID INTEGER NOT NULL,FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE PRIMARY KEY(Kamerad_ID));\
+       CREATE TABLE Hauptorganisator(Masterpasswort TEXT NOT NULL,Kamerad_ID INTEGER NOT NULL,FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE PRIMARY KEY(Kamerad_ID));";
+
+       // The SQLite driver executes only a single (the first) query in the QSqlQuery
+       //  if the script contains more queries, it needs to be splitted.
+       //QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+       QStringList scriptQueries = string.split(";");
+
+       foreach (QString queryTxt, scriptQueries)
+       {
+           //qDebug()<<queryTxt.toLocal8Bit().constData();
+           if (queryTxt.trimmed().isEmpty()) {
+               continue;
+           }
+           if (!query.exec(queryTxt))
+           {
+               qFatal("ERROR");
+           }
+           query.finish();
+       }
+
    }
 }
 
@@ -93,27 +106,87 @@ bool KlassenkameradDAO::clean(){
  */
 bool KlassenkameradDAO::test(){
     //QString all=""
-    QFile scriptFile("./test_Aufruf.txt");
+    //QFile scriptFile("./test_Aufruf.txt");
     QSqlQuery query;
+    /*
     if (scriptFile.open(QIODevice::ReadOnly))
     {
         // The SQLite driver executes only a single (the first) query in the QSqlQuery
         //  if the script contains more queries, it needs to be splitted.
-        QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
 
-        foreach (QString queryTxt, scriptQueries)
-        {
-            //qDebug()<<queryTxt.toLocal8Bit().constData();
-            if (queryTxt.trimmed().isEmpty()) {
-                continue;
-            }
-            if (!query.exec(queryTxt))
-            {
-                qFatal(query.lastError().text().toLocal8Bit().constData());
-            }
-            query.finish();
-        }
     }
+*/
+    QString string="DROP TABLE IF EXISTS Hauptorganisator;DROP TABLE IF EXISTS Organisator;DROP TABLE IF EXISTS Telefonnummer;DROP TABLE IF EXISTS Klassenkamerad_Datensatz;DROP TABLE IF EXISTS Klassenkamerad;PRAGMA foreign_keys = ON;CREATE TABLE Klassenkamerad(ID INTEGER PRIMARY KEY AUTOINCREMENT);CREATE TABLE Klassenkamerad_Datensatz(ID INTEGER PRIMARY KEY AUTOINCREMENT,Vorname TEXT NOT NULL,Nachname TEXT NOT NULL,Nachname2 TEXT,EMail TEXT NOT NULL,Strasse Text NOT NULL,Hausnummer Text NOT NULL,Ort Text NOT NULL,PLZ Text NOT NULL,Zeit TIMESTAMP NOT NULL,Tag Date NOT NULL,Organisator INTEGER NOT NULL,Kamerad_ID INTEGER NOT NULL,FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE);CREATE TABLE Telefonnummer(Telefonnummer TEXT,Datensatz_ID INTEGER NOT NULL,FOREIGN KEY(Datensatz_ID) REFERENCES Klassenkamerad_Datensatz(ID) ON DELETE CASCADE,PRIMARY KEY(Telefonnummer,Datensatz_ID));CREATE TABLE Organisator(Passwort TEXT NOT NULL,Initialpasswort BOOL NOT NULL,gesperrt BOOL NOT NULL,Kamerad_ID INTEGER NOT NULL\
+,FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE \
+PRIMARY KEY(Kamerad_ID)\
+);\
+CREATE TABLE Hauptorganisator(\
+Masterpasswort TEXT NOT NULL,\
+Kamerad_ID INTEGER NOT NULL,\
+FOREIGN KEY(Kamerad_ID) REFERENCES Klassenkamerad(ID) ON DELETE CASCADE \
+PRIMARY KEY(Kamerad_ID)\
+);\
+INSERT INTO Klassenkamerad(ID) VALUES(0);\
+INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('RD',True,False,0);\
+INSERT INTO Hauptorganisator(Masterpasswort,Kamerad_ID) VALUES('RD',0);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Roland','Dietrich','RolandDietrich@gmx.de','AdminStrasse','14b','Aminien','4269',time('now'),date('now'),0,0);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=0),'07363/71321');\
+INSERT INTO Klassenkamerad(ID) VALUES(1);\
+INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('MM',True,False,1);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Max','Mustermann','MaxMustermann@gmx.de','OrganisatorStrasse','13','Germania','1',time('now'),date('now'),0,1);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=1),'8880001');\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=1),'8880002');\
+INSERT INTO Klassenkamerad(ID) VALUES(2);\
+INSERT INTO Organisator(Passwort,Initialpasswort,gesperrt,Kamerad_ID) VALUES('KM',True,False,2);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Klara','Musterfrau','KlaraMusterfrau@gmx.de','OrganisatorinnenStrasse','4','Berg','8866',time('now'),date('now'),0,2);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=2),'+431552200');\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=2),'+4988855621');\
+INSERT INTO Klassenkamerad(ID) VALUES(3);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Roman','Dietenmeier','Robert@student.de','Aalener Weide','12','Laupberg','78988',time('now'),date('now'),1,3);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=3),'+49125528962');\
+INSERT INTO Klassenkamerad(ID) VALUES(4);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Eric','Schuh','Erik@schlaeft.de','Aalener Heide','3','Wasseralfingen','73433',time('now'),date('now'),2,4);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=4),'+49125528963');\
+INSERT INTO Klassenkamerad(ID) VALUES(5);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Patrick','Vogel','PEPE@maimai.de','Aalener Fluchtweg','131','Aalen','73433',time('now'),date('now'),0,5);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=5),'+49125528963');\
+INSERT INTO Klassenkamerad(ID) VALUES(6);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Dommenic','Berger','derLehrer@Rotterburg.de','Gipfelstrasse','5','Gipfelberg','666777',time('now'),date('now'),0,6);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=6),'+49000111222');\
+INSERT INTO Klassenkamerad(ID) VALUES(7);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Maximilian','Babo','derAllwissende@CProfi.de','Strebende Strasse','2','Geniusburg','888',time('now'),date('now'),0,7);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=7),'+49000111223');\
+INSERT INTO Klassenkamerad(ID) VALUES(8);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Moritz','Werner','Werner@Werner.de','Schlossweg','1','Herzogen','1111142',time('now'),date('now'),0,8);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=8),'+491722226666');\
+INSERT INTO Klassenkamerad(ID) VALUES(9);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Tider','Tiger','Timooo@coolerTyp.de','Erikastrasse','4','Düben','1111342',time('now'),date('now'),0,9);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=9),'+49170005556');\
+INSERT INTO Klassenkamerad(ID) VALUES(10);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Scooby','Snacks','sindTeuer@guenstig.de','Space Strasse','12','Cartoonhausen','1111323',time('now'),date('now'),0,10);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=10),'+4917000666');\
+INSERT INTO Klassenkamerad(ID) VALUES(11);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Catleya','Otter','istSchoen@web.de','Nette Strasse','13','ShipIt','1111356',time('now'),date('now'),0,11);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=11),'+4917000777');\
+INSERT INTO Klassenkamerad(ID) VALUES(12);\
+INSERT INTO Klassenkamerad_Datensatz (Vorname,Nachname,EMail,Strasse,Hausnummer,Ort,PLZ,Zeit,Tag,Organisator,Kamerad_ID) VALUES('Fabioso','Walter','gegenGewalt@Carsten.de','Schlaeger Strasse','7','ShipIt','1111356',time('now'),date('now'),0,12);\
+INSERT INTO Telefonnummer (Datensatz_ID,Telefonnummer) VALUES ((SELECT MAX(ID) FROM Klassenkamerad_Datensatz WHERE Kamerad_ID=12),'+4917005777');";
+    QStringList scriptQueries = string.split(';');
+    //QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+
+    foreach (QString queryTxt, scriptQueries)
+    {
+        //qDebug()<<queryTxt.toLocal8Bit().constData();
+        if (queryTxt.trimmed().isEmpty()) {
+            continue;
+        }
+        if (!query.exec(queryTxt))
+        {
+            qFatal(query.lastError().text().toLocal8Bit().constData());
+        }
+        query.finish();
+    }
+
     return true;
 }
 
