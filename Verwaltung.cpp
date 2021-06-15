@@ -9,16 +9,21 @@
 #include <QDebug>
 #include "newpasswort.h"
 
-
+/**
+ * @brief Verwaltung::Verwaltung
+ * @param akteurID
+ */
 Verwaltung::Verwaltung(string akteurID){
     Verwaltung();
     this->akteurID=akteurID;
 
 }
 
+/**
+ * @brief Verwaltung::Verwaltung lädt Klassenkameraden
+ */
 Verwaltung::Verwaltung(){
     akteurID="";
-
     m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
 
 }
@@ -28,16 +33,26 @@ Verwaltung::~Verwaltung(){
 
 }
 
+
 //Alle Objekte zerstören und neue loginview erzeugen? Implementierung gegen Ende
 void Verwaltung::abmelden(){
 
 }
 
+/**
+ * @brief Verwaltung::getAkteuerID
+ * @return
+ */
 string Verwaltung::getAkteuerID(){
     return akteurID;
 }
 
-//veruche
+/**
+ * @brief Verwaltung::anmelden anmelde Logik, bei noch aktuellen Initialpasswort wird ein neues gefordert, bei mehrmaligem falschanmelden wird gespert.
+ * @param eMail
+ * @param passwort
+ * @return
+ */
 int Verwaltung::anmelden(string eMail, string passwort){
     this->passwort = passwort;
     login_ret log = m_KlassenkameradDAO->anmeldedatenPruefen(eMail,passwort);
@@ -73,7 +88,11 @@ int Verwaltung::anmelden(string eMail, string passwort){
 
 }
 
-
+/**
+ * @brief Verwaltung::klassenkameradBearbeiten aktualisiert den Entsprechenden Klassenkamerad
+ * @param k
+ * @return
+ */
 bool Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz* k){
     if(m_KlassenkameradDAO->aktualisieren(k,akteurID)==true)
         return true;
@@ -81,25 +100,40 @@ bool Verwaltung::klassenkameradBearbeiten(KlassenkameradDatensatz* k){
         return false;
 }
 
-
+/**
+ * @brief Verwaltung::klassenkameradenAktuelleDatensaetze
+ * @return
+ */
 vector<KlassenkameradDatensatz*> Verwaltung::klassenkameradenAktuelleDatensaetze(){
    if(m_KlassenkameradDatensatz.empty())
        m_KlassenkameradDAO->klassenkameradenLaden(m_KlassenkameradDatensatz);
    return m_KlassenkameradDatensatz;
 }
 
-
+/**
+ * @brief Verwaltung::klassenkameradHistorie Lädt änderungshistorie
+ * @param klassenkameradID
+ * @return
+ */
 vector<KlassenkameradDatensatz*> Verwaltung::klassenkameradHistorie(string klassenkameradID){
     m_KlassenkameradDAO->aenderungshistorieLaden(m_KlassenkameradAenderungshistorie,klassenkameradID);
     return m_KlassenkameradAenderungshistorie;
 }
 
-
+/**
+ * @brief Verwaltung::klassenkameradLoeschen Löscht klassenkamerad
+ * @param klassenkameradID
+ * @return
+ */
 bool Verwaltung::klassenkameradLoeschen(string klassenkameradID){
     return m_KlassenkameradDAO->loeschen(klassenkameradID);
 }
 
-
+/**
+ * @brief Verwaltung::neuenKlassenkameradAnlegen legt neuen Klassenkamerad an
+ * @param k
+ * @return
+ */
 bool Verwaltung::neuenKlassenkameradAnlegen(KlassenkameradDatensatz* k){
     if(m_KlassenkameradDAO->einfuegen(k,akteurID)){
         m_KlassenkameradDatensatz.push_back(k);
@@ -120,7 +154,11 @@ bool Verwaltung::organisatorRechteVergeben(string ID){
     return  NULL;
 }
 
-
+/**
+ * @brief Verwaltung::passwortAendern
+ * @param newPasswort
+ * @return
+ */
 bool Verwaltung::passwortAendern(string newPasswort){
     if(newPasswort.compare(this->passwort)!=0)
         return m_KlassenkameradDAO->passwortAendern(newPasswort,akteurID);
