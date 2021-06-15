@@ -28,19 +28,61 @@ public:
 
 	Verwaltung();
     //für Testzwecke
+    /**
+     * @brief Verwaltung::Verwaltung ruft Klassenkameraden laden auf
+     */
     Verwaltung(string akteurID);
     ~Verwaltung();
     void init();
 	void abmelden();
+    /**
+     * @brief Verwaltung::anmelden anmelde Logik, bei noch aktuellen Initialpasswort wird ein neues gefordert, bei mehrmaligem falschanmelden wird gespert.
+     * @param eMail
+     * @param passwort
+     * @return
+     */
     int anmelden(string eMail, string Passwort);
+    /**
+     * @brief Verwaltung::klassenkameradBearbeiten aktualisiert den Entsprechenden Klassenkamerad
+     * @param k
+     * @return
+     */
     bool klassenkameradBearbeiten(KlassenkameradDatensatz* k);
+    /**
+     * @brief Verwaltung::klassenkameradenAktuelleDatensaetze
+     * @return
+     */
     vector<KlassenkameradDatensatz*> klassenkameradenAktuelleDatensaetze();
+    /**
+     * @brief Verwaltung::klassenkameradHistorie Lädt änderungshistorie
+     * @param klassenkameradID
+     * @return
+     */
     vector<KlassenkameradDatensatz*> klassenkameradHistorie(string klassenkameradID);
+    /**
+     * @brief Verwaltung::klassenkameradLoeschen Löscht klassenkamerad
+     * @param klassenkameradID
+     * @return
+     */
     bool klassenkameradLoeschen(string klassenkameradID);
+    /**
+     * @brief Verwaltung::neuenKlassenkameradAnlegen legt neuen Klassenkamerad an
+     * @param k
+     * @return
+     */
     bool neuenKlassenkameradAnlegen(KlassenkameradDatensatz* k);
     bool oranisatorRechteEntfernen(string ID);
     bool organisatorRechteVergeben(string ID);
+    /**
+     * @brief Verwaltung::passwortAendern
+     * @param newPasswort
+     * @return
+     */
     bool passwortAendern(string Passwort);
+    /**
+     * @brief Verwaltung::getAkteuerID
+     * @return
+     */
     string getAkteuerID();
 
 private:
