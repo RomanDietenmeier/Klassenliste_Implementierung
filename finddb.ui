@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>296</width>
-    <height>127</height>
+    <height>147</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>DEFAULT</string>
+     <string>Standard</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2_Datei">
@@ -59,6 +59,19 @@
     </property>
     <property name="text">
      <string>DATEI auswählen</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_error">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>261</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

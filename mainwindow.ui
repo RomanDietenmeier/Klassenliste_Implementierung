@@ -81,27 +81,11 @@
      <string>Historie laden</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_ID_hist">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Zeilennr.</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_8_db">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>400</y>
+      <y>390</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -127,7 +111,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
+      <y>280</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -153,7 +137,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>130</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -166,7 +150,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
+      <y>190</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -179,7 +163,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>220</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -195,7 +179,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>160</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -208,7 +192,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>280</y>
+      <y>250</y>
       <width>80</width>
       <height>21</height>
      </rect>

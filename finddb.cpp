@@ -43,7 +43,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
     try {
         dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
     }  catch (const std::invalid_argument& e ) {
-        qDebug()<<e.what();
+        ui->label_error->setText("Datenbank Datei auswählen oder Standard auswählen!");
         return;
     }
     v=new Verwaltung();
