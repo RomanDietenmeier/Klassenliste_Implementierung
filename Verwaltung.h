@@ -24,6 +24,7 @@ class Verwaltung
 public:
 
     KlassenkameradDAO* m_KlassenkameradDAO;
+    KlassenkameradDatensatz* akteur;
 
 
 	Verwaltung();

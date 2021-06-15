@@ -76,11 +76,29 @@ MainWindow::MainWindow(QWidget *parent,Verwaltung* v)
 
     if(v==NULL){
         string akteurID="0";
+        KlassenkameradDatensatz* z=NULL;
         for(unsigned long long i=0;i<Datensatze.size();i++){
-            if(Datensatze[i]->typ==Hauptorganisator)
+            if(Datensatze[i]->typ==Hauptorganisator){
                 akteurID=Datensatze[i]->klassenkameradID;
+                z=Datensatze[i];
+            }
+
+
+
         }
         this->v = new Verwaltung(akteurID);
+        this->v->akteur=z;
+    }else{
+        KlassenkameradDatensatz* z=NULL;
+        for(unsigned long long i=0;i<Datensatze.size();i++){
+            if(Datensatze[i]->klassenkameradID.compare(v->getAkteuerID())==0){
+                z=Datensatze[i];
+            }
+
+
+
+        }
+        this->v->akteur=z;
     }
     qDebug()<<"Akteur_id: "<<this->v->getAkteuerID().c_str();
 
@@ -226,6 +244,8 @@ void MainWindow::on_pushButton_6_clicked() //Ändern Button
         }
 
     }else{
+        Items.at(0)->setText("nicht änderbar!");
+        ui->tableWidget->resizeColumnsToContents();
         qDebug() << "nicht änderbar!";
     }
 
@@ -364,6 +384,8 @@ void MainWindow::on_pushButton_Organisatoren_clicked()
  */
 void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 {
+    if(v->akteur->typ!=Hauptorganisator)
+        return;
     auto Items = ui->tableWidget->selectedItems();
         if(Items.size()>0&&Items.at(0)->row() != 0 && Datensatze[Items.at(0)->row()-1]->typ==Oragnisator)
         {
@@ -416,7 +438,8 @@ void MainWindow::on_pushButton_clicked()
  */
 void MainWindow::on_OrganisatorErteilenButton_clicked()
 {
-
+    if(v->akteur->typ!=Hauptorganisator)
+        return;
     auto Items = ui->tableWidget->selectedItems();
     if (Items.size()!=0 && Items.at(0)->row()>0 && Datensatze[Items.at(0)->row()-1]->typ == Kamerad){
         Organisator_erstellen *organisator_erstellen = new Organisator_erstellen(NULL, kDAO, this, Datensatze[Items.at(0)->row()-1]);
