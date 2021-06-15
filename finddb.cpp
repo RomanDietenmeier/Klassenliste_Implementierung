@@ -26,7 +26,11 @@ FindDB::~FindDB()
 }
 
 
-
+/**
+ * @brief FindDB::on_pushButton_2_Datei_clicked
+ * Versucht Datenbank Datei einzulesen und geht dann weiter zum Loginfenster oder je nach Parameter
+ * löscht sie die Datenbank oder füllt sie mit Testeinträgen
+ */
 void FindDB::on_pushButton_2_Datei_clicked()
 {
     if(dao!=NULL){
@@ -39,7 +43,7 @@ void FindDB::on_pushButton_2_Datei_clicked()
     try {
         dao=new KlassenkameradDAO(s.toLocal8Bit().constData());
     }  catch (const std::invalid_argument& e ) {
-        qDebug()<<e.what();
+        ui->label_error->setText("Datenbank Datei auswählen oder Standard auswählen!");
         return;
     }
     v=new Verwaltung();
@@ -67,7 +71,10 @@ void FindDB::on_pushButton_2_Datei_clicked()
 
 }
 
-
+/**
+ * @brief FindDB::on_pushButton_1_DEFAULT_clicked
+ * Gleich wie die andere Funktion, zusätzlich legt sie eine Datei an wenn keine existiert
+ */
 void FindDB::on_pushButton_1_DEFAULT_clicked()
 {
     if(dao!=NULL){
