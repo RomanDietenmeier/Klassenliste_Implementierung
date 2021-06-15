@@ -310,6 +310,8 @@ void MainWindow::on_loeschenButton_clicked()
 
 
     auto Items = ui->tableWidget->selectedItems();
+    if(Items.size()<=0)
+        return;
     if(Items.at(0)->row() != 0)
     {
         kDAO->loeschen(Datensatze[Items.at(0)->row()-1]->klassenkameradID);
@@ -333,7 +335,7 @@ void MainWindow::on_pushButton_Organisatoren_clicked()
 void MainWindow::on_PushButtonRemoveOrganisator_clicked()
 {
     auto Items = ui->tableWidget->selectedItems();
-        if(Items.at(0)->row() != 0 && Datensatze[Items.at(0)->row()-1]->typ==Oragnisator)
+        if(Items.size()>0&&Items.at(0)->row() != 0 && Datensatze[Items.at(0)->row()-1]->typ==Oragnisator)
         {
             if(kDAO->removeOrganisator(Datensatze[Items.at(0)->row()-1]->klassenkameradID)){
                 Datensatze.erase(Datensatze.begin()+Items.at(0)->row()-1);
