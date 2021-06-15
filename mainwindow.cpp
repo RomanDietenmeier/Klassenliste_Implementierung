@@ -368,7 +368,8 @@ void MainWindow::on_PushButtonRemoveOrganisator_clicked()
         if(Items.size()>0&&Items.at(0)->row() != 0 && Datensatze[Items.at(0)->row()-1]->typ==Oragnisator)
         {
             if(kDAO->removeOrganisator(Datensatze[Items.at(0)->row()-1]->klassenkameradID)){
-                Datensatze.erase(Datensatze.begin()+Items.at(0)->row()-1);
+                //Datensatze.erase(Datensatze.begin()+Items.at(0)->row()-1);
+                Datensatze[Items.at(0)->row()-1]->typ=Kamerad;
                 printDatensatze();
             }
 
